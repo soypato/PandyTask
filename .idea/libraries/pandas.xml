@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="pandas">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/pandas/sqlite-jdbc-3.46.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/pandas/slf4j-api-1.7.36.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
