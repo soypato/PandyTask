@@ -16,49 +16,77 @@ import java.util.List;
 public class ManejoUsuario {
 
     private HashSet<Usuario> listaUsuarios;
-
+    private final String archivoUsuarios = "usuarios.dat";
     public ManejoUsuario() {
         listaUsuarios = new HashSet<>();
     }
 
-    public void entradaUsuarios() throws Exception
-    {
+    public void entradaUsuarios() throws Exception {
+        FileInputStream fileInputStream = null;
+        DataInputStream dataInputStream = null;
         try {
-            FileInputStream fileInputStream = new FileInputStream("usuarios.dat");
-            DataInputStream dataInputStream = new DataInputStream(fileInputStream);
+            fileInputStream = new FileInputStream(archivoUsuarios);
+            dataInputStream = new DataInputStream(fileInputStream);
 
             while (true) {
+                try {
+                    String id = dataInputStream.readUTF();
+                    String nombreUsuario = dataInputStream.readUTF();
+                    String contrasena = dataInputStream.readUTF();
+                    String correoElectronico = dataInputStream.readUTF();
 
-                String id = dataInputStream.readUTF();
-                String nombreUsuario = dataInputStream.readUTF();
-                String contrasena = dataInputStream.readUTF();
-                String correoElectronico = dataInputStream.readUTF();
-                // leer y almacenarlo en el set
-
-                Usuario usuarioTmp = new Usuario(id, nombreUsuario, contrasena, correoElectronico);
-
-                listaUsuarios.add(usuarioTmp);
+                    Usuario usuarioTmp = new Usuario(id, nombreUsuario, contrasena, correoElectronico);
+                    listaUsuarios.add(usuarioTmp);
+                } catch (EOFException e) {
+                    throw new EOFException("No se pudieron cargar los datos del archivo al set");
+                }
             }
-
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException();
+            throw new FileNotFoundException("No encontrado");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IOException("Error en la lectura");
+        } finally { // VER SI PUEDO MODIFICARLO CON UN ASSERT
+            try {
+                if (dataInputStream != null) {
+                    dataInputStream.close();
+                }
+                if (fileInputStream != null) {
+                    fileInputStream.close();
+                }
+            } catch (IOException e) {
+                throw new IOException("Problema en la apertura");
+            }
+        }
+    }
+    public void salidaUsuarios() {
+        FileOutputStream fileOutputStream = null;
+        DataOutputStream dataOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(archivoUsuarios);
+            dataOutputStream = new DataOutputStream(fileOutputStream);
+
+            for (Usuario usuarioTmp : listaUsuarios) {
+                dataOutputStream.writeUTF(usuarioTmp.getId());
+                dataOutputStream.writeUTF(usuarioTmp.getNombreUsuario());
+                dataOutputStream.writeUTF(usuarioTmp.getContrasena());
+                dataOutputStream.writeUTF(usuarioTmp.getCorreoElectronico());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (dataOutputStream != null) {
+                    dataOutputStream.close();
+                }
+                if (fileOutputStream != null) {
+                    fileOutputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public void salidaUsuarios() throws Exception {
-        for (Usuario usuarioTmp : listaUsuarios) {
-            FileOutputStream fileOutputStream = new FileOutputStream("usuarios.dat");
-            DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream);
-            // id, nombre, contrasena, correo
-
-            dataOutputStream.writeUTF(usuarioTmp.getId());
-            dataOutputStream.writeUTF(usuarioTmp.getNombreUsuario());
-            dataOutputStream.writeUTF(usuarioTmp.getContrasena());
-            dataOutputStream.writeUTF(usuarioTmp.getCorreoElectronico());
-        }
-    }
 
     public Usuario buscarUsuario(String nombreUsuario)
     {

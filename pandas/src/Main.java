@@ -6,9 +6,37 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
     static ManejoUsuario manejoUsuario;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         manejoUsuario = new ManejoUsuario();
+        try {
+            manejoUsuario.salidaUsuarios();
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
+
+        try {
+            manejoUsuario.entradaUsuarios();
+        }
+        catch (Exception e)
+        {
+            System.out.println("ERROR " + e);
+        }
+/*
+        Usuario usuario1 = new Usuario("324", "pato", "1234", "patriciotubio");
+        manejoUsuario.altaUsuario(usuario1);
+
+        // Durante todo el sistema tenemos que trabajar sobre las colecciones, no el archivo
+        // El archivo se actualiza a lo ultimo
+
+        try {
+            manejoUsuario.salidaUsuarios();
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
+
+        */
+
 
         /*int opcion;
         do {
