@@ -37,7 +37,7 @@ public class Usuario implements Comparable {
         return nombreUsuario;
     }
 
-    public String getContrasena() {
+    public String getContrasena() { // la contrasena ya viaja encriptada, por lo que no hay forma de ver la real
         return contrasena;
     }
 

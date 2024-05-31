@@ -4,6 +4,9 @@ import excepciones.ContrasenaIncorrectaException;
 import excepciones.LoginIncorrectoException;
 import excepciones.UsuarioIncorrectoException;
 import modelo.sistema.Usuario;
+import org.w3c.dom.CDATASection;
+
+import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,6 +19,45 @@ public class ManejoUsuario {
 
     public ManejoUsuario() {
         listaUsuarios = new HashSet<>();
+    }
+
+    public void entradaUsuarios() throws Exception
+    {
+        try {
+            FileInputStream fileInputStream = new FileInputStream("usuarios.dat");
+            DataInputStream dataInputStream = new DataInputStream(fileInputStream);
+
+            while (true) {
+
+                String id = dataInputStream.readUTF();
+                String nombreUsuario = dataInputStream.readUTF();
+                String contrasena = dataInputStream.readUTF();
+                String correoElectronico = dataInputStream.readUTF();
+                // leer y almacenarlo en el set
+
+                Usuario usuarioTmp = new Usuario(id, nombreUsuario, contrasena, correoElectronico);
+
+                listaUsuarios.add(usuarioTmp);
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void salidaUsuarios() throws Exception {
+        for (Usuario usuarioTmp : listaUsuarios) {
+            FileOutputStream fileOutputStream = new FileOutputStream("usuarios.dat");
+            DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream);
+            // id, nombre, contrasena, correo
+
+            dataOutputStream.writeUTF(usuarioTmp.getId());
+            dataOutputStream.writeUTF(usuarioTmp.getNombreUsuario());
+            dataOutputStream.writeUTF(usuarioTmp.getContrasena());
+            dataOutputStream.writeUTF(usuarioTmp.getCorreoElectronico());
+        }
     }
 
     public Usuario buscarUsuario(String nombreUsuario)
@@ -77,5 +119,7 @@ public class ManejoUsuario {
         }
         return respuesta;
     }
+
+
 
 }
