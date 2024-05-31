@@ -1,4 +1,4 @@
-package modelo.sistema;
+package modelo.tareas;
 
 import java.util.HashSet;
 
