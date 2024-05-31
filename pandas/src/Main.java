@@ -56,7 +56,7 @@ public class Main {
                     iniciarSesion();
                     break;
                 case 2:
-                    //registrarUsuario();
+                    registrarUsuario();
                     break;
                 case 3:
                     // Restablecer contraseña
@@ -100,6 +100,11 @@ public class Main {
 
             try {
                 loginExitoso = manejoUsuario.comprobarLogin(usuario, contrasena);
+                if(loginExitoso)
+                {
+                    System.out.println("Usuario y contrasena correcta!");
+                    mostrarMenuInicio();
+                }
             } catch (LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
                 System.out.println("Usuario y contrasena incorrecto");
             }
@@ -112,7 +117,7 @@ public class Main {
 
     }
 
-   /*
+
 
     public static void registrarUsuario() {
         boolean respuesta = false;
@@ -273,7 +278,7 @@ public class Main {
 
 
 
-    }        */
+    }        
 
 }
 
