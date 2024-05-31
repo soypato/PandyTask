@@ -85,7 +85,7 @@ public class Usuario implements Comparable {
         {
             if(obj instanceof Usuario usuarioValidado)
             {
-              resultado = this.getId().compareTo(usuarioValidado.getId());
+                resultado = this.getId().compareTo(usuarioValidado.getId());
             }
         }
         return resultado;

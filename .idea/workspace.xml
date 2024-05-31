@@ -7,6 +7,10 @@
     <list default="true" id="29c5bbd7-d0b4-4d45-b037-c7b2932f1ed9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pandas/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/ManejoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/ManejoUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/sistema/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/sistema/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionEstudio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios.dat" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.dat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +33,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "desarrolloPato",
+    "git-widget-placeholder": "desarrolloNacho",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/docs/learning-aprendizaje/AA Tecnología/Docs/UTN/TUP/cursada/tercer cuatrimestre/prog-labotorio iii/proyecto final/proyecto-labo3/pandas"
   }

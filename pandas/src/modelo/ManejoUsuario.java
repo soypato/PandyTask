@@ -4,14 +4,10 @@ import excepciones.ContrasenaIncorrectaException;
 import excepciones.LoginIncorrectoException;
 import excepciones.UsuarioIncorrectoException;
 import modelo.sistema.Usuario;
-import org.w3c.dom.CDATASection;
 
-import javax.xml.crypto.Data;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 
 public class ManejoUsuario {
 
@@ -109,6 +105,7 @@ public class ManejoUsuario {
     }
 
     // DEVUELVE TRUE EN CASO DE QUE SEA CORRECTO, FALSE QUE SEA INCORREC.
+
     public boolean comprobarLogin(String nombre, String contrasena) throws LoginIncorrectoException
     {
         boolean encontrado = false;
