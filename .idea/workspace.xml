@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="29c5bbd7-d0b4-4d45-b037-c7b2932f1ed9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/pandas.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/sistema/Usuario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandas/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandas/pandas.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/ManejoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/ManejoUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/sistema/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/sistema/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto-labo3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,10 +16,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2hDOWFFJjEygVXhqTm92ZkBR7AT" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -35,7 +27,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "desarrolloPato",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/docs/learning-aprendizaje/AA Tecnología/Docs/UTN/TUP/cursada/tercer cuatrimestre/prog-labotorio iii/proyecto final/proyecto-labo3/pandas"
   }
@@ -50,5 +44,16 @@
       <updated>1717125211168</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

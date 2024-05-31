@@ -8,37 +8,51 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
+        //Inicializamos el hashSet
         manejoUsuario = new ManejoUsuario();
-        try {
-            manejoUsuario.salidaUsuarios();
-        } catch (Exception e) {
-            throw new Exception(e);
-        }
 
+        //Leer los datos que fueron cargados en el archivo
         try {
             manejoUsuario.entradaUsuarios();
         }
         catch (Exception e)
         {
-            System.out.println("ERROR " + e);
+            System.out.println("Programa iniciado correctamente");
         }
-/*
-        Usuario usuario1 = new Usuario("324", "pato", "1234", "patriciotubio");
-        manejoUsuario.altaUsuario(usuario1);
+
+        System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
+        /*Usuario usuario1 = new Usuario("324", "pato", "1234", "patriciotubio");
+        */
+        //Usuario usuario2 = new Usuario("555", "nachito", "676", "nachitoManu.com.es");
+
+
+        //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego
+        //con el altaUsuario. Una vez hecho todo esto, entrará al método de salidaUsuario, por lo tanto, el usuario estará
+        //cargado en el archivo, luego en otra instancia, leeremos el archivo y cuando se cierre mostramos la colección
+        // para verificar que el dato se haya cargado correctamente.
+
+
+        //manejoUsuario.altaUsuario(usuario1);
+        //manejoUsuario.altaUsuario(usuario2);
+
+
+
+        try {
+            manejoUsuario.salidaUsuarios();  //Carga datos
+        } catch (Exception e) {
+            e.printStackTrace();  //Verificar esto
+        }
 
         // Durante todo el sistema tenemos que trabajar sobre las colecciones, no el archivo
         // El archivo se actualiza a lo ultimo
 
-        try {
-            manejoUsuario.salidaUsuarios();
-        } catch (Exception e) {
-            throw new Exception(e);
-        }
-
-        */
 
 
-        /*int opcion;
+
+
+
+
+        int opcion;
         do {
             mostrarMenuPrincipal();
             opcion = scanner.nextInt();
@@ -234,6 +248,6 @@ public class Main {
                 default:
                     System.out.println("Opción inválida");
             }
-        } while (opcion != 3);*/
+        } while (opcion != 3);
     }
 }
