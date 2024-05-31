@@ -6,7 +6,7 @@ public abstract class Tarea
 {
     private String titulo;
     private String objetivo;
-    private int codigo;
+    private String codigo;
     private int tiempoTranscurrido; //Será automático
     private int calificacion; // (1 a 10)
     private String retroalimentacion; //Mensaje a vos mismo, como te sentistes
@@ -16,23 +16,23 @@ public abstract class Tarea
     //Constructores
     public Tarea()
     {
-        titulo="";
-        objetivo="";
-        codigo=generarCodigo();
-        tiempoTranscurrido=0;
-        calificacion=0;
-        retroalimentacion="";
-        fecha="";
+        this.titulo="";
+        this.objetivo="";
+        this.codigo= "Tarea Invalida";
+        this.tiempoTranscurrido=0;
+        this.calificacion=0;
+        this.retroalimentacion="";
+        this.fecha="";
     }
 
-    public Tarea(String titulo, String objetivo) {
+    public Tarea(String titulo, String objetivo, String codigo) {
         this.titulo = titulo;
         this.objetivo = objetivo;
-        this.codigo=generarCodigo();
-        tiempoTranscurrido=0;
-        calificacion=0;
-        retroalimentacion="";
-        fecha="";
+        this.codigo=codigo;
+        this.tiempoTranscurrido=0;
+        this.calificacion=0;
+        this.retroalimentacion="";
+        this.fecha="";
 
     }
 
@@ -75,39 +75,19 @@ public abstract class Tarea
         this.retroalimentacion = retroalimentacion;
     }
 
-    //Métodos
-    public int generarCodigo()
-    {
-        Random randomCodigo = new Random();
-
-        int min = 10000000;
-        int max = 99999999;
-        int codigoRandom = randomCodigo.nextInt(max-min); //Generamos un número random en este rango especifico
-
-        return codigoRandom;
-    }
+    @Override
+    public abstract int hashCode();
 
     @Override
-    public int hashCode() {
-        return 1;
+    public String toString() {
+        return "Tarea{" +
+                "titulo='" + titulo + '\'' +
+                ", objetivo='" + objetivo + '\'' +
+                ", codigo='" + codigo + '\'' +
+                ", tiempoTranscurrido=" + tiempoTranscurrido +
+                ", calificacion=" + calificacion +
+                ", retroalimentacion='" + retroalimentacion + '\'' +
+                ", fecha='" + fecha + '\'' +
+                '}';
     }
-
-
-    @Override
-    public boolean equals(Object obj) //Para que no haya tareas repetidas
-    {
-        boolean sonIguales=false;
-        if(obj!=null)
-        {
-            if(obj instanceof Tarea tareaTmp)
-            {
-                if (this.titulo.equals(tareaTmp.titulo) && this.objetivo.equals(tareaTmp.objetivo))
-                {
-                    sonIguales=true;
-                }
-            }
-        }
-        return sonIguales;
-    }
-
 }

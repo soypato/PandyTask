@@ -1,33 +1,28 @@
 package modelo.tareas;
 
 
-import java.util.HashSet;
-
 public class SeccionEstudio extends Tarea
 {
-    private HashSet<Tarea> tareasEstudio;
-
     private String categoria;
     private String materia;
     private String unidad;
 
-    //Constructores
-    public SeccionEstudio()
-    {
-        tareasEstudio= new HashSet<>();
-        categoria="";
-        materia="";
-        unidad="";
-    }
-
-    public SeccionEstudio(String titulo, String objetivo, String categoria, String materia, String unidad) {
-        super(titulo, objetivo);
+    // CONSTRUCTORES
+    public SeccionEstudio(String titulo, String objetivo, String categoria, String materia, String unidad, String codigo) {
+        super(titulo, objetivo, codigo);
         this.categoria = categoria;
         this.materia = materia;
         this.unidad = unidad;
     }
 
-    //Getters
+    public SeccionEstudio()
+    {
+        categoria="";
+        materia="";
+        unidad="";
+    }
+
+    // GETTERS
 
     public String getCategoria() {
         return categoria;
@@ -41,55 +36,56 @@ public class SeccionEstudio extends Tarea
         return unidad;
     }
 
-    //Setter
+    // SETTERS
+
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
     public void setMateria(String materia) {
         this.materia = materia;
     }
 
-    //Métodos
-    public boolean altaEstudio(Tarea tarea)
-    {
-        boolean seAgrego=false;
-
-        if(!tareasEstudio.contains(tarea))
-        {
-            tareasEstudio.add(tarea);
-            seAgrego=true;
-        }
-
-        return seAgrego;
+    public void setUnidad(String unidad) {
+        this.unidad = unidad;
     }
 
-    public Tarea obtenerTarea(String titulo)
-    {
-        Tarea tarea=null;
+    public int hashCode() {
+        return 1;
+    }
 
-        for(Tarea tarea1 : tareasEstudio)
-        {
-            if(tarea1.getTitulo().equals(titulo))
-            {
-                tarea = tarea1;
+    public boolean equals(Object obj) {
+        boolean res = false;
+        if (obj != null) {
+            if (obj instanceof SeccionEstudio estudioTmp) {
+                if (estudioTmp.getTitulo().equals(this.getTitulo())
+                        && estudioTmp.getObjetivo().equals(this.getObjetivo())
+                ) {
+                    res = true;
+                }
             }
         }
-        return tarea;
+        return res;
     }
 
-    public boolean eliminarTarea(String titulo)
-    {
-        boolean seElimino=false;
+    public int compareTo(Object obj) {
+        int res = -9;
+        if (obj != null) {
+            if (obj instanceof SeccionEstudio estudioTmp) {
+                res = estudioTmp.getObjetivo().compareTo(this.getObjetivo());
+            }
 
-        Tarea tarea1 = obtenerTarea(titulo);
-
-        if(tarea1!=null)
-        {
-            tareasEstudio.remove(tarea1);
-
-            seElimino=true;
         }
-
-         return seElimino;
+        return res;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "SeccionEstudio{\n" + super.toString() + " " +
+                "categoria='" + categoria + '\'' +
+                ", materia='" + materia + '\'' +
+                ", unidad='" + unidad + '\'' +
+                '}';
+    }
 }
