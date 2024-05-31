@@ -5,6 +5,7 @@ import modelo.ManejoUsuario;
 import modelo.sistema.Usuario;
 import modelo.*;
 
+
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static ManejoUsuario manejoUsuario;
@@ -24,8 +25,9 @@ public class Main {
         }
 
         System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
-        /*Usuario usuario1 = new Usuario("324", "pato", "1234", "patriciotubio");
-        */
+        //Usuario usuario1 = new Usuario("324", "pato", "1234", "patriciotubio");
+
+
         //Usuario usuario2 = new Usuario("555", "nachito", "676", "nachitoManu.com.es");
 
 
@@ -45,12 +47,6 @@ public class Main {
         // Durante todo el sistema tenemos que trabajar sobre las colecciones, no el archivo
         // El archivo se actualiza a lo ultimo
 
-
-
-
-
-
-
         int opcion;
         do {
             mostrarMenuPrincipal();
@@ -60,7 +56,7 @@ public class Main {
                     iniciarSesion();
                     break;
                 case 2:
-                    registrarUsuario();
+                    //registrarUsuario();
                     break;
                 case 3:
                     // Restablecer contraseña
@@ -88,30 +84,35 @@ public class Main {
         System.out.print("Seleccione una opción: ");
     }
 
-    public static void iniciarSesion() {
-        String nombreUsuario;
+    public static void iniciarSesion()
+    {
+        String usuario;
         String contrasena;
-        boolean esloginFallido=false;
-        do {
-            System.out.print("Nombre de usuario: ");
-            nombreUsuario = scanner.next();
-            System.out.print("Contraseña: ");
-            contrasena = scanner.next();
-            try {
-                if (!manejoUsuario.comprobarLogin(nombreUsuario, contrasena)) {
-                    System.out.println("Usuario o contraseña incorrectos. Intente nuevamente.");
-                }
+        boolean loginExitoso = false;
 
-            } catch (LoginIncorrectoException e) {
-                e.printStackTrace();
-                esloginFallido=true;
+        do {
+            System.out.println("Introduzca el usuario");
+            scanner.nextLine();
+            usuario = scanner.nextLine();
+
+            System.out.println("Vamos con la contrasena");
+            contrasena = scanner.nextLine();
+
+            try {
+                loginExitoso = manejoUsuario.comprobarLogin(usuario, contrasena);
+            } catch (LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
+                System.out.println("Usuario y contrasena incorrecto");
             }
 
 
-        }while (esloginFallido);
-        System.out.println("¡Inicio de sesión exitoso!");
-        mostrarMenuInicio();
+        }
+        while (!loginExitoso);
+
+
+
     }
+
+   /*
 
     public static void registrarUsuario() {
         boolean respuesta = false;
@@ -272,6 +273,7 @@ public class Main {
 
 
 
-    }
+    }        */
 
 }
+
