@@ -108,7 +108,8 @@ public class ManejoUsuario {
         return listaUsuarios.add(usuarioNuevo);
     }
 
-    public boolean iniciarSesion(String nombre, String contrasena) throws LoginIncorrectoException
+    // DEVUELVE TRUE EN CASO DE QUE SEA CORRECTO, FALSE QUE SEA INCORREC.
+    public boolean comprobarLogin(String nombre, String contrasena) throws LoginIncorrectoException
     {
         boolean encontrado = false;
         Iterator<Usuario> iterator = listaUsuarios.iterator();
