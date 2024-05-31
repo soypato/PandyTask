@@ -78,4 +78,16 @@ public abstract class Tarea
     @Override
     public abstract int hashCode();
 
+    @Override
+    public String toString() {
+        return "Tarea{" +
+                "titulo='" + titulo + '\'' +
+                ", objetivo='" + objetivo + '\'' +
+                ", codigo='" + codigo + '\'' +
+                ", tiempoTranscurrido=" + tiempoTranscurrido +
+                ", calificacion=" + calificacion +
+                ", retroalimentacion='" + retroalimentacion + '\'' +
+                ", fecha='" + fecha + '\'' +
+                '}';
+    }
 }

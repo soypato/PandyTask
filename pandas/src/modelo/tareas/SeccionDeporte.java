@@ -81,7 +81,7 @@ public class SeccionDeporte extends Tarea implements Comparable{
 
     @Override
     public String toString() {
-        return "SeccionDeporte{" +
+        return "SeccionDeporte{\n" + super.toString() + " " +
                 "ejercicios='" + ejercicios + '\'' +
                 ", caloriasQuemadas=" + caloriasQuemadas +
                 '}';

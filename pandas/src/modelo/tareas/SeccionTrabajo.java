@@ -69,7 +69,7 @@ public class SeccionTrabajo extends Tarea implements Comparable {
 
     @Override
     public String toString() {
-        return "SeccionTrabajo{" +
+        return "SeccionTrabajo{\n" + super.toString() + " " +
                 "sector='" + sector + '\'' +
                 ", fechaLimite='" + fechaLimite + '\'' +
                 '}';

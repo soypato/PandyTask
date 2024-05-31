@@ -8,8 +8,8 @@ public class SeccionEstudio extends Tarea
     private String unidad;
 
     // CONSTRUCTORES
-    public SeccionEstudio(String titulo, String objetivo, String categoria, String materia, String unidad) {
-        super(titulo, objetivo);
+    public SeccionEstudio(String titulo, String objetivo, String categoria, String materia, String unidad, String codigo) {
+        super(titulo, objetivo, codigo);
         this.categoria = categoria;
         this.materia = materia;
         this.unidad = unidad;
@@ -82,7 +82,7 @@ public class SeccionEstudio extends Tarea
 
     @Override
     public String toString() {
-        return "SeccionEstudio{" +
+        return "SeccionEstudio{\n" + super.toString() + " " +
                 "categoria='" + categoria + '\'' +
                 ", materia='" + materia + '\'' +
                 ", unidad='" + unidad + '\'' +
