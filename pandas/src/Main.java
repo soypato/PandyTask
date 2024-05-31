@@ -25,10 +25,10 @@ public class Main {
         }
 
         System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
-        //Usuario usuario1 = new Usuario("324", "pato", "1234", "patriciotubio");
+        Usuario usuario1 = new Usuario("324", "pato", "1234", "patriciotubio");
 
 
-        //Usuario usuario2 = new Usuario("555", "nachito", "676", "nachitoManu.com.es");
+        Usuario usuario2 = new Usuario("555", "nachito", "676", "nachitoManu.com.es");
 
 
         //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego
@@ -37,11 +37,8 @@ public class Main {
         // para verificar que el dato se haya cargado correctamente.
 
 
-        //manejoUsuario.altaUsuario(usuario1);
-        //manejoUsuario.altaUsuario(usuario2);
-
-
-
+        manejoUsuario.altaUsuario(usuario1);
+        manejoUsuario.altaUsuario(usuario2);
 
 
         // Durante todo el sistema tenemos que trabajar sobre las colecciones, no el archivo

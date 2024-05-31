@@ -1,23 +1,21 @@
 package modelo.tareas;
 
 
-import java.util.HashSet;
-
-public class SeccionEstudio extends Tarea
+public class SeccionTrabajo extends Tarea
 {
     private String categoria;
     private String materia;
     private String unidad;
 
     // CONSTRUCTORES
-    public SeccionEstudio(String titulo, String objetivo, String categoria, String materia, String unidad) {
+    public SeccionTrabajo(String titulo, String objetivo, String categoria, String materia, String unidad) {
         super(titulo, objetivo);
         this.categoria = categoria;
         this.materia = materia;
         this.unidad = unidad;
     }
 
-    public SeccionEstudio()
+    public SeccionTrabajo()
     {
         categoria="";
         materia="";
@@ -39,7 +37,6 @@ public class SeccionEstudio extends Tarea
     }
 
     // SETTERS
-
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
