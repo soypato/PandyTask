@@ -1,6 +1,9 @@
 import java.util.Scanner;
+
+import excepciones.LoginIncorrectoException;
 import modelo.ManejoUsuario;
 import modelo.sistema.Usuario;
+import modelo.*;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
@@ -37,11 +40,7 @@ public class Main {
 
 
 
-        try {
-            manejoUsuario.salidaUsuarios();  //Carga datos
-        } catch (Exception e) {
-            e.printStackTrace();  //Verificar esto
-        }
+
 
         // Durante todo el sistema tenemos que trabajar sobre las colecciones, no el archivo
         // El archivo se actualiza a lo ultimo
@@ -68,6 +67,11 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Saliendo del programa...");
+                    try {
+                        manejoUsuario.salidaUsuarios();  //Carga datos
+                    } catch (Exception e) {
+                        e.printStackTrace();  //Verificar esto
+                    }
                     break;
                 default:
                     System.out.println("Opción inválida");
@@ -87,20 +91,30 @@ public class Main {
     public static void iniciarSesion() {
         String nombreUsuario;
         String contrasena;
+        boolean esloginFallido=false;
         do {
             System.out.print("Nombre de usuario: ");
             nombreUsuario = scanner.next();
             System.out.print("Contraseña: ");
             contrasena = scanner.next();
-            if (!manejoUsuario.comprobarLogin(nombreUsuario, contrasena)) {
-                System.out.println("Usuario o contraseña incorrectos. Intente nuevamente.");
+            try {
+                if (!manejoUsuario.comprobarLogin(nombreUsuario, contrasena)) {
+                    System.out.println("Usuario o contraseña incorrectos. Intente nuevamente.");
+                }
+
+            } catch (LoginIncorrectoException e) {
+                e.printStackTrace();
+                esloginFallido=true;
             }
-        } while (!manejoUsuario.comprobarLogin(nombreUsuario, contrasena));
+
+
+        }while (esloginFallido);
         System.out.println("¡Inicio de sesión exitoso!");
         mostrarMenuInicio();
     }
 
     public static void registrarUsuario() {
+        boolean respuesta = false;
         String id;
         String nombreUsuario;
         String contrasena;
@@ -114,8 +128,13 @@ public class Main {
         System.out.print("Correo electrónico: ");
         correoElectronico = scanner.next();
         Usuario usuario = new Usuario(id, nombreUsuario, contrasena, correoElectronico);
-        manejoUsuario.agregarUsuario(usuario);
-        System.out.println("¡Usuario registrado correctamente!");
+        respuesta = manejoUsuario.altaUsuario(usuario);
+        if(respuesta) {
+            System.out.println("¡Usuario registrado correctamente!");
+        }else
+        {
+            System.out.println("El usuario ya esta registrado, intentelo nuevamente");
+        }
     }
 
     public static void mostrarMenuInicio() {
@@ -249,5 +268,10 @@ public class Main {
                     System.out.println("Opción inválida");
             }
         } while (opcion != 3);
+
+
+
+
     }
+
 }
