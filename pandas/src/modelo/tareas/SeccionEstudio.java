@@ -1,5 +1,6 @@
 package modelo.tareas;
 
+
 import java.util.HashSet;
 
 public class SeccionEstudio extends Tarea
