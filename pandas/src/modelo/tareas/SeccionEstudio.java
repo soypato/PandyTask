@@ -1,8 +1,6 @@
 package modelo.tareas;
 
 
-import java.util.HashSet;
-
 public class SeccionEstudio extends Tarea
 {
     private String categoria;
@@ -51,5 +49,43 @@ public class SeccionEstudio extends Tarea
 
     public void setUnidad(String unidad) {
         this.unidad = unidad;
+    }
+
+    public int hashCode() {
+        return 1;
+    }
+
+    public boolean equals(Object obj) {
+        boolean res = false;
+        if (obj != null) {
+            if (obj instanceof SeccionEstudio estudioTmp) {
+                if (estudioTmp.getTitulo().equals(this.getTitulo())
+                        && estudioTmp.getObjetivo().equals(this.getObjetivo())
+                ) {
+                    res = true;
+                }
+            }
+        }
+        return res;
+    }
+
+    public int compareTo(Object obj) {
+        int res = -9;
+        if (obj != null) {
+            if (obj instanceof SeccionEstudio estudioTmp) {
+                res = estudioTmp.getObjetivo().compareTo(this.getObjetivo());
+            }
+
+        }
+        return res;
+    }
+
+    @Override
+    public String toString() {
+        return "SeccionEstudio{" +
+                "categoria='" + categoria + '\'' +
+                ", materia='" + materia + '\'' +
+                ", unidad='" + unidad + '\'' +
+                '}';
     }
 }
