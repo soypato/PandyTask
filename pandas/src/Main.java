@@ -26,8 +26,8 @@ public class Main {
         }
 
         System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
-        Usuario usuario1 = new Usuario("322", "pato", "1234", "patriciotubio", 0, new Panda("Pandita"));
-        Usuario usuario2 = new Usuario("324", "nachito", "676", "mailNachito", 0, new Panda("Pandito"));
+        //Usuario usuario1 = new Usuario("322", "pato", "1234", "patriciotubio", 0, new Panda("Pandita"));
+        //Usuario usuario2 = new Usuario("324", "nachito", "676", "mailNachito", 0, new Panda("Pandito"));
 
         //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego
         //con el altaUsuario. Una vez hecho todo esto, entrará al método de salidaUsuario, por lo tanto, el usuario estará
@@ -35,8 +35,8 @@ public class Main {
         // para verificar que el dato se haya cargado correctamente.
 
 
-        manejoUsuario.altaUsuario(usuario1);
-        manejoUsuario.altaUsuario(usuario2);
+        //manejoUsuario.altaUsuario(usuario1);
+        //manejoUsuario.altaUsuario(usuario2);
 
 
         // Durante todo el sistema tenemos que trabajar sobre las colecciones, no el archivo
@@ -70,6 +70,8 @@ public class Main {
         } while (opcion != 4);
     }
 
+
+    // INICIO DEL PROGRAMA
     public static void mostrarMenuPrincipal() {
         System.out.println("¿En qué sector desea entrar?");
         System.out.println("1. Iniciar sesión");
@@ -79,6 +81,7 @@ public class Main {
         System.out.print("Seleccione una opción: ");
     }
 
+    // OP1 INICIAR SESION
     public static void iniciarSesion()
     {
         String usuario;
@@ -113,7 +116,7 @@ public class Main {
     }
 
 
-
+    // OP2 REGISTRAR
     public static void registrarUsuario() {
         boolean respuesta = false;
         String id;
@@ -141,6 +144,7 @@ public class Main {
         }
     }
 
+    // OP1.1 LOGIN EXITOSO
     public static void mostrarMenuInicio(Usuario usuarioActual) {
         int opcion;
         do {
@@ -153,6 +157,7 @@ public class Main {
             System.out.println(usuarioActual.getNombrePanda() + " comio " + usuarioActual.getCantBambuConsumidoPanda() + " bambues historicamente");
             System.out.println("---------------------------------");
             System.out.println("Menu inicio");
+            System.out.println("---------------------------------");
             System.out.println("1. Menu de tareas ");
             System.out.println("2. Menu de recompensas ");
             System.out.println("3. Menu de misiones");
@@ -162,16 +167,16 @@ public class Main {
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    mostrarMenuTareas();
+                    mostrarMenuTareas(usuarioActual);
                     break;
                 case 2:
-                    mostrarMenuRecompensas();
+                    mostrarMenuRecompensas(usuarioActual);
                     break;
                 case 3:
-                    mostrarMenuMisiones();
+                    mostrarMenuMisiones(usuarioActual);
                     break;
                 case 4:
-                    mostrarMenuConfiguracion();
+                    mostrarMenuConfiguracion(usuarioActual);
                     break;
                 case 5:
                     System.out.println("Saliendo del programa...");
@@ -182,7 +187,8 @@ public class Main {
         } while (opcion != 5);
     }
 
-    public static void mostrarMenuTareas() {
+    //OP 1.1.1 MENU TAREAS (tendriamos que recuperar las tareas por puntero)
+    public static void mostrarMenuTareas(Usuario usuarioActual) {
         int opcion;
         do {
             System.out.println("Menu Tareas");
@@ -215,7 +221,7 @@ public class Main {
         } while (opcion != 5);
     }
 
-    public static void mostrarMenuRecompensas() {
+    public static void mostrarMenuRecompensas(Usuario usuarioActual){
         int opcion;
         do {
             System.out.println("Menu Recompensas");
@@ -236,7 +242,7 @@ public class Main {
         } while (opcion != 2);
     }
 
-    public static void mostrarMenuMisiones() {
+    public static void mostrarMenuMisiones(Usuario usuarioActual) {
         int opcion;
         do {
             System.out.println("Menu Misiones");
@@ -257,7 +263,7 @@ public class Main {
         } while (opcion != 2);
     }
 
-    public static void mostrarMenuConfiguracion() {
+    public static void mostrarMenuConfiguracion(Usuario usuarioActual) {
         int opcion;
         do {
             System.out.println("Menu Configuración");
