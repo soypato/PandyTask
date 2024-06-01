@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 import excepciones.deLogin.LoginIncorrectoException;
@@ -24,8 +25,8 @@ public class Main {
         }
 
         System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
-        Usuario usuario1 = new Usuario("324", "pato", "1234", "patriciotubio", 0);
-        Usuario usuario2 = new Usuario("555", "nachito", "676", "nachitoManu.com.es",0);
+        Usuario usuario1 = new Usuario("324", "pato", "1234", "patriciotubio", 0, "Pandita");
+        Usuario usuario2 = new Usuario("555", "nachito", "676", "nachitoManu.com.es",0, "Pandita");
 
 
         //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego
@@ -119,6 +120,7 @@ public class Main {
         String nombreUsuario;
         String contrasena;
         String correoElectronico;
+        String nombrePanda;
         System.out.print("ID: ");
         id = scanner.next();
         System.out.print("Nombre de usuario: ");
@@ -127,7 +129,9 @@ public class Main {
         contrasena = scanner.next();
         System.out.print("Correo electrónico: ");
         correoElectronico = scanner.next();
-        Usuario usuario = new Usuario(id, nombreUsuario, contrasena, correoElectronico, 0);
+        System.out.println("Nombre del panda: ");
+        nombrePanda = scanner.next();
+        Usuario usuario = new Usuario(id, nombreUsuario, contrasena, correoElectronico, 0, nombrePanda);
         respuesta = manejoUsuario.altaUsuario(usuario);
         if(respuesta) {
             System.out.println("¡Usuario registrado correctamente!");
@@ -142,6 +146,7 @@ public class Main {
         do {
             System.out.println("Bienvenido " + usuarioActual.getNombreUsuario());
             System.out.println("Tu cantidad de bambues actual es de: " + usuarioActual.getBambuesActuales() + " bambues");
+            System.out.println("Tu panda es: " + usuarioActual.getNombrePanda());
             System.out.println("Menu inicio");
             System.out.println("1. Menu de tareas ");
             System.out.println("2. Menu de recompensas ");

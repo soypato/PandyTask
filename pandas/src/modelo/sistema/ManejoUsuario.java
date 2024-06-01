@@ -30,8 +30,9 @@ public class ManejoUsuario {
                     String contrasena = dataInputStream.readUTF();
                     String correoElectronico = dataInputStream.readUTF();
                     Double bambuesActuales = dataInputStream.readDouble();
+                    String nombrePanda = dataInputStream.readUTF();
 
-                    Usuario usuarioTmp = new Usuario(id, nombreUsuario, contrasena, correoElectronico, bambuesActuales);
+                    Usuario usuarioTmp = new Usuario(id, nombreUsuario, contrasena, correoElectronico, bambuesActuales, nombrePanda);
                     listaUsuarios.add(usuarioTmp);
                 } catch (EOFException e) {
                     throw new EOFException("No se pudieron cargar los datos del archivo al set");
@@ -67,6 +68,7 @@ public class ManejoUsuario {
                 dataOutputStream.writeUTF(usuarioTmp.getContrasena());
                 dataOutputStream.writeUTF(usuarioTmp.getCorreoElectronico());
                 dataOutputStream.writeDouble(usuarioTmp.getBambuesActuales());
+                dataOutputStream.writeUTF(usuarioTmp.getNombrePanda());
 
             }
         } catch (IOException e) {

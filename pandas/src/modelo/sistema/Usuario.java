@@ -6,15 +6,18 @@ public class Usuario implements Comparable {
     private String contrasena;
     private String correoElectronico;
     private double bambuesActuales;
+    private String nombrePanda;
 
     // CONSTRUCTORES
 
-    public Usuario(String id, String nombreUsuario, String contrasena, String correoElectronico, double bambuesActuales) {
+    public Usuario(String id, String nombreUsuario, String contrasena, String correoElectronico, double bambuesActuales, String nombrePanda) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.correoElectronico = correoElectronico;
         this.bambuesActuales = bambuesActuales;
+        this.nombrePanda = nombrePanda;
+
     }
 
     public Usuario()
@@ -24,6 +27,7 @@ public class Usuario implements Comparable {
         this.contrasena = " ";
         this.correoElectronico = " ";
         this.bambuesActuales = 0;
+        this.nombrePanda = " ";
     }
 
     // GETTERS
@@ -49,6 +53,10 @@ public class Usuario implements Comparable {
         return bambuesActuales;
     }
 
+    public String getNombrePanda() {
+        return nombrePanda;
+    }
+
     // SETTERS
 
     public void setNombreUsuario(String nombreUsuario) {
@@ -65,6 +73,10 @@ public class Usuario implements Comparable {
 
     public void setBambuesActuales(double bambuesActuales) {
         this.bambuesActuales = bambuesActuales;
+    }
+
+    public void setNombrePanda(String nombrePanda) {
+        this.nombrePanda = nombrePanda;
     }
 
     @Override
