@@ -6,18 +6,17 @@ public class Usuario implements Comparable {
     private String contrasena;
     private String correoElectronico;
     private double bambuesActuales;
-    private String nombrePanda;
+    private Panda pandaDelUsuario;
 
     // CONSTRUCTORES
 
-    public Usuario(String id, String nombreUsuario, String contrasena, String correoElectronico, double bambuesActuales, String nombrePanda) {
+    public Usuario(String id, String nombreUsuario, String contrasena, String correoElectronico, double bambuesActuales, Panda pandaDelUsuario) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.correoElectronico = correoElectronico;
         this.bambuesActuales = bambuesActuales;
-        this.nombrePanda = nombrePanda;
-
+        this.pandaDelUsuario = pandaDelUsuario;
     }
 
     public Usuario()
@@ -27,7 +26,7 @@ public class Usuario implements Comparable {
         this.contrasena = " ";
         this.correoElectronico = " ";
         this.bambuesActuales = 0;
-        this.nombrePanda = " ";
+        this.pandaDelUsuario = new Panda();
     }
 
     // GETTERS
@@ -53,8 +52,19 @@ public class Usuario implements Comparable {
         return bambuesActuales;
     }
 
-    public String getNombrePanda() {
-        return nombrePanda;
+    // Esto para el archivo
+    public String getNombrePanda()
+    {
+        return pandaDelUsuario.getNombrePanda();
+    }
+    public double getCantBambuConsumidoPanda()
+    {
+        return pandaDelUsuario.getCantBambuConsumido();
+    }
+
+    public String getPandaAscii()
+    {
+        return pandaDelUsuario.getPandaAscii();
     }
 
     // SETTERS
@@ -73,10 +83,6 @@ public class Usuario implements Comparable {
 
     public void setBambuesActuales(double bambuesActuales) {
         this.bambuesActuales = bambuesActuales;
-    }
-
-    public void setNombrePanda(String nombrePanda) {
-        this.nombrePanda = nombrePanda;
     }
 
     @Override
