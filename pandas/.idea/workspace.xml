@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fab5d630-f119-4e06-9c84-4e663108790c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/modelo/extra/Receta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modelo/tareas/SeccionCocina.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/SeccionDeporte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/SeccionDeporte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/SeccionEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/SeccionEstudio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/SeccionTrabajo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/SeccionTrabajo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/Tarea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios.dat" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.dat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +46,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Main.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "creacionTareas",
+    "git-widget-placeholder": "exceptionTareas",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/u-admin/Documents/proyecto-labo3/pandas"
   }
@@ -80,6 +77,11 @@
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="bdb42cf3-b4ce-4735-8d3f-f4ef090af39d" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="RECENT_FILTERS">
       <map>
         <entry key="Branch">
@@ -112,6 +114,11 @@
                 </map>
               </option>
             </State>
+          </value>
+        </entry>
+        <entry key="bdb42cf3-b4ce-4735-8d3f-f4ef090af39d">
+          <value>
+            <State />
           </value>
         </entry>
       </map>

@@ -1,4 +1,4 @@
-package excepciones;
+package excepciones.deLogin;
 
 // Clase padre de login
 public abstract class LoginIncorrectoException extends Exception{

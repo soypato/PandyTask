@@ -1,21 +1,20 @@
 package modelo.sistema;
 
-import java.util.Comparator;
-import java.util.Objects;
-
 public class Usuario implements Comparable {
     private String id;
     private String nombreUsuario;
     private String contrasena;
     private String correoElectronico;
+    private double bambuesActuales;
 
     // CONSTRUCTORES
 
-    public Usuario(String id, String nombreUsuario, String contrasena, String correoElectronico) {
+    public Usuario(String id, String nombreUsuario, String contrasena, String correoElectronico, double bambuesActuales) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.correoElectronico = correoElectronico;
+        this.bambuesActuales = bambuesActuales;
     }
 
     public Usuario()
@@ -24,6 +23,7 @@ public class Usuario implements Comparable {
         this.nombreUsuario = " ";
         this.contrasena = " ";
         this.correoElectronico = " ";
+        this.bambuesActuales = 0;
     }
 
     // GETTERS
@@ -45,6 +45,10 @@ public class Usuario implements Comparable {
         return correoElectronico;
     }
 
+    public double getBambuesActuales() {
+        return bambuesActuales;
+    }
+
     // SETTERS
 
     public void setNombreUsuario(String nombreUsuario) {
@@ -57,6 +61,10 @@ public class Usuario implements Comparable {
 
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
+    }
+
+    public void setBambuesActuales(double bambuesActuales) {
+        this.bambuesActuales = bambuesActuales;
     }
 
     @Override

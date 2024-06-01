@@ -1,9 +1,8 @@
 import java.util.Scanner;
 
-import excepciones.LoginIncorrectoException;
-import modelo.ManejoUsuario;
+import excepciones.deLogin.LoginIncorrectoException;
+import modelo.sistema.ManejoUsuario;
 import modelo.sistema.Usuario;
-import modelo.*;
 
 
 public class Main {
@@ -25,10 +24,8 @@ public class Main {
         }
 
         System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
-        Usuario usuario1 = new Usuario("324", "pato", "1234", "patriciotubio");
-
-
-        Usuario usuario2 = new Usuario("555", "nachito", "676", "nachitoManu.com.es");
+        Usuario usuario1 = new Usuario("324", "pato", "1234", "patriciotubio", 0);
+        Usuario usuario2 = new Usuario("555", "nachito", "676", "nachitoManu.com.es",0);
 
 
         //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego
@@ -85,7 +82,7 @@ public class Main {
     {
         String usuario;
         String contrasena;
-        boolean loginExitoso = false;
+        Usuario usuarioActual = null;
 
         do {
             System.out.println("Introduzca el usuario");
@@ -96,11 +93,11 @@ public class Main {
             contrasena = scanner.nextLine();
 
             try {
-                loginExitoso = manejoUsuario.comprobarLogin(usuario, contrasena);
-                if(loginExitoso)
+                usuarioActual = manejoUsuario.comprobarLogin(usuario, contrasena);
+                if(usuarioActual != null)
                 {
                     System.out.println("Usuario y contrasena correcta!");
-                    mostrarMenuInicio();
+                    mostrarMenuInicio(usuarioActual);
                 }
             } catch (LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
                 System.out.println("Usuario y contrasena incorrecto");
@@ -108,7 +105,7 @@ public class Main {
 
 
         }
-        while (!loginExitoso);
+        while (usuarioActual == null);
 
 
 
@@ -130,7 +127,7 @@ public class Main {
         contrasena = scanner.next();
         System.out.print("Correo electrónico: ");
         correoElectronico = scanner.next();
-        Usuario usuario = new Usuario(id, nombreUsuario, contrasena, correoElectronico);
+        Usuario usuario = new Usuario(id, nombreUsuario, contrasena, correoElectronico, 0);
         respuesta = manejoUsuario.altaUsuario(usuario);
         if(respuesta) {
             System.out.println("¡Usuario registrado correctamente!");
@@ -140,9 +137,11 @@ public class Main {
         }
     }
 
-    public static void mostrarMenuInicio() {
+    public static void mostrarMenuInicio(Usuario usuarioActual) {
         int opcion;
         do {
+            System.out.println("Bienvenido " + usuarioActual.getNombreUsuario());
+            System.out.println("Tu cantidad de bambues actual es de: " + usuarioActual.getBambuesActuales() + " bambues");
             System.out.println("Menu inicio");
             System.out.println("1. Menu de tareas ");
             System.out.println("2. Menu de recompensas ");
