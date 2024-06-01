@@ -30,9 +30,12 @@ public class ManejoUsuario {
                     String contrasena = dataInputStream.readUTF();
                     String correoElectronico = dataInputStream.readUTF();
                     Double bambuesActuales = dataInputStream.readDouble();
-                    String nombrePanda = dataInputStream.readUTF();
 
-                    Usuario usuarioTmp = new Usuario(id, nombreUsuario, contrasena, correoElectronico, bambuesActuales, nombrePanda);
+                    // PANDA:
+                    String pandaNombre = dataInputStream.readUTF();
+                    Double pandaBambu = dataInputStream.readDouble();
+
+                    Usuario usuarioTmp = new Usuario(id, nombreUsuario, contrasena, correoElectronico, bambuesActuales, new Panda(pandaNombre, pandaBambu));
                     listaUsuarios.add(usuarioTmp);
                 } catch (EOFException e) {
                     throw new EOFException("No se pudieron cargar los datos del archivo al set");
@@ -68,7 +71,13 @@ public class ManejoUsuario {
                 dataOutputStream.writeUTF(usuarioTmp.getContrasena());
                 dataOutputStream.writeUTF(usuarioTmp.getCorreoElectronico());
                 dataOutputStream.writeDouble(usuarioTmp.getBambuesActuales());
+
+                // PANDA: tengo que "sobreescribir" (no es eso pero funciona igual) los metodos de panda en Usuario,
+                // y retorna los de panda, para poder obterner mas facil
+                // otra opcion podria haber sido hacer un pandaTmp pero pierde la persistencia tan facil
                 dataOutputStream.writeUTF(usuarioTmp.getNombrePanda());
+                dataOutputStream.writeDouble(usuarioTmp.getCantBambuConsumidoPanda());
+
 
             }
         } catch (IOException e) {

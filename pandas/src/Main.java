@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 import excepciones.deLogin.LoginIncorrectoException;
 import modelo.sistema.ManejoUsuario;
+import modelo.sistema.Panda;
 import modelo.sistema.Usuario;
 
 
@@ -25,9 +26,8 @@ public class Main {
         }
 
         System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
-        Usuario usuario1 = new Usuario("324", "pato", "1234", "patriciotubio", 0, "Pandita");
-        Usuario usuario2 = new Usuario("555", "nachito", "676", "nachitoManu.com.es",0, "Pandita");
-
+        Usuario usuario1 = new Usuario("322", "pato", "1234", "patriciotubio", 0, new Panda("Pandita"));
+        Usuario usuario2 = new Usuario("324", "nachito", "676", "mailNachito", 0, new Panda("Pandito"));
 
         //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego
         //con el altaUsuario. Una vez hecho todo esto, entrará al método de salidaUsuario, por lo tanto, el usuario estará
@@ -131,7 +131,7 @@ public class Main {
         correoElectronico = scanner.next();
         System.out.println("Nombre del panda: ");
         nombrePanda = scanner.next();
-        Usuario usuario = new Usuario(id, nombreUsuario, contrasena, correoElectronico, 0, nombrePanda);
+        Usuario usuario = new Usuario(id, nombreUsuario, contrasena, correoElectronico, 0, new Panda(nombrePanda));
         respuesta = manejoUsuario.altaUsuario(usuario);
         if(respuesta) {
             System.out.println("¡Usuario registrado correctamente!");
@@ -144,9 +144,14 @@ public class Main {
     public static void mostrarMenuInicio(Usuario usuarioActual) {
         int opcion;
         do {
+            System.out.println("---------------------------------");
             System.out.println("Bienvenido " + usuarioActual.getNombreUsuario());
+            System.out.println("---------------------------------");
+            System.out.println(usuarioActual.getPandaAscii());
             System.out.println("Tu cantidad de bambues actual es de: " + usuarioActual.getBambuesActuales() + " bambues");
             System.out.println("Tu panda es: " + usuarioActual.getNombrePanda());
+            System.out.println(usuarioActual.getNombrePanda() + " comio " + usuarioActual.getCantBambuConsumidoPanda() + " bambues historicamente");
+            System.out.println("---------------------------------");
             System.out.println("Menu inicio");
             System.out.println("1. Menu de tareas ");
             System.out.println("2. Menu de recompensas ");
