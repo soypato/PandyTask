@@ -82,7 +82,7 @@ public class Main {
     {
         String usuario;
         String contrasena;
-        boolean loginExitoso = false;
+        Usuario usuarioActual = null;
 
         do {
             System.out.println("Introduzca el usuario");
@@ -93,11 +93,11 @@ public class Main {
             contrasena = scanner.nextLine();
 
             try {
-                loginExitoso = manejoUsuario.comprobarLogin(usuario, contrasena);
-                if(loginExitoso)
+                usuarioActual = manejoUsuario.comprobarLogin(usuario, contrasena);
+                if(usuarioActual != null)
                 {
                     System.out.println("Usuario y contrasena correcta!");
-                    mostrarMenuInicio();
+                    mostrarMenuInicio(usuarioActual);
                 }
             } catch (LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
                 System.out.println("Usuario y contrasena incorrecto");
@@ -105,7 +105,7 @@ public class Main {
 
 
         }
-        while (!loginExitoso);
+        while (usuarioActual == null);
 
 
 
@@ -137,9 +137,11 @@ public class Main {
         }
     }
 
-    public static void mostrarMenuInicio() {
+    public static void mostrarMenuInicio(Usuario usuarioActual) {
         int opcion;
         do {
+            System.out.println("Bienvenido " + usuarioActual.getNombreUsuario());
+            System.out.println("Tu cantidad de bambues actual es de: " + usuarioActual.getBambuesActuales() + " bambues");
             System.out.println("Menu inicio");
             System.out.println("1. Menu de tareas ");
             System.out.println("2. Menu de recompensas ");

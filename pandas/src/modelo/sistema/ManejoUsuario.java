@@ -108,18 +108,18 @@ public class ManejoUsuario {
 
     // DEVUELVE TRUE EN CASO DE QUE SEA CORRECTO, FALSE QUE SEA INCORREC.
 
-    public boolean comprobarLogin(String nombre, String contrasena) throws LoginIncorrectoException
+    public Usuario comprobarLogin(String nombre, String contrasena) throws LoginIncorrectoException
     {
-        boolean encontrado = false;
+        Usuario encontrado = null;
         Iterator<Usuario> iterator = listaUsuarios.iterator();
-        while(iterator.hasNext() && !encontrado)
+        while(iterator.hasNext() && encontrado == null)
         {
             Usuario usuarioTmp = iterator.next();
             if(nombre.equals(usuarioTmp.getNombreUsuario()))
             {
                 if(contrasena.equals(usuarioTmp.getContrasena()))
                 {
-                    encontrado = true;
+                    encontrado = usuarioTmp;
                 }
                 else
                 {
@@ -129,7 +129,7 @@ public class ManejoUsuario {
 
         }
 
-        if(!encontrado)
+        if(encontrado == null)
         {
             throw new UsuarioIncorrectoException("No existe el usuario");
         }
