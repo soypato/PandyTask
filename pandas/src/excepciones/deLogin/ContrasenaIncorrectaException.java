@@ -1,4 +1,4 @@
-package excepciones;
+package excepciones.deLogin;
 
 public class ContrasenaIncorrectaException extends LoginIncorrectoException{
     private String mensaje;
