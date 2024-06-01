@@ -12,6 +12,7 @@ public class ManejoUsuario {
 
     private HashSet<Usuario> listaUsuarios;
     private final String archivoUsuarios = "usuarios.dat";
+
     public ManejoUsuario() {
         listaUsuarios = new HashSet<>();
     }
@@ -25,7 +26,7 @@ public class ManejoUsuario {
 
             while (true) {
                 try {
-                    String id = dataInputStream.readUTF();
+                    double id = dataInputStream.readDouble();
                     String nombreUsuario = dataInputStream.readUTF();
                     String contrasena = dataInputStream.readUTF();
                     String correoElectronico = dataInputStream.readUTF();
@@ -58,6 +59,7 @@ public class ManejoUsuario {
             }
         }
     }
+
     public void salidaUsuarios() {
         FileOutputStream fileOutputStream = null;
         DataOutputStream dataOutputStream = null;
@@ -66,7 +68,7 @@ public class ManejoUsuario {
             dataOutputStream = new DataOutputStream(fileOutputStream);
 
             for (Usuario usuarioTmp : listaUsuarios) {
-                dataOutputStream.writeUTF(usuarioTmp.getId());
+                dataOutputStream.writeDouble(usuarioTmp.getId());
                 dataOutputStream.writeUTF(usuarioTmp.getNombreUsuario());
                 dataOutputStream.writeUTF(usuarioTmp.getContrasena());
                 dataOutputStream.writeUTF(usuarioTmp.getCorreoElectronico());
@@ -97,68 +99,77 @@ public class ManejoUsuario {
     }
 
 
-    public Usuario buscarUsuario(String nombreUsuario)
-    {
+    public Usuario buscarUsuario(String nombreUsuario) {
         Usuario encontrado = null;
         Iterator<Usuario> iterator = listaUsuarios.iterator();
-        while (iterator.hasNext() && encontrado == null)
-        {
-           Usuario usuarioTmp = iterator.next();
-           if(nombreUsuario.equals(usuarioTmp.getNombreUsuario()))
-           {
-               encontrado = usuarioTmp;
-           }
+        while (iterator.hasNext() && encontrado == null) {
+            Usuario usuarioTmp = iterator.next();
+            if (nombreUsuario.equals(usuarioTmp.getNombreUsuario())) {
+                encontrado = usuarioTmp;
+            }
         }
         return encontrado;
     }
 
-    public boolean altaUsuario(Usuario usuarioNuevo)
-    {
+    public boolean altaUsuario(Usuario usuarioNuevo) {
         return listaUsuarios.add(usuarioNuevo);
     }
 
     // DEVUELVE TRUE EN CASO DE QUE SEA CORRECTO, FALSE QUE SEA INCORREC.
 
-    public Usuario comprobarLogin(String nombre, String contrasena) throws LoginIncorrectoException
-    {
+    public Usuario comprobarLogin(String nombre, String contrasena) throws LoginIncorrectoException {
         Usuario encontrado = null;
         Iterator<Usuario> iterator = listaUsuarios.iterator();
-        while(iterator.hasNext() && encontrado == null)
-        {
+        while (iterator.hasNext() && encontrado == null) {
             Usuario usuarioTmp = iterator.next();
-            if(nombre.equals(usuarioTmp.getNombreUsuario()))
-            {
-                if(contrasena.equals(usuarioTmp.getContrasena()))
-                {
+            if (nombre.equals(usuarioTmp.getNombreUsuario())) {
+                if (contrasena.equals(usuarioTmp.getContrasena())) {
                     encontrado = usuarioTmp;
-                }
-                else
-                {
+                } else {
                     throw new ContrasenaIncorrectaException("La constrasena es incorrecta");
                 }
             }
 
         }
 
-        if(encontrado == null)
-        {
+        if (encontrado == null) {
             throw new UsuarioIncorrectoException("No existe el usuario");
         }
         return encontrado;
     }
 
-    public String mostrarTodosLosUsuarios()
-    {
+    public String mostrarTodosLosUsuarios() {
         String respuesta = " ";
         Iterator<Usuario> iterator = listaUsuarios.iterator();
-        while (iterator.hasNext())
-        {
+        while (iterator.hasNext()) {
             Usuario usuarioTmp = iterator.next();
             respuesta += usuarioTmp.toString(); // IMPORTANTE: EL TOSTRING NO MUESTRA LA CONTRASENA
         }
         return respuesta;
     }
 
+
+    // ID AUTOITERABLE
+    public double buscarUltimoID()
+    {
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        double id = 0;
+        Usuario usuarioTmp = null;
+
+        if(!listaUsuarios.isEmpty())
+        {
+            while(iterator.hasNext())
+            {
+                 usuarioTmp = iterator.next();
+            }
+            if(usuarioTmp != null)
+            {
+                id = usuarioTmp.getId();
+            }
+        }
+
+        return id;
+    }
 
 
 }
