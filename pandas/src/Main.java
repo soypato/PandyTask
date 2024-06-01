@@ -119,13 +119,13 @@ public class Main {
     // OP2 REGISTRAR
     public static void registrarUsuario() {
         boolean respuesta = false;
-        String id;
+        Double id;
         String nombreUsuario;
         String contrasena;
         String correoElectronico;
         String nombrePanda;
-        System.out.print("ID: ");
-        id = scanner.next();
+
+        id = manejoUsuario.buscarUltimoID()+1;
         System.out.print("Nombre de usuario: ");
         nombreUsuario = scanner.next();
         System.out.print("Contraseña: ");
@@ -149,7 +149,7 @@ public class Main {
         int opcion;
         do {
             System.out.println("---------------------------------");
-            System.out.println("Bienvenido " + usuarioActual.getNombreUsuario());
+            System.out.println("Bienvenido " + usuarioActual.getNombreUsuario() + " " + usuarioActual.getId());
             System.out.println("---------------------------------");
             System.out.println(usuarioActual.getPandaAscii());
             System.out.println("Tu cantidad de bambues actual es de: " + usuarioActual.getBambuesActuales() + " bambues");

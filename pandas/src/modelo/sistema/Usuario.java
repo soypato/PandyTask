@@ -1,7 +1,7 @@
 package modelo.sistema;
 
 public class Usuario implements Comparable {
-    private String id;
+    private double id;
     private String nombreUsuario;
     private String contrasena;
     private String correoElectronico;
@@ -10,7 +10,7 @@ public class Usuario implements Comparable {
 
     // CONSTRUCTORES
 
-    public Usuario(String id, String nombreUsuario, String contrasena, String correoElectronico, double bambuesActuales, Panda pandaDelUsuario) {
+    public Usuario(double id, String nombreUsuario, String contrasena, String correoElectronico, double bambuesActuales, Panda pandaDelUsuario) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
@@ -21,7 +21,7 @@ public class Usuario implements Comparable {
 
     public Usuario()
     {
-        this.id = " ";
+        this.id = -9; // -9 por convecion es invalido
         this.nombreUsuario = " ";
         this.contrasena = " ";
         this.correoElectronico = " ";
@@ -31,7 +31,7 @@ public class Usuario implements Comparable {
 
     // GETTERS
 
-    public String getId()
+    public double getId()
     {
         return id;
     }
@@ -93,7 +93,7 @@ public class Usuario implements Comparable {
         {
             if(obj instanceof Usuario usuarioValidado)
             {
-                if(this.getId().equals(usuarioValidado.getId()))
+                if(this.getId() == (usuarioValidado.getId()))
                 {
                     res = true;
                 }
@@ -111,7 +111,13 @@ public class Usuario implements Comparable {
         {
             if(obj instanceof Usuario usuarioValidado)
             {
-                resultado = this.getId().compareTo(usuarioValidado.getId());
+                if(this.getId() > usuarioValidado.getId())
+                    resultado = -1;
+                else if(this.getId() == usuarioValidado.getId())
+                    resultado = 0;
+                else
+                    resultado = 1;
+
             }
         }
         return resultado;
