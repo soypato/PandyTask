@@ -46,6 +46,10 @@ public abstract class Tarea
         return objetivo;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
     public int getTiempoTranscurrido() {
         return tiempoTranscurrido;
     }

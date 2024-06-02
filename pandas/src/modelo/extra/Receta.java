@@ -13,4 +13,12 @@ public class Receta {
         this.ingredientes = "(no especificado)";
         this.pasoAPaso = "(no especificado)";
     }
+
+    public String getIngredientes() {
+        return ingredientes;
+    }
+
+    public String getPasoAPaso() {
+        return pasoAPaso;
+    }
 }

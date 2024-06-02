@@ -2,9 +2,11 @@ import java.sql.SQLOutput;
 import java.util.Scanner;
 
 import excepciones.deLogin.LoginIncorrectoException;
+import modelo.extra.Receta;
 import modelo.sistema.ManejoUsuario;
 import modelo.sistema.Panda;
 import modelo.sistema.Usuario;
+import modelo.tareas.Tarea;
 
 
 public class Main {
@@ -145,6 +147,7 @@ public class Main {
         }
     }
 
+    //OP3 RESTABLECER CONTRASEÑA
     public static void restablecerContrasena()
     {
         String usuario;
@@ -258,6 +261,7 @@ public class Main {
         } while (opcion != 5);
     }
 
+    //OP 1.2.0
     public static void mostrarMenuRecompensas(Usuario usuarioActual){
         int opcion;
         do {
@@ -279,6 +283,7 @@ public class Main {
         } while (opcion != 2);
     }
 
+    //OP 1.3.0
     public static void mostrarMenuMisiones(Usuario usuarioActual) {
         int opcion;
         do {
@@ -300,6 +305,7 @@ public class Main {
         } while (opcion != 2);
     }
 
+    //OP 1.4.0
     public static void mostrarMenuConfiguracion(Usuario usuarioActual) {
         int opcion;
         do {
@@ -329,6 +335,7 @@ public class Main {
 
     }
 
+    //OP 1.4.1
     public static void cambiarNombre(Usuario usuarioActual)
     {
         String nuevoNombre;
@@ -342,6 +349,7 @@ public class Main {
             }
     }
 
+    //OP 1.4.2
     public static void cambiarContrasena(Usuario usuarioActual)
     {
         String nuevaContrasena;
@@ -354,6 +362,12 @@ public class Main {
             mostrarMenuInicio(usuarioActual);
         }
     }
+
+    //**--------------------------------------------------------------------------------------------------------------**
+    //SECTOR TAREAS
+
+
+
 
 }
 

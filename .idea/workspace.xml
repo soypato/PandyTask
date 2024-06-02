@@ -5,15 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29c5bbd7-d0b4-4d45-b037-c7b2932f1ed9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/ManejoTarea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/proyecto-labo3/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proyecto-labo3/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pandas/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuarios.dat" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/extra/Receta.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/extra/Receta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionCocina.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionCocina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/Tarea.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,7 +67,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717125211168</updated>
-      <workItem from="1717287144376" duration="3462000" />
+      <workItem from="1717287144376" duration="11466000" />
     </task>
     <servers />
   </component>

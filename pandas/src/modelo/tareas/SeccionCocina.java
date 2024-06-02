@@ -26,4 +26,9 @@ public class SeccionCocina extends Tarea{
                 "receta=" + receta +
                 '}';
     }
+
+    public Receta getReceta()
+    {
+        return  receta;
+    }
 }
