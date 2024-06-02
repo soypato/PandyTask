@@ -28,7 +28,7 @@ public class ManejoTarea {
             dataInputStream = new DataInputStream(fileInputStream);
 
             try {
-                while (true) {
+                while (dataInputStream.available() > 0) {
                     Tarea tarea = leerTarea(dataInputStream);
 
                     if (tarea != null) {
