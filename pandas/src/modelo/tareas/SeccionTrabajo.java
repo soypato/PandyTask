@@ -6,14 +6,14 @@ public class SeccionTrabajo extends Tarea implements Comparable {
     private String fechaLimite;
 
     // CONSTRUCTORES
-    public SeccionTrabajo(String titulo, String objetivo, String sector, String fechaLimite, String codigo) {
-        super(titulo, objetivo, codigo);
+    public SeccionTrabajo(String titulo, String objetivo, String codigo, int temporizador, String fecha, String sector, String fechaLimite) {
+        super(titulo, objetivo, codigo,temporizador, fecha, "SeccionTrabajo");
         this.sector = sector;
         this.fechaLimite = fechaLimite;
     }
 
     public SeccionTrabajo() {
-        super();
+        super("SeccionTrabajo");
         this.sector = " ";
         this.fechaLimite = " ";
     }

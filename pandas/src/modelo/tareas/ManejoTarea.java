@@ -318,7 +318,7 @@ public class ManejoTarea {
                 String sector = dataInputStream.readUTF();
                 String fechaLimite = dataInputStream.readUTF();
 
-                tarea = new SeccionTrabajo(titulo, objetivo, sector, fechaLimite, codigo);
+                // tarea = new SeccionTrabajo(titulo, objetivo, sector, fechaLimite, codigo);
             } else if (tipoTarea.equals("SeccionEstudio")) {
                 String titulo = dataInputStream.readUTF();
                 String objetivo = dataInputStream.readUTF();
@@ -343,7 +343,7 @@ public class ManejoTarea {
                 String ejercicios = dataInputStream.readUTF();
                 double caloriasQuemadas = dataInputStream.readDouble();
 
-                tarea = new SeccionDeporte(titulo, objetivo, ejercicios, caloriasQuemadas, codigo);
+                // tarea = new SeccionDeporte(titulo, objetivo, ejercicios, caloriasQuemadas, codigo);
             } else if (tipoTarea.equals("SeccionCocina")) {
                 String titulo = dataInputStream.readUTF();
                 String objetivo = dataInputStream.readUTF();

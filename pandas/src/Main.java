@@ -40,13 +40,13 @@ public class Main {
         }
         System.out.println(manejoTarea.mostrarTareas());
         System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
-        SeccionTrabajo tareaPrueba = new SeccionTrabajo(
+        /* SeccionTrabajo tareaPrueba = new SeccionTrabajo(
                 "Proyecto X",
                 "Completar el desarrollo del módulo",
                 "Tecnología",
                 "2024-12-31",
                 "T001"
-        );
+        ); */
         tareaPrueba.setTiempoTranscurrido(120);
         tareaPrueba.setCalificacion(85);
         tareaPrueba.setRetroalimentacion("Buen trabajo, pero se puede mejorar.");
