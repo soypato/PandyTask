@@ -1,6 +1,8 @@
 package modelo.sistema;
 
-public class Panda {
+import java.io.Serializable;
+
+public class Panda implements Serializable {
     private String nombrePanda;
     private double cantBambuConsumido;
 

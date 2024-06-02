@@ -19,20 +19,10 @@ public class ManejoUsuario {
 
     public void entradaUsuarios() throws Exception {
         try (FileInputStream fileInputStream = new FileInputStream(archivoUsuarios);
-             DataInputStream dataInputStream = new DataInputStream(fileInputStream)) {
+             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
 
-            while (dataInputStream.available() > 0) {
-                double id = dataInputStream.readDouble();
-                String nombreUsuario = dataInputStream.readUTF();
-                String contrasena = dataInputStream.readUTF();
-                String correoElectronico = dataInputStream.readUTF();
-                Double bambuesActuales = dataInputStream.readDouble();
-
-                // PANDA:
-                String pandaNombre = dataInputStream.readUTF();
-                Double pandaBambu = dataInputStream.readDouble();
-
-                Usuario usuarioTmp = new Usuario(id, nombreUsuario, contrasena, correoElectronico, bambuesActuales, new Panda(pandaNombre, pandaBambu));
+            while (objectInputStream.available() > 0) {
+                Usuario usuarioTmp = (Usuario) objectInputStream.readObject();
                 listaUsuarios.add(usuarioTmp);
             }
         } catch (FileNotFoundException e) {
@@ -89,22 +79,10 @@ public class ManejoUsuario {
         DataOutputStream dataOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(archivoUsuarios);
-            dataOutputStream = new DataOutputStream(fileOutputStream);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
             for (Usuario usuarioTmp : listaUsuarios) {
-                dataOutputStream.writeDouble(usuarioTmp.getId());
-                dataOutputStream.writeUTF(usuarioTmp.getNombreUsuario());
-                dataOutputStream.writeUTF(usuarioTmp.getContrasena());
-                dataOutputStream.writeUTF(usuarioTmp.getCorreoElectronico());
-                dataOutputStream.writeDouble(usuarioTmp.getBambuesActuales());
-
-                // PANDA: tengo que "sobreescribir" (no es eso pero funciona igual) los metodos de panda en Usuario,
-                // y retorna los de panda, para poder obterner mas facil
-                // otra opcion podria haber sido hacer un pandaTmp pero pierde la persistencia tan facil
-                dataOutputStream.writeUTF(usuarioTmp.getNombrePanda());
-                dataOutputStream.writeDouble(usuarioTmp.getCantBambuConsumidoPanda());
-
-
+                objectOutputStream.writeObject(usuarioTmp);
             }
         } catch (IOException e) {
             e.printStackTrace();
