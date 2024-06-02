@@ -22,26 +22,10 @@ public class ManejoTarea
 
     }
 
-    public void entradaTarea() throws Exception {
-        try (FileInputStream fileInputStream = new FileInputStream(archivoTareas);
-             DataInputStream dataInputStream = new DataInputStream(fileInputStream)) {
 
-            while (dataInputStream.available() > 0) {
-                Tarea tarea = leerTarea(dataInputStream);
-                if (tarea != null) {
-                    tareas.add(tarea);
-                    mapaTarea.computeIfAbsent(tarea.getTitulo(), k -> new HashSet<>()).add(tarea);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            throw new FileNotFoundException("Archivo no encontrado");
-        } catch (IOException e) {
-            throw new IOException("Error en la lectura del archivo", e);
-        }
-    }
 
     //Lee tareas desde el archivo archivoTareas y las agrega al HashSet tareas y al Map mapaTareas.
-    /*public void entradaTarea() throws Exception
+    public void entradaTarea() throws Exception
     {
         FileInputStream fileInputStream = null;
         DataInputStream dataInputStream = null;
@@ -79,7 +63,7 @@ public class ManejoTarea
                 throw new IOException("Problema en la apertura");
             }
         }
-    }*/
+    }
 
 
     public void salidaTareas() throws IOException {

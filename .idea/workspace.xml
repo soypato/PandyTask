@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="29c5bbd7-d0b4-4d45-b037-c7b2932f1ed9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandas/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/ManejoTarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/ManejoTarea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/Tarea.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +65,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717125211168</updated>
       <workItem from="1717287144376" duration="11466000" />
-      <workItem from="1717346215262" duration="4626000" />
+      <workItem from="1717346215262" duration="4897000" />
     </task>
     <servers />
   </component>
