@@ -311,10 +311,10 @@ public class Main {
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    // Cambiar nombre
+                     cambiarNombre(usuarioActual); // Cambiar nombre
                     break;
                 case 2:
-                    // Cambiar contraseña
+                     cambiarContrasena(usuarioActual);  // Cambiar contraseña| Es lo mismo que restablecer contrasena
                     break;
                 case 3:
                     System.out.println("Volviendo al menú principal...");
@@ -327,7 +327,33 @@ public class Main {
 
 
 
-    }        
+    }
+
+    public static void cambiarNombre(Usuario usuarioActual)
+    {
+        String nuevoNombre;
+            if(usuarioActual != null)
+            {
+                System.out.println("Introduzca su nuevo nombre");
+                scanner.nextLine();
+                nuevoNombre = scanner.nextLine();
+                usuarioActual.setNombreUsuario(nuevoNombre);
+                mostrarMenuInicio(usuarioActual);
+            }
+    }
+
+    public static void cambiarContrasena(Usuario usuarioActual)
+    {
+        String nuevaContrasena;
+
+        if(usuarioActual != null)
+        {
+            System.out.println("Ingrese la nueva contrasena");
+            nuevaContrasena = scanner.nextLine();
+            usuarioActual.setContrasena(nuevaContrasena);
+            mostrarMenuInicio(usuarioActual);
+        }
+    }
 
 }
 
