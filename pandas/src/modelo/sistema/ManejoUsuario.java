@@ -18,6 +18,30 @@ public class ManejoUsuario {
     }
 
     public void entradaUsuarios() throws Exception {
+        try (FileInputStream fileInputStream = new FileInputStream(archivoUsuarios);
+             DataInputStream dataInputStream = new DataInputStream(fileInputStream)) {
+
+            while (dataInputStream.available() > 0) {
+                double id = dataInputStream.readDouble();
+                String nombreUsuario = dataInputStream.readUTF();
+                String contrasena = dataInputStream.readUTF();
+                String correoElectronico = dataInputStream.readUTF();
+                Double bambuesActuales = dataInputStream.readDouble();
+
+                // PANDA:
+                String pandaNombre = dataInputStream.readUTF();
+                Double pandaBambu = dataInputStream.readDouble();
+
+                Usuario usuarioTmp = new Usuario(id, nombreUsuario, contrasena, correoElectronico, bambuesActuales, new Panda(pandaNombre, pandaBambu));
+                listaUsuarios.add(usuarioTmp);
+            }
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException("Archivo no encontrado");
+        } catch (IOException e) {
+            throw new IOException("Error en la lectura del archivo", e);
+        }
+    }
+    /*public void entradaUsuarios() throws Exception {
         FileInputStream fileInputStream = null;
         DataInputStream dataInputStream = null;
         try {
@@ -58,7 +82,7 @@ public class ManejoUsuario {
                 throw new IOException("Problema en la apertura");
             }
         }
-    }
+    }*/
 
     public void salidaUsuarios() {
         FileOutputStream fileOutputStream = null;

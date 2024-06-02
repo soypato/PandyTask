@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29c5bbd7-d0b4-4d45-b037-c7b2932f1ed9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/ManejoTarea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pandas/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/extra/Receta.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/extra/Receta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionCocina.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionCocina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/Tarea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/sistema/ManejoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/sistema/ManejoUsuario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +38,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "desarrolloJuanma2",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/docs/learning-aprendizaje/AA Tecnología/Docs/UTN/TUP/cursada/tercer cuatrimestre/prog-labotorio iii/proyecto final/proyecto-labo3/pandas",
     "node.js.detected.package.eslint": "true",
@@ -55,7 +52,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-22-openjdk-22-4caba194b151-f504ca98" />
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
       </set>
     </attachedChunks>
   </component>
@@ -68,6 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717125211168</updated>
       <workItem from="1717287144376" duration="11466000" />
+      <workItem from="1717346215262" duration="302000" />
     </task>
     <servers />
   </component>
