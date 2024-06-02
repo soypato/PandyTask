@@ -21,10 +21,10 @@ public class Main {
         //Leer los datos que fueron cargados en el archivo
         try {
             manejoUsuario.entradaUsuarios();
-        }
-        catch (Exception e)
-        {
             System.out.println("Programa iniciado correctamente");
+        } catch (Exception e) {
+            System.err.println("Se produjo un error al iniciar el programa:");
+            e.printStackTrace();
         }
 
         System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
