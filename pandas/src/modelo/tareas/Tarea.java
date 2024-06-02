@@ -94,4 +94,10 @@ public abstract class Tarea
                 ", fecha='" + fecha + '\'' +
                 '}';
     }
+
+    public void setTiempoTranscurrido(int i) {
+    }
+
+    public void setFecha(String date) {
+    }
 }

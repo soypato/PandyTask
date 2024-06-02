@@ -22,8 +22,26 @@ public class ManejoTarea
 
     }
 
+    public void entradaTarea() throws Exception {
+        try (FileInputStream fileInputStream = new FileInputStream(archivoTareas);
+             DataInputStream dataInputStream = new DataInputStream(fileInputStream)) {
+
+            while (dataInputStream.available() > 0) {
+                Tarea tarea = leerTarea(dataInputStream);
+                if (tarea != null) {
+                    tareas.add(tarea);
+                    mapaTarea.computeIfAbsent(tarea.getTitulo(), k -> new HashSet<>()).add(tarea);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException("Archivo no encontrado");
+        } catch (IOException e) {
+            throw new IOException("Error en la lectura del archivo", e);
+        }
+    }
+
     //Lee tareas desde el archivo archivoTareas y las agrega al HashSet tareas y al Map mapaTareas.
-    public void entradaTarea() throws Exception
+    /*public void entradaTarea() throws Exception
     {
         FileInputStream fileInputStream = null;
         DataInputStream dataInputStream = null;
@@ -61,11 +79,73 @@ public class ManejoTarea
                 throw new IOException("Problema en la apertura");
             }
         }
+    }*/
+
+
+    public void salidaTareas() throws IOException {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(archivoTareas);
+             DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream)) {
+
+            for (Tarea tarea : tareas) {
+                if (tarea instanceof SeccionTrabajo) {
+                    dataOutputStream.writeUTF("SeccionTrabajo");
+                    SeccionTrabajo seccionTrabajo = (SeccionTrabajo) tarea;
+                    dataOutputStream.writeUTF(seccionTrabajo.getTitulo());
+                    dataOutputStream.writeUTF(seccionTrabajo.getObjetivo());
+                    dataOutputStream.writeUTF(seccionTrabajo.getCodigo());
+                    dataOutputStream.writeInt(seccionTrabajo.getTiempoTranscurrido());
+                    dataOutputStream.writeInt(seccionTrabajo.getCalificacion());
+                    dataOutputStream.writeUTF(seccionTrabajo.getRetroalimentacion());
+                    dataOutputStream.writeUTF(seccionTrabajo.getFecha());
+                    dataOutputStream.writeUTF(seccionTrabajo.getSector());
+                    dataOutputStream.writeUTF(seccionTrabajo.getFechaLimite());
+                } else if (tarea instanceof SeccionEstudio) {
+                    dataOutputStream.writeUTF("SeccionEstudio");
+                    SeccionEstudio seccionEstudio = (SeccionEstudio) tarea;
+                    dataOutputStream.writeUTF(seccionEstudio.getTitulo());
+                    dataOutputStream.writeUTF(seccionEstudio.getObjetivo());
+                    dataOutputStream.writeUTF(seccionEstudio.getCodigo());
+                    dataOutputStream.writeInt(seccionEstudio.getTiempoTranscurrido());
+                    dataOutputStream.writeInt(seccionEstudio.getCalificacion());
+                    dataOutputStream.writeUTF(seccionEstudio.getRetroalimentacion());
+                    dataOutputStream.writeUTF(seccionEstudio.getFecha());
+                    dataOutputStream.writeUTF(seccionEstudio.getCategoria());
+                    dataOutputStream.writeUTF(seccionEstudio.getMateria());
+                    dataOutputStream.writeUTF(seccionEstudio.getUnidad());
+                } else if (tarea instanceof SeccionDeporte) {
+                    dataOutputStream.writeUTF("SeccionDeporte");
+                    SeccionDeporte seccionDeporte = (SeccionDeporte) tarea;
+                    dataOutputStream.writeUTF(seccionDeporte.getTitulo());
+                    dataOutputStream.writeUTF(seccionDeporte.getObjetivo());
+                    dataOutputStream.writeUTF(seccionDeporte.getCodigo());
+                    dataOutputStream.writeInt(seccionDeporte.getTiempoTranscurrido());
+                    dataOutputStream.writeInt(seccionDeporte.getCalificacion());
+                    dataOutputStream.writeUTF(seccionDeporte.getRetroalimentacion());
+                    dataOutputStream.writeUTF(seccionDeporte.getFecha());
+                    dataOutputStream.writeUTF(seccionDeporte.getEjercicios());
+                    dataOutputStream.writeDouble(seccionDeporte.getCaloriasQuemadas());
+                } else if (tarea instanceof SeccionCocina) {
+                    dataOutputStream.writeUTF("SeccionCocina");
+                    SeccionCocina seccionCocina = (SeccionCocina) tarea;
+                    dataOutputStream.writeUTF(seccionCocina.getTitulo());
+                    dataOutputStream.writeUTF(seccionCocina.getObjetivo());
+                    dataOutputStream.writeUTF(seccionCocina.getCodigo());
+                    dataOutputStream.writeInt(seccionCocina.getTiempoTranscurrido());
+                    dataOutputStream.writeInt(seccionCocina.getCalificacion());
+                    dataOutputStream.writeUTF(seccionCocina.getRetroalimentacion());
+                    dataOutputStream.writeUTF(seccionCocina.getFecha());
+                    Receta receta = seccionCocina.getReceta();
+                    dataOutputStream.writeUTF(receta.getIngredientes());
+                    dataOutputStream.writeUTF(receta.getPasoAPaso());
+                }
+            }
+        } catch (IOException e) {
+            throw new IOException("Error en la escritura del archivo", e);
+        }
     }
 
-
     //Escribe todas las tareas del HashSet tareas al archivo archivoTareas
-    public void salidaTareas()
+    /*public void salidaTareas()
     {
         FileOutputStream fileOutputStream = null;
         DataOutputStream dataOutputStream = null;
@@ -144,7 +224,7 @@ public class ManejoTarea
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 
 
 
@@ -272,7 +352,13 @@ public class ManejoTarea
     {
         mapaTarea.put(tarea.getTitulo(), tareas);
     }
-
+    public String mostrarTareas() {
+        StringBuilder tareasString = new StringBuilder();
+        for (Tarea tarea : tareas) {
+            tareasString.append(tarea.toString()).append("\n");
+        }
+        return tareasString.toString();
+    }
 
 
 }
