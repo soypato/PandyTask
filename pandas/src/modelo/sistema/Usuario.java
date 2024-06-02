@@ -1,6 +1,8 @@
 package modelo.sistema;
 
-public class Usuario implements Comparable {
+import java.io.Serializable;
+
+public class Usuario implements Comparable, Serializable {
     private double id;
     private String nombreUsuario;
     private String contrasena;
