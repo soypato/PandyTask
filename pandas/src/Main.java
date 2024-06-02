@@ -51,11 +51,12 @@ public class Main {
         tareaPrueba.setCalificacion(85);
         tareaPrueba.setRetroalimentacion("Buen trabajo, pero se puede mejorar.");
         tareaPrueba.setFecha("2024-06-02");
-        Panda panda = new Panda("Pandita");
+
 
         manejoTarea.altaTarea(tareaPrueba);
+        Panda panda = new Panda("Pandita");
         Usuario usuario1 = new Usuario(322, "pato", "1234", "patriciotubio" ,0, panda);
-        //Usuario usuario2 = new Usuario("324", "nachito", "676", "mailNachito", 0, new Panda("Pandito"));
+        Usuario usuario2 = new Usuario(324, "nachito", "676", "mailNachito", 0, new Panda("Pandito"));
 
         //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego
         //con el altaUsuario. Una vez hecho todo esto, entrará al método de salidaUsuario, por lo tanto, el usuario estará
@@ -64,7 +65,7 @@ public class Main {
 
 
         manejoUsuario.altaUsuario(usuario1);
-        //manejoUsuario.altaUsuario(usuario2);
+        manejoUsuario.altaUsuario(usuario2);
 
 
         // Durante todo el sistema tenemos que trabajar sobre las colecciones, no el archivo

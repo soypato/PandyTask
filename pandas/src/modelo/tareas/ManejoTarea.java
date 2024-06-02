@@ -24,8 +24,47 @@ public class ManejoTarea
 
 
 
+    public void entradaTarea() throws IOException {
+        FileInputStream fileInputStream = null;
+        DataInputStream dataInputStream = null;
+        try {
+            fileInputStream = new FileInputStream(archivoTareas);
+            dataInputStream = new DataInputStream(fileInputStream);
+
+            while (true) {
+                try {
+                    Tarea tarea = leerTarea(dataInputStream);
+                    if (tarea != null) {
+                        tareas.add(tarea);
+                        mapaTarea.put(tarea.getTitulo(), tareas);
+                    }
+                } catch (EOFException e) {
+                    // Si llegamos al final del archivo, salimos del bucle
+                    break;
+                }
+            }
+        } finally {
+            // Cerramos los streams en el bloque finally para garantizar que se cierren
+            // independientemente de si hubo una excepción o no
+            if (dataInputStream != null) {
+                try {
+                    dataInputStream.close();
+                } catch (IOException e) {
+                    System.err.println("Error al cerrar el DataInputStream: " + e.getMessage());
+                }
+            }
+            if (fileInputStream != null) {
+                try {
+                    fileInputStream.close();
+                } catch (IOException e) {
+                    System.err.println("Error al cerrar el FileInputStream: " + e.getMessage());
+                }
+            }
+        }
+    }
+
     //Lee tareas desde el archivo archivoTareas y las agrega al HashSet tareas y al Map mapaTareas.
-    public void entradaTarea() throws Exception
+    /*public void entradaTarea() throws Exception
     {
         FileInputStream fileInputStream = null;
         DataInputStream dataInputStream = null;
@@ -63,7 +102,7 @@ public class ManejoTarea
                 throw new IOException("Problema en la apertura");
             }
         }
-    }
+    }*/
 
 
     public void salidaTareas() throws IOException {

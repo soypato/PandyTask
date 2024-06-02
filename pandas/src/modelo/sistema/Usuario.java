@@ -8,6 +8,7 @@ public class Usuario implements Comparable {
     private double bambuesActuales;
     private Panda pandaDelUsuario;
 
+
     // CONSTRUCTORES
 
     public Usuario(double id, String nombreUsuario, String contrasena, String correoElectronico, double bambuesActuales, Panda pandaDelUsuario) {

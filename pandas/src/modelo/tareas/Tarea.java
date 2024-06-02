@@ -1,5 +1,7 @@
 package modelo.tareas;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
 
 public abstract class Tarea
@@ -10,7 +12,9 @@ public abstract class Tarea
     private int tiempoTranscurrido; //Será automático
     private int calificacion; // (1 a 10)
     private String retroalimentacion; //Mensaje a vos mismo, como te sentistes
-    private String fecha; //Con instant (API)
+    private String fecha;//Con instant (API)
+    private HashMap<String, HashSet<Tarea>> mapaTarea;
+    private HashSet<Tarea> tareas;
 
 
     //Constructores
@@ -23,6 +27,8 @@ public abstract class Tarea
         this.calificacion=0;
         this.retroalimentacion="";
         this.fecha="";
+        this.mapaTarea=new HashMap<>();
+        this.tareas=new HashSet<>();
     }
 
     public Tarea(String titulo, String objetivo, String codigo) {
@@ -33,7 +39,8 @@ public abstract class Tarea
         this.calificacion=0;
         this.retroalimentacion="";
         this.fecha="";
-
+        this.mapaTarea=new HashMap<>();
+        this.tareas=new HashSet<>();
     }
 
     //Getters
