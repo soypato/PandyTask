@@ -26,7 +26,8 @@ public class Main {
         }
 
         System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
-        //Usuario usuario1 = new Usuario("322", "pato", "1234", "patriciotubio", 0, new Panda("Pandita"));
+        Panda panda = new Panda("Pandita");
+        Usuario usuario1 = new Usuario(322, "pato", "1234", "patriciotubio" ,0, panda);
         //Usuario usuario2 = new Usuario("324", "nachito", "676", "mailNachito", 0, new Panda("Pandito"));
 
         //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego
@@ -35,7 +36,7 @@ public class Main {
         // para verificar que el dato se haya cargado correctamente.
 
 
-        //manejoUsuario.altaUsuario(usuario1);
+        manejoUsuario.altaUsuario(usuario1);
         //manejoUsuario.altaUsuario(usuario2);
 
 
@@ -54,7 +55,7 @@ public class Main {
                     registrarUsuario();
                     break;
                 case 3:
-                    // Restablecer contraseña
+                     restablecerContrasena();   // Restablecer contraseña
                     break;
                 case 4:
                     System.out.println("Saliendo del programa...");
@@ -142,6 +143,42 @@ public class Main {
         {
             System.out.println("El usuario ya esta registrado, intentelo nuevamente");
         }
+    }
+
+    public static void restablecerContrasena()
+    {
+        String usuario;
+        String contrasena;
+        String nuevaContrasena;
+        Usuario usuarioActual = null;
+
+        do {
+            System.out.println("Introduzca el usuario");
+            scanner.nextLine();
+            usuario = scanner.nextLine();
+
+            System.out.println("Introduzca su contrasena actual");
+            contrasena = scanner.nextLine();
+
+            try {
+                usuarioActual = manejoUsuario.comprobarLogin(usuario, contrasena);
+                if(usuarioActual != null)
+                {
+                    System.out.println("Ingrese la nueva contrasena");
+                    nuevaContrasena = scanner.nextLine();
+                    usuarioActual.setContrasena(nuevaContrasena);
+                    mostrarMenuInicio(usuarioActual);
+                }
+            } catch (LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
+                System.out.println("Usuario y contrasena incorrecto");
+            }
+
+
+        }
+        while (usuarioActual == null);
+
+
+
     }
 
     // OP1.1 LOGIN EXITOSO
