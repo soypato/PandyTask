@@ -1,4 +1,4 @@
-package modelo.tareas;
+/*package modelo.tareas;
 
 import modelo.extra.Receta;
 
@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class ManejoTarea {
-    private HashMap<String, HashSet<Tarea>> mapaTarea;
+     private HashMap<String, HashSet<Tarea>> mapaTarea;
     private HashSet<Tarea> tareas;
 
     private final String archivoTareas = "tareas.dat";
@@ -98,7 +98,7 @@ public class ManejoTarea {
                 throw new IOException("Problema en la apertura");
             }
         }
-    }*/
+    }
 
 
         public void salidaTareas () throws IOException {
@@ -243,7 +243,7 @@ public class ManejoTarea {
                 e.printStackTrace();
             }
         }
-    }*/
+    }
 
 
         //Para escribir las tareas en el archivo, incluyendo un identificador para cada tipo de tarea y sus atributos:
@@ -378,3 +378,4 @@ public class ManejoTarea {
 
 
     }
+*/

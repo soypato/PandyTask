@@ -3,8 +3,10 @@ package modelo.sistema;
 import excepciones.deLogin.ContrasenaIncorrectaException;
 import excepciones.deLogin.LoginIncorrectoException;
 import excepciones.deLogin.UsuarioIncorrectoException;
+import modelo.tareas.Tarea;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -19,12 +21,12 @@ public class ManejoUsuario {
 
     // ENTRADA DE NUESTRO SISTEMA DEL ARCHIVO
     public void entradaUsuarios() throws Exception {
-
         // Hacemos try con recursos
         try (FileInputStream fileInputStream = new FileInputStream(archivoUsuarios);
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
             while (true) {
                 Usuario usuarioTmp = (Usuario) objectInputStream.readObject();
+                cargarTareas(usuarioTmp);
                 listaUsuarios.add(usuarioTmp);
             }
         } catch (EOFException e) {
@@ -129,6 +131,30 @@ public class ManejoUsuario {
         }
 
         return id;
+    }
+
+    private void cargarTareas(Usuario usuario) {
+        String filename = usuario.getId() + ".dat";
+        File file = new File(filename);
+        if (file.exists()) {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+                HashMap<String, HashSet<Tarea>> tareas = (HashMap<String, HashSet<Tarea>>) ois.readObject(); // casteo
+                usuario.setNotasPersonales(tareas);
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            guardarTareas(usuario); // Crea el archivo si no existe
+        }
+    }
+
+    public void guardarTareas(Usuario usuario) {
+        String filename = usuario.getId() + ".dat";
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(usuario.getNotasPersonales());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -6,7 +6,7 @@ import modelo.extra.Receta;
 import modelo.sistema.ManejoUsuario;
 import modelo.sistema.Panda;
 import modelo.sistema.Usuario;
-import modelo.tareas.ManejoTarea;
+// import modelo.tareas.ManejoTarea;
 import modelo.tareas.SeccionEstudio;
 import modelo.tareas.SeccionTrabajo;
 import modelo.tareas.Tarea;
@@ -15,13 +15,13 @@ import modelo.tareas.Tarea;
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static ManejoUsuario manejoUsuario;
-    static ManejoTarea manejoTarea;
+    // static ManejoTarea manejoTarea;
 
     public static void main(String[] args) throws Exception {
 
         //Inicializamos el hashSet
         manejoUsuario = new ManejoUsuario();
-        manejoTarea = new ManejoTarea();
+        // manejoTarea = new ManejoTarea();
 
         //Leer los datos que fueron cargados en el archivo
         try {
@@ -32,13 +32,13 @@ public class Main {
             e.printStackTrace();
         }
         try {
-            manejoTarea.entradaTarea();
+           // manejoTarea.entradaTarea();
             System.out.println("Tareas iniciadas correctamente");
         } catch (Exception e) {
             System.err.println("Se produjo un error al cargar las tareas:");
             e.printStackTrace();
         }
-        System.out.println(manejoTarea.mostrarTareas());
+      //  System.out.println(manejoTarea.mostrarTareas());
         System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
         /* SeccionTrabajo tareaPrueba = new SeccionTrabajo(
                 "Proyecto X",
@@ -47,13 +47,13 @@ public class Main {
                 "2024-12-31",
                 "T001"
         ); */
-        tareaPrueba.setTiempoTranscurrido(120);
+        /*tareaPrueba.setTiempoTranscurrido(120);
         tareaPrueba.setCalificacion(85);
         tareaPrueba.setRetroalimentacion("Buen trabajo, pero se puede mejorar.");
-        tareaPrueba.setFecha("2024-06-02");
+        tareaPrueba.setFecha("2024-06-02");*/
 
 
-        manejoTarea.altaTarea(tareaPrueba);
+        // manejoTarea.altaTarea(tareaPrueba);
         Panda panda = new Panda("Pandita");
         Usuario usuario1 = new Usuario(322, "pato", "1234", "patriciotubio" ,0, panda);
         Usuario usuario2 = new Usuario(324, "nachito", "676", "mailNachito", 0, new Panda("Pandito"));
@@ -93,7 +93,7 @@ public class Main {
                         e.printStackTrace();  //Verificar esto
                     }
                     try {
-                        manejoTarea.salidaTareas();
+                        // manejoTarea.salidaTareas();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

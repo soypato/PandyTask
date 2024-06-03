@@ -1,6 +1,8 @@
 package modelo.sistema;
-
+import modelo.tareas.Tarea;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Usuario implements Comparable, Serializable {
     private double id;
@@ -9,7 +11,7 @@ public class Usuario implements Comparable, Serializable {
     private String correoElectronico;
     private double bambuesActuales;
     private Panda pandaDelUsuario;
-
+    private HashMap<String, HashSet<Tarea>> notasPersonales;
 
     // CONSTRUCTORES
 
@@ -20,6 +22,14 @@ public class Usuario implements Comparable, Serializable {
         this.correoElectronico = correoElectronico;
         this.bambuesActuales = bambuesActuales;
         this.pandaDelUsuario = pandaDelUsuario;
+
+        // Manejo del map con el set y sus respectivas clases
+        this.notasPersonales = new HashMap<>();
+        this.notasPersonales.put("SeccionTrabajo", new HashSet<>());
+        this.notasPersonales.put("SeccionEstudio", new HashSet<>());
+        this.notasPersonales.put("SeccionDeporte", new HashSet<>());
+        this.notasPersonales.put("SeccionCocina", new HashSet<>());
+
     }
 
     public Usuario()
@@ -70,6 +80,11 @@ public class Usuario implements Comparable, Serializable {
         return pandaDelUsuario.getPandaAscii();
     }
 
+    public HashMap<String, HashSet<Tarea>> getNotasPersonales() {
+        return notasPersonales;
+    }
+
+
     // SETTERS
 
     public void setNombreUsuario(String nombreUsuario) {
@@ -87,6 +102,11 @@ public class Usuario implements Comparable, Serializable {
     public void setBambuesActuales(double bambuesActuales) {
         this.bambuesActuales = bambuesActuales;
     }
+
+    public void setNotasPersonales(HashMap<String, HashSet<Tarea>> notasPersonales) {
+        this.notasPersonales = notasPersonales;
+    }
+
 
     @Override
     public boolean equals(Object obj)
