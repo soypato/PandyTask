@@ -139,7 +139,7 @@ public class ManejoUsuario {
         if (file.exists()) {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
                 HashMap<String, HashSet<Tarea>> tareas = (HashMap<String, HashSet<Tarea>>) ois.readObject(); // casteo
-                usuario.setNotasPersonales(tareas);
+                usuario.setTareasPersonales(tareas);
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -151,7 +151,7 @@ public class ManejoUsuario {
     public void guardarTareas(Usuario usuario) {
         String filename = usuario.getId() + ".dat";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
-            oos.writeObject(usuario.getNotasPersonales());
+            oos.writeObject(usuario.getTareasPersonales());
         } catch (IOException e) {
             e.printStackTrace();
         }
