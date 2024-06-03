@@ -44,7 +44,7 @@ public class ManejoUsuario {
     }
 
     // SALIDA DE NUESTRO SISTEMA HACIA EL ARCHIVO
-    public void salidaUsuarios() {
+    public void salidaUsuarios() throws Exception {
         FileOutputStream fileOutputStream = null;
         DataOutputStream dataOutputStream = null;
         try {
@@ -93,14 +93,14 @@ public class ManejoUsuario {
 
     // CARGA Y DESCARGA: FUNCIONES AUXILIARES QUE PERMITEN CARGAR Y GUARDAR EN LOS ARCHIVOS DE LOS METODOS ANTERIORES
     private void entradaTareas(Usuario usuario) {
-        String filename = usuario.getId() + ".dat";
-        File file = new File(filename);
-        if (file.exists()) {
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-                HashMap<String, HashSet<Tarea>> tareas = (HashMap<String, HashSet<Tarea>>) ois.readObject(); // casteo
-                usuario.setTareasPersonales(tareas);
+        String filename = usuario.getId() + ".dat"; // concateno para el archivo
+        File file = new File(filename); // creo un nuevo archivo
+        if (file.exists()) {  // si el archivo existe previamente
+            try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) { // toda la logica de stream
+                HashMap<String, HashSet<Tarea>> tareas = (HashMap<String, HashSet<Tarea>>) objectInputStream.readObject(); // casteo y leo la coleccion particular del usuario
+                usuario.setTareasPersonales(tareas); // se la mando a tareas
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                e.printStackTrace(); // excepciones
             }
         } else {
             salidaTareas(usuario); // Crea el archivo si no existe
