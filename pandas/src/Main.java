@@ -7,9 +7,7 @@ import modelo.sistema.ManejoUsuario;
 import modelo.sistema.Panda;
 import modelo.sistema.Usuario;
 // import modelo.tareas.ManejoTarea;
-import modelo.tareas.SeccionEstudio;
-import modelo.tareas.SeccionTrabajo;
-import modelo.tareas.Tarea;
+import modelo.tareas.*;
 
 
 public class Main {
@@ -31,13 +29,13 @@ public class Main {
             System.err.println("Se produjo un error al iniciar el programa, importar el archivo de inicio: si es el primer inicio, reinicia presionando 4.");
         }
         try {
-           // manejoTarea.entradaTarea();
+            // manejoTarea.entradaTarea();
             System.out.println("Tareas iniciadas correctamente");
         } catch (Exception e) {
             System.err.println("Se produjo un error al cargar las tareas: si es el primer inicio del programa, reinicia presionando 4.");
             e.printStackTrace();
         }
-      //  System.out.println(manejoTarea.mostrarTareas());
+        //  System.out.println(manejoTarea.mostrarTareas());
         System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
         /* SeccionTrabajo tareaPrueba = new SeccionTrabajo(
                 "Proyecto X",
@@ -53,7 +51,7 @@ public class Main {
 
 
         // manejoTarea.altaTarea(tareaPrueba);
-        Usuario usuario1 = new Usuario(322, "pato", "1234", "patriciotubio" ,0, new Panda("Pandita"));
+        Usuario usuario1 = new Usuario(322, "pato", "1234", "patriciotubio", 0, new Panda("Pandita"));
         Usuario usuario2 = new Usuario(324, "nachito", "676", "mailNachito", 0, new Panda("Pandito"));
 
         //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego
@@ -81,7 +79,7 @@ public class Main {
                     registrarUsuario();
                     break;
                 case 3:
-                     restablecerContrasena();   // Restablecer contraseña
+                    restablecerContrasena();   // Restablecer contraseña
                     break;
                 case 4:
                     System.out.println("Saliendo del programa...");
@@ -114,8 +112,7 @@ public class Main {
     }
 
     // OP1 INICIAR SESION
-    public static void iniciarSesion()
-    {
+    public static void iniciarSesion() {
         String usuario;
         String contrasena;
         Usuario usuarioActual = null;
@@ -130,19 +127,18 @@ public class Main {
 
             try {
                 usuarioActual = manejoUsuario.comprobarLogin(usuario, contrasena);
-                if(usuarioActual != null)
-                {
+                if (usuarioActual != null) {
                     System.out.println("Usuario y contrasena correcta!");
                     mostrarMenuInicio(usuarioActual);
                 }
-            } catch (LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
+            } catch (
+                    LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
                 System.out.println("Usuario y contrasena incorrecto");
             }
 
 
         }
         while (usuarioActual == null);
-
 
 
     }
@@ -157,7 +153,7 @@ public class Main {
         String correoElectronico;
         String nombrePanda;
 
-        id = manejoUsuario.buscarUltimoID()+1;
+        id = manejoUsuario.buscarUltimoID() + 1;
         System.out.print("Nombre de usuario: ");
         nombreUsuario = scanner.next();
         System.out.print("Contraseña: ");
@@ -168,17 +164,15 @@ public class Main {
         nombrePanda = scanner.next();
         Usuario usuario = new Usuario(id, nombreUsuario, contrasena, correoElectronico, 0, new Panda(nombrePanda));
         respuesta = manejoUsuario.altaUsuario(usuario);
-        if(respuesta) {
+        if (respuesta) {
             System.out.println("¡Usuario registrado correctamente!");
-        }else
-        {
+        } else {
             System.out.println("El usuario ya esta registrado, intentelo nuevamente");
         }
     }
 
     //OP3 RESTABLECER CONTRASEÑA
-    public static void restablecerContrasena()
-    {
+    public static void restablecerContrasena() {
         String usuario;
         String contrasena;
         String nuevaContrasena;
@@ -194,14 +188,14 @@ public class Main {
 
             try {
                 usuarioActual = manejoUsuario.comprobarLogin(usuario, contrasena);
-                if(usuarioActual != null)
-                {
+                if (usuarioActual != null) {
                     System.out.println("Ingrese la nueva contrasena");
                     nuevaContrasena = scanner.nextLine();
                     usuarioActual.setContrasena(nuevaContrasena);
                     mostrarMenuInicio(usuarioActual);
                 }
-            } catch (LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
+            } catch (
+                    LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
                 System.out.println("Usuario y contrasena incorrecto");
             }
 
@@ -267,7 +261,31 @@ public class Main {
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    // Ver y reanudar tareas
+                    // Crear algunas tareas
+                    Tarea tarea1 = new SeccionTrabajo("Trabajo1", "Objetivo1", "ID001", 30, "2024-06-01", "IT", "2024-06-10");
+                    Tarea tarea2 = new SeccionEstudio("Estudio1", "Objetivo2", "ID002", 45, "2024-06-02", "Ciencia", "Matematicas", "Unidad1");
+                    Tarea tarea3 = new SeccionDeporte("Deporte1", "Objetivo3", "ID003", 60, "2024-06-03", "Correr");
+
+                    // Agregar tareas al usuario
+                    usuarioActual.nuevaTareaALaColeccion(tarea1);
+                    usuarioActual.nuevaTareaALaColeccion(tarea2);
+                    usuarioActual.nuevaTareaALaColeccion(tarea3);
+
+                    // Listar tareas
+                    String listaTareas = usuarioActual.listarTareas();
+                    System.out.println(listaTareas);
+
+                    // Buscar una tarea por ID
+                    String tareaBuscada = usuarioActual.buscarTareaPorId("ID002");
+                    System.out.println(tareaBuscada);
+
+                    // Eliminar una tarea por ID
+                    String resultadoEliminacion = usuarioActual.bajaTareaDeLaColeccion("ID003");
+                    System.out.println(resultadoEliminacion);
+
+                    // Listar tareas nuevamente para verificar la eliminación
+                    listaTareas = usuarioActual.listarTareas();
+                    System.out.println(listaTareas);
                     break;
                 case 2:
                     // Ver historial
@@ -288,7 +306,7 @@ public class Main {
     }
 
     //OP 1.2.0
-    public static void mostrarMenuRecompensas(Usuario usuarioActual){
+    public static void mostrarMenuRecompensas(Usuario usuarioActual) {
         int opcion;
         do {
             System.out.println("Menu Recompensas");
@@ -343,10 +361,10 @@ public class Main {
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                     cambiarNombre(usuarioActual); // Cambiar nombre
+                    cambiarNombre(usuarioActual); // Cambiar nombre
                     break;
                 case 2:
-                     cambiarContrasena(usuarioActual);  // Cambiar contraseña| Es lo mismo que restablecer contrasena
+                    cambiarContrasena(usuarioActual);  // Cambiar contraseña| Es lo mismo que restablecer contrasena
                     break;
                 case 3:
                     System.out.println("Volviendo al menú principal...");
@@ -357,31 +375,25 @@ public class Main {
         } while (opcion != 3);
 
 
-
-
     }
 
     //OP 1.4.1
-    public static void cambiarNombre(Usuario usuarioActual)
-    {
+    public static void cambiarNombre(Usuario usuarioActual) {
         String nuevoNombre;
-            if(usuarioActual != null)
-            {
-                System.out.println("Introduzca su nuevo nombre");
-                scanner.nextLine();
-                nuevoNombre = scanner.nextLine();
-                usuarioActual.setNombreUsuario(nuevoNombre);
-                mostrarMenuInicio(usuarioActual);
-            }
+        if (usuarioActual != null) {
+            System.out.println("Introduzca su nuevo nombre");
+            scanner.nextLine();
+            nuevoNombre = scanner.nextLine();
+            usuarioActual.setNombreUsuario(nuevoNombre);
+            mostrarMenuInicio(usuarioActual);
+        }
     }
 
     //OP 1.4.2
-    public static void cambiarContrasena(Usuario usuarioActual)
-    {
+    public static void cambiarContrasena(Usuario usuarioActual) {
         String nuevaContrasena;
 
-        if(usuarioActual != null)
-        {
+        if (usuarioActual != null) {
             System.out.println("Ingrese la nueva contrasena");
             nuevaContrasena = scanner.nextLine();
             usuarioActual.setContrasena(nuevaContrasena);
