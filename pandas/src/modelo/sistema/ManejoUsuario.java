@@ -29,7 +29,7 @@ public class ManejoUsuario {
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
             while (true) {
                 Usuario usuarioTmp = (Usuario) objectInputStream.readObject();
-                cargarTareas(usuarioTmp);
+                entradaTareas(usuarioTmp);
                 listaUsuarios.add(usuarioTmp);
             }
         } catch (EOFException e) {
@@ -52,7 +52,8 @@ public class ManejoUsuario {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
             for (Usuario usuarioTmp : listaUsuarios) {
-                objectOutputStream.writeObject(usuarioTmp);
+                objectOutputStream.writeObject(usuarioTmp); // esto guarda en el archivo la info de todos los usuarios
+                salidaTareas(usuarioTmp); // esto guarda en el archivos tareas, un archivo x user
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -91,7 +92,7 @@ public class ManejoUsuario {
     /// METODOS DE TAREAS /////////////////////////////////////////////////////////////////////////////////////
 
     // CARGA Y DESCARGA: FUNCIONES AUXILIARES QUE PERMITEN CARGAR Y GUARDAR EN LOS ARCHIVOS DE LOS METODOS ANTERIORES
-    private void cargarTareas(Usuario usuario) {
+    private void entradaTareas(Usuario usuario) {
         String filename = usuario.getId() + ".dat";
         File file = new File(filename);
         if (file.exists()) {
@@ -102,11 +103,11 @@ public class ManejoUsuario {
                 e.printStackTrace();
             }
         } else {
-            guardarTareas(usuario); // Crea el archivo si no existe
+            salidaTareas(usuario); // Crea el archivo si no existe
         }
     }
 
-    public void guardarTareas(Usuario usuario) {
+    public void salidaTareas(Usuario usuario) {
         String filename = usuario.getId() + ".dat";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
             oos.writeObject(usuario.getTareasPersonales());
