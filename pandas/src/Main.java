@@ -28,14 +28,13 @@ public class Main {
             manejoUsuario.entradaUsuarios();
             System.out.println("Programa iniciado correctamente");
         } catch (Exception e) {
-            System.err.println("Se produjo un error al iniciar el programa:");
-            e.printStackTrace();
+            System.err.println("Se produjo un error al iniciar el programa, importar el archivo de inicio: si es el primer inicio, reinicia presionando 4.");
         }
         try {
            // manejoTarea.entradaTarea();
             System.out.println("Tareas iniciadas correctamente");
         } catch (Exception e) {
-            System.err.println("Se produjo un error al cargar las tareas:");
+            System.err.println("Se produjo un error al cargar las tareas: si es el primer inicio del programa, reinicia presionando 4.");
             e.printStackTrace();
         }
       //  System.out.println(manejoTarea.mostrarTareas());
@@ -54,8 +53,7 @@ public class Main {
 
 
         // manejoTarea.altaTarea(tareaPrueba);
-        Panda panda = new Panda("Pandita");
-        Usuario usuario1 = new Usuario(322, "pato", "1234", "patriciotubio" ,0, panda);
+        Usuario usuario1 = new Usuario(322, "pato", "1234", "patriciotubio" ,0, new Panda("Pandita"));
         Usuario usuario2 = new Usuario(324, "nachito", "676", "mailNachito", 0, new Panda("Pandito"));
 
         //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego

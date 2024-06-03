@@ -38,6 +38,9 @@ public class ManejoUsuario {
             File archivo = new File(archivoUsuarios); // Si no existe, lo crea
             archivo.createNewFile();
         }
+
+
+
     }
 
     // SALIDA DE NUESTRO SISTEMA HACIA EL ARCHIVO
