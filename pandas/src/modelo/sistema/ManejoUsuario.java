@@ -11,13 +11,16 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 public class ManejoUsuario {
-
+    // ATRIBUTOS
     private HashSet<Usuario> listaUsuarios;
     private final String archivoUsuarios = "usuarios.dat";
 
+    // CONSTRUCTORES
     public ManejoUsuario() {
         listaUsuarios = new HashSet<>();
     }
+
+    /// METODOS DE ARCHIVO ///////////////////////////////////////////////////////////////////////////////////
 
     // ENTRADA DE NUESTRO SISTEMA DEL ARCHIVO
     public void entradaUsuarios() throws Exception {
@@ -64,6 +67,52 @@ public class ManejoUsuario {
         }
     }
 
+    // ID AUTOITERABLE
+    public double buscarUltimoID() {
+        Iterator<Usuario> iterator = listaUsuarios.iterator(); // iterator de la lista de usuarios
+        double id = 0; // id con 0 temporalmente para darle un valor
+        Usuario usuarioTmp = null; // usuario de iteracion
+
+        if (!listaUsuarios.isEmpty()) { // si esta vacio
+            while (iterator.hasNext()) {
+                usuarioTmp = iterator.next(); // sigue hasta el final
+            }
+            if (usuarioTmp != null) { // si lo que hizo != null , retornamos el id
+                id = usuarioTmp.getId();
+            }
+        }
+        return id;
+    }
+
+
+    /// METODOS DE TAREAS /////////////////////////////////////////////////////////////////////////////////////
+
+    // CARGA Y DESCARGA: FUNCIONES AUXILIARES QUE PERMITEN CARGAR Y GUARDAR EN LOS ARCHIVOS DE LOS METODOS ANTERIORES
+    private void cargarTareas(Usuario usuario) {
+        String filename = usuario.getId() + ".dat";
+        File file = new File(filename);
+        if (file.exists()) {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+                HashMap<String, HashSet<Tarea>> tareas = (HashMap<String, HashSet<Tarea>>) ois.readObject(); // casteo
+                usuario.setTareasPersonales(tareas);
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            guardarTareas(usuario); // Crea el archivo si no existe
+        }
+    }
+
+    public void guardarTareas(Usuario usuario) {
+        String filename = usuario.getId() + ".dat";
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(usuario.getTareasPersonales());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // METODOS AUXILIARES /////////////////////////////////////////////////////////////////////////////////////
 
     public Usuario buscarUsuario(String nombreUsuario) {
         Usuario encontrado = null;
@@ -78,10 +127,9 @@ public class ManejoUsuario {
     }
 
     public boolean altaUsuario(Usuario usuarioNuevo) {
+        // DEVUELVE TRUE EN CASO DE QUE SEA CORRECTO, FALSE QUE SEA INCORREC.
         return listaUsuarios.add(usuarioNuevo);
     }
-
-// DEVUELVE TRUE EN CASO DE QUE SEA CORRECTO, FALSE QUE SEA INCORREC.
 
     public Usuario comprobarLogin(String nombre, String contrasena) throws LoginIncorrectoException {
         Usuario encontrado = null;
@@ -113,49 +161,4 @@ public class ManejoUsuario {
         }
         return respuesta;
     }
-
-
-    // ID AUTOITERABLE
-    public double buscarUltimoID() {
-        Iterator<Usuario> iterator = listaUsuarios.iterator();
-        double id = 0;
-        Usuario usuarioTmp = null;
-
-        if (!listaUsuarios.isEmpty()) {
-            while (iterator.hasNext()) {
-                usuarioTmp = iterator.next();
-            }
-            if (usuarioTmp != null) {
-                id = usuarioTmp.getId();
-            }
-        }
-
-        return id;
-    }
-
-    private void cargarTareas(Usuario usuario) {
-        String filename = usuario.getId() + ".dat";
-        File file = new File(filename);
-        if (file.exists()) {
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-                HashMap<String, HashSet<Tarea>> tareas = (HashMap<String, HashSet<Tarea>>) ois.readObject(); // casteo
-                usuario.setTareasPersonales(tareas);
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        } else {
-            guardarTareas(usuario); // Crea el archivo si no existe
-        }
-    }
-
-    public void guardarTareas(Usuario usuario) {
-        String filename = usuario.getId() + ".dat";
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
-            oos.writeObject(usuario.getTareasPersonales());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }
