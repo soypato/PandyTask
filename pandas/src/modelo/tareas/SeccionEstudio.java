@@ -8,8 +8,8 @@ public class SeccionEstudio extends Tarea
     private String unidad;
 
     // CONSTRUCTORES
-    public SeccionEstudio(String titulo, String objetivo, String categoria, String materia, String unidad, String codigo) {
-        super(titulo, objetivo, codigo);
+    public SeccionEstudio(String titulo, String objetivo, String codigo, int temporizador, String fecha, String categoria, String materia, String unidad) {
+        super(titulo, objetivo, codigo, temporizador, fecha, "SeccionEstudio");
         this.categoria = categoria;
         this.materia = materia;
         this.unidad = unidad;
@@ -17,9 +17,10 @@ public class SeccionEstudio extends Tarea
 
     public SeccionEstudio()
     {
-        categoria="";
-        materia="";
-        unidad="";
+        super("SeccionEstudio");
+        this.categoria="";
+        this.materia="";
+        this.unidad="";
     }
 
     // GETTERS

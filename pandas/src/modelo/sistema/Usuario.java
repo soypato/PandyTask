@@ -1,6 +1,8 @@
 package modelo.sistema;
-
+import modelo.tareas.Tarea;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Usuario implements Comparable, Serializable {
     private double id;
@@ -9,7 +11,20 @@ public class Usuario implements Comparable, Serializable {
     private String correoElectronico;
     private double bambuesActuales;
     private Panda pandaDelUsuario;
+    private HashMap<String, HashSet<Tarea>> tareasPersonales;
 
+    /*
+    
+    String y de valor: un HashSet de Tarea. Tarea tiene un atributo que es tipoTarea, en donde guarda qué tarea es, 
+    son las claves que tendrá el HashMap, siempre serán: instanceof "SeccionTrabajo", "SeccionEstudio", 
+    "SeccionDeporte" y "SeccionCocina". SeccionCocina a su vez usa una clase que es "Cocina" 
+    que es para guardar los datos de la misma, y es pedida en el constructor de SeccionCocina.
+
+    Es decir, el mapa se compone por:
+    
+    - "SeccionEstudio", {HashSet de todas las tareas que tengan SeccionEstudio en el atributo "tipoTarea"}
+    
+     */
 
     // CONSTRUCTORES
 
@@ -20,6 +35,14 @@ public class Usuario implements Comparable, Serializable {
         this.correoElectronico = correoElectronico;
         this.bambuesActuales = bambuesActuales;
         this.pandaDelUsuario = pandaDelUsuario;
+
+        // Manejo del map con el set y sus respectivas clases
+        this.tareasPersonales = new HashMap<>();
+        this.tareasPersonales.put("SeccionTrabajo", new HashSet<>());
+        this.tareasPersonales.put("SeccionEstudio", new HashSet<>());
+        this.tareasPersonales.put("SeccionDeporte", new HashSet<>());
+        this.tareasPersonales.put("SeccionCocina", new HashSet<>());
+
     }
 
     public Usuario()
@@ -70,6 +93,11 @@ public class Usuario implements Comparable, Serializable {
         return pandaDelUsuario.getPandaAscii();
     }
 
+    public HashMap<String, HashSet<Tarea>> getTareasPersonales() {
+        return tareasPersonales;
+    }
+
+
     // SETTERS
 
     public void setNombreUsuario(String nombreUsuario) {
@@ -87,6 +115,11 @@ public class Usuario implements Comparable, Serializable {
     public void setBambuesActuales(double bambuesActuales) {
         this.bambuesActuales = bambuesActuales;
     }
+
+    public void setTareasPersonales(HashMap<String, HashSet<Tarea>> tareasPersonales) {
+        this.tareasPersonales = tareasPersonales;
+    }
+
 
     @Override
     public boolean equals(Object obj)

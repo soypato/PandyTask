@@ -1,4 +1,4 @@
-package modelo.tareas;
+/*package modelo.tareas;
 
 import modelo.extra.Receta;
 
@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class ManejoTarea {
-    private HashMap<String, HashSet<Tarea>> mapaTarea;
+     private HashMap<String, HashSet<Tarea>> mapaTarea;
     private HashSet<Tarea> tareas;
 
     private final String archivoTareas = "tareas.dat";
@@ -98,7 +98,7 @@ public class ManejoTarea {
                 throw new IOException("Problema en la apertura");
             }
         }
-    }*/
+    }
 
 
         public void salidaTareas () throws IOException {
@@ -243,7 +243,7 @@ public class ManejoTarea {
                 e.printStackTrace();
             }
         }
-    }*/
+    }
 
 
         //Para escribir las tareas en el archivo, incluyendo un identificador para cada tipo de tarea y sus atributos:
@@ -318,7 +318,7 @@ public class ManejoTarea {
                 String sector = dataInputStream.readUTF();
                 String fechaLimite = dataInputStream.readUTF();
 
-                tarea = new SeccionTrabajo(titulo, objetivo, sector, fechaLimite, codigo);
+                // tarea = new SeccionTrabajo(titulo, objetivo, sector, fechaLimite, codigo);
             } else if (tipoTarea.equals("SeccionEstudio")) {
                 String titulo = dataInputStream.readUTF();
                 String objetivo = dataInputStream.readUTF();
@@ -343,7 +343,7 @@ public class ManejoTarea {
                 String ejercicios = dataInputStream.readUTF();
                 double caloriasQuemadas = dataInputStream.readDouble();
 
-                tarea = new SeccionDeporte(titulo, objetivo, ejercicios, caloriasQuemadas, codigo);
+                // tarea = new SeccionDeporte(titulo, objetivo, ejercicios, caloriasQuemadas, codigo);
             } else if (tipoTarea.equals("SeccionCocina")) {
                 String titulo = dataInputStream.readUTF();
                 String objetivo = dataInputStream.readUTF();
@@ -378,3 +378,4 @@ public class ManejoTarea {
 
 
     }
+*/

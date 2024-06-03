@@ -3,93 +3,64 @@ package modelo.sistema;
 import excepciones.deLogin.ContrasenaIncorrectaException;
 import excepciones.deLogin.LoginIncorrectoException;
 import excepciones.deLogin.UsuarioIncorrectoException;
+import modelo.tareas.Tarea;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
 public class ManejoUsuario {
-
+    // ATRIBUTOS
     private HashSet<Usuario> listaUsuarios;
     private final String archivoUsuarios = "usuarios.dat";
 
+    // CONSTRUCTORES
     public ManejoUsuario() {
         listaUsuarios = new HashSet<>();
     }
 
+    /// METODOS DE ARCHIVO ///////////////////////////////////////////////////////////////////////////////////
+
+    // ENTRADA DE NUESTRO SISTEMA DEL ARCHIVO
     public void entradaUsuarios() throws Exception {
+        // Hacemos try con recursos
         try (FileInputStream fileInputStream = new FileInputStream(archivoUsuarios);
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
-
-            while (objectInputStream.available() > 0) {
+            while (true) {
                 Usuario usuarioTmp = (Usuario) objectInputStream.readObject();
+                entradaTareas(usuarioTmp);
                 listaUsuarios.add(usuarioTmp);
             }
+        } catch (EOFException e) {
+            //  Esta excepcion la tenemos que tener para que el while se pegue contra ella, pero sin hacer nada
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException("Archivo no encontrado");
-        } catch (IOException e) {
-            throw new IOException("Error en la lectura del archivo", e);
+            File archivo = new File(archivoUsuarios); // Si no existe, lo crea
+            archivo.createNewFile();
         }
+
+
+
     }
-    /*public void entradaUsuarios() throws Exception {
-        FileInputStream fileInputStream = null;
-        DataInputStream dataInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(archivoUsuarios);
-            dataInputStream = new DataInputStream(fileInputStream);
 
-            while (true) {
-                try {
-                    double id = dataInputStream.readDouble();
-                    String nombreUsuario = dataInputStream.readUTF();
-                    String contrasena = dataInputStream.readUTF();
-                    String correoElectronico = dataInputStream.readUTF();
-                    Double bambuesActuales = dataInputStream.readDouble();
-
-                    // PANDA:
-                    String pandaNombre = dataInputStream.readUTF();
-                    Double pandaBambu = dataInputStream.readDouble();
-
-                    Usuario usuarioTmp = new Usuario(id, nombreUsuario, contrasena, correoElectronico, bambuesActuales, new Panda(pandaNombre, pandaBambu));
-                    listaUsuarios.add(usuarioTmp);
-                } catch (EOFException e) {
-                    throw new EOFException("No se pudieron cargar los datos del archivo al set");
-                }
-            }
-        } catch (FileNotFoundException e) {
-            throw new FileNotFoundException("No encontrado");
-        } catch (IOException e) {
-            throw new IOException("Error en la lectura");
-        } finally { // VER SI PUEDO MODIFICARLO CON UN ASSERT
-            try {
-                if (dataInputStream != null) {
-                    dataInputStream.close();
-                }
-                if (fileInputStream != null) {
-                    fileInputStream.close();
-                }
-            } catch (IOException e) {
-                throw new IOException("Problema en la apertura");
-            }
-        }
-    }*/
-
-    public void salidaUsuarios() {
+    // SALIDA DE NUESTRO SISTEMA HACIA EL ARCHIVO
+    public void salidaUsuarios() throws Exception {
         FileOutputStream fileOutputStream = null;
-        DataOutputStream dataOutputStream = null;
+        ObjectOutputStream objectOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(archivoUsuarios);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
             for (Usuario usuarioTmp : listaUsuarios) {
-                objectOutputStream.writeObject(usuarioTmp);
+                objectOutputStream.writeObject(usuarioTmp); // esto guarda en el archivo la info de todos los usuarios
+                salidaTareas(usuarioTmp); // esto guarda en el archivos tareas, un archivo x user
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (dataOutputStream != null) {
-                    dataOutputStream.close();
+                if (objectOutputStream != null) {
+                    objectOutputStream.close();
                 }
                 if (fileOutputStream != null) {
                     fileOutputStream.close();
@@ -100,6 +71,52 @@ public class ManejoUsuario {
         }
     }
 
+    // ID AUTOITERABLE
+    public double buscarUltimoID() {
+        Iterator<Usuario> iterator = listaUsuarios.iterator(); // iterator de la lista de usuarios
+        double id = 0; // id con 0 temporalmente para darle un valor
+        Usuario usuarioTmp = null; // usuario de iteracion
+
+        if (!listaUsuarios.isEmpty()) { // si esta vacio
+            while (iterator.hasNext()) {
+                usuarioTmp = iterator.next(); // sigue hasta el final
+            }
+            if (usuarioTmp != null) { // si lo que hizo != null , retornamos el id
+                id = usuarioTmp.getId();
+            }
+        }
+        return id;
+    }
+
+
+    /// METODOS DE TAREAS /////////////////////////////////////////////////////////////////////////////////////
+
+    // CARGA Y DESCARGA: FUNCIONES AUXILIARES QUE PERMITEN CARGAR Y GUARDAR EN LOS ARCHIVOS DE LOS METODOS ANTERIORES
+    private void entradaTareas(Usuario usuario) {
+        String filename = usuario.getId() + ".dat"; // concateno para el archivo
+        File file = new File(filename); // creo un nuevo archivo
+        if (file.exists()) {  // si el archivo existe previamente
+            try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) { // toda la logica de stream
+                HashMap<String, HashSet<Tarea>> tareas = (HashMap<String, HashSet<Tarea>>) objectInputStream.readObject(); // casteo y leo la coleccion particular del usuario
+                usuario.setTareasPersonales(tareas); // se la mando a tareas
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace(); // excepciones
+            }
+        } else {
+            salidaTareas(usuario); // Crea el archivo si no existe
+        }
+    }
+
+    public void salidaTareas(Usuario usuario) {
+        String filename = usuario.getId() + ".dat";
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(usuario.getTareasPersonales());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // METODOS AUXILIARES /////////////////////////////////////////////////////////////////////////////////////
 
     public Usuario buscarUsuario(String nombreUsuario) {
         Usuario encontrado = null;
@@ -114,10 +131,9 @@ public class ManejoUsuario {
     }
 
     public boolean altaUsuario(Usuario usuarioNuevo) {
+        // DEVUELVE TRUE EN CASO DE QUE SEA CORRECTO, FALSE QUE SEA INCORREC.
         return listaUsuarios.add(usuarioNuevo);
     }
-
-    // DEVUELVE TRUE EN CASO DE QUE SEA CORRECTO, FALSE QUE SEA INCORREC.
 
     public Usuario comprobarLogin(String nombre, String contrasena) throws LoginIncorrectoException {
         Usuario encontrado = null;
@@ -141,37 +157,16 @@ public class ManejoUsuario {
     }
 
     public String mostrarTodosLosUsuarios() {
-        String respuesta = " ";
+        String respuesta = "";
         Iterator<Usuario> iterator = listaUsuarios.iterator();
+        respuesta+="-----------------------------------\n";
+
         while (iterator.hasNext()) {
             Usuario usuarioTmp = iterator.next();
-            respuesta += usuarioTmp.toString(); // IMPORTANTE: EL TOSTRING NO MUESTRA LA CONTRASENA
+            respuesta += usuarioTmp.toString() + "\n"; // IMPORTANTE: EL TOSTRING NO MUESTRA LA CONTRASENA
         }
+        respuesta+="-------------------------------------";
+
         return respuesta;
     }
-
-
-    // ID AUTOITERABLE
-    public double buscarUltimoID()
-    {
-        Iterator<Usuario> iterator = listaUsuarios.iterator();
-        double id = 0;
-        Usuario usuarioTmp = null;
-
-        if(!listaUsuarios.isEmpty())
-        {
-            while(iterator.hasNext())
-            {
-                 usuarioTmp = iterator.next();
-            }
-            if(usuarioTmp != null)
-            {
-                id = usuarioTmp.getId();
-            }
-        }
-
-        return id;
-    }
-
-
 }

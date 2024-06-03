@@ -6,7 +6,7 @@ import modelo.extra.Receta;
 import modelo.sistema.ManejoUsuario;
 import modelo.sistema.Panda;
 import modelo.sistema.Usuario;
-import modelo.tareas.ManejoTarea;
+// import modelo.tareas.ManejoTarea;
 import modelo.tareas.SeccionEstudio;
 import modelo.tareas.SeccionTrabajo;
 import modelo.tareas.Tarea;
@@ -15,47 +15,45 @@ import modelo.tareas.Tarea;
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static ManejoUsuario manejoUsuario;
-    static ManejoTarea manejoTarea;
+    // static ManejoTarea manejoTarea;
 
     public static void main(String[] args) throws Exception {
 
         //Inicializamos el hashSet
         manejoUsuario = new ManejoUsuario();
-        manejoTarea = new ManejoTarea();
+        // manejoTarea = new ManejoTarea();
 
         //Leer los datos que fueron cargados en el archivo
         try {
             manejoUsuario.entradaUsuarios();
             System.out.println("Programa iniciado correctamente");
         } catch (Exception e) {
-            System.err.println("Se produjo un error al iniciar el programa:");
-            e.printStackTrace();
+            System.err.println("Se produjo un error al iniciar el programa, importar el archivo de inicio: si es el primer inicio, reinicia presionando 4.");
         }
         try {
-            manejoTarea.entradaTarea();
+           // manejoTarea.entradaTarea();
             System.out.println("Tareas iniciadas correctamente");
         } catch (Exception e) {
-            System.err.println("Se produjo un error al cargar las tareas:");
+            System.err.println("Se produjo un error al cargar las tareas: si es el primer inicio del programa, reinicia presionando 4.");
             e.printStackTrace();
         }
-        System.out.println(manejoTarea.mostrarTareas());
+      //  System.out.println(manejoTarea.mostrarTareas());
         System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
-        SeccionTrabajo tareaPrueba = new SeccionTrabajo(
+        /* SeccionTrabajo tareaPrueba = new SeccionTrabajo(
                 "Proyecto X",
                 "Completar el desarrollo del módulo",
                 "Tecnología",
                 "2024-12-31",
                 "T001"
-        );
-        tareaPrueba.setTiempoTranscurrido(120);
+        ); */
+        /*tareaPrueba.setTiempoTranscurrido(120);
         tareaPrueba.setCalificacion(85);
         tareaPrueba.setRetroalimentacion("Buen trabajo, pero se puede mejorar.");
-        tareaPrueba.setFecha("2024-06-02");
+        tareaPrueba.setFecha("2024-06-02");*/
 
 
-        manejoTarea.altaTarea(tareaPrueba);
-        Panda panda = new Panda("Pandita");
-        Usuario usuario1 = new Usuario(322, "pato", "1234", "patriciotubio" ,0, panda);
+        // manejoTarea.altaTarea(tareaPrueba);
+        Usuario usuario1 = new Usuario(322, "pato", "1234", "patriciotubio" ,0, new Panda("Pandita"));
         Usuario usuario2 = new Usuario(324, "nachito", "676", "mailNachito", 0, new Panda("Pandito"));
 
         //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego
@@ -93,7 +91,7 @@ public class Main {
                         e.printStackTrace();  //Verificar esto
                     }
                     try {
-                        manejoTarea.salidaTareas();
+                        // manejoTarea.salidaTareas();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -210,9 +208,6 @@ public class Main {
 
         }
         while (usuarioActual == null);
-
-
-
     }
 
     // OP1.1 LOGIN EXITOSO
