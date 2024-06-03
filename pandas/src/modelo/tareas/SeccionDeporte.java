@@ -4,17 +4,18 @@ public class SeccionDeporte extends Tarea implements Comparable{
     private String ejercicios;
     private double caloriasQuemadas; // 0 si no lo sabe
 
-    public SeccionDeporte(String titulo, String objetivo, String ejercicios, double caloriasQuemadas, String codigo) {
-        super(titulo, objetivo, codigo);
+    public SeccionDeporte(String titulo, String objetivo, String codigo, int temporizador, String fecha, String ejercicios) {
+        super(titulo,objetivo, codigo, temporizador, fecha, "SeccionDeporte");
         this.ejercicios = ejercicios;
-        this.caloriasQuemadas = caloriasQuemadas;
+        this.caloriasQuemadas = -1; // -1 para que sepamos que viene de aca, esto tiene que pasar despues de la tarea con un setter
+        // cuando el usuario sepa cuantas calorias quemo
     }
 
     public SeccionDeporte()
     {
-        super();
+            super("SeccionDeporte");
             this.ejercicios = " ";
-            this.caloriasQuemadas = 0;
+            this.caloriasQuemadas = -1;
     }
 
     public String getEjercicios() {

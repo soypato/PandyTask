@@ -6,17 +6,22 @@ import modelo.extra.Receta;
 import modelo.sistema.ManejoUsuario;
 import modelo.sistema.Panda;
 import modelo.sistema.Usuario;
+// import modelo.tareas.ManejoTarea;
+import modelo.tareas.SeccionEstudio;
+import modelo.tareas.SeccionTrabajo;
 import modelo.tareas.Tarea;
 
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static ManejoUsuario manejoUsuario;
+    // static ManejoTarea manejoTarea;
 
     public static void main(String[] args) throws Exception {
 
         //Inicializamos el hashSet
         manejoUsuario = new ManejoUsuario();
+        // manejoTarea = new ManejoTarea();
 
         //Leer los datos que fueron cargados en el archivo
         try {
@@ -26,11 +31,32 @@ public class Main {
             System.err.println("Se produjo un error al iniciar el programa:");
             e.printStackTrace();
         }
-
+        try {
+           // manejoTarea.entradaTarea();
+            System.out.println("Tareas iniciadas correctamente");
+        } catch (Exception e) {
+            System.err.println("Se produjo un error al cargar las tareas:");
+            e.printStackTrace();
+        }
+      //  System.out.println(manejoTarea.mostrarTareas());
         System.out.println(manejoUsuario.mostrarTodosLosUsuarios());
+        /* SeccionTrabajo tareaPrueba = new SeccionTrabajo(
+                "Proyecto X",
+                "Completar el desarrollo del módulo",
+                "Tecnología",
+                "2024-12-31",
+                "T001"
+        ); */
+        /*tareaPrueba.setTiempoTranscurrido(120);
+        tareaPrueba.setCalificacion(85);
+        tareaPrueba.setRetroalimentacion("Buen trabajo, pero se puede mejorar.");
+        tareaPrueba.setFecha("2024-06-02");*/
+
+
+        // manejoTarea.altaTarea(tareaPrueba);
         Panda panda = new Panda("Pandita");
         Usuario usuario1 = new Usuario(322, "pato", "1234", "patriciotubio" ,0, panda);
-        //Usuario usuario2 = new Usuario("324", "nachito", "676", "mailNachito", 0, new Panda("Pandito"));
+        Usuario usuario2 = new Usuario(324, "nachito", "676", "mailNachito", 0, new Panda("Pandito"));
 
         //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego
         //con el altaUsuario. Una vez hecho todo esto, entrará al método de salidaUsuario, por lo tanto, el usuario estará
@@ -39,7 +65,7 @@ public class Main {
 
 
         manejoUsuario.altaUsuario(usuario1);
-        //manejoUsuario.altaUsuario(usuario2);
+        manejoUsuario.altaUsuario(usuario2);
 
 
         // Durante todo el sistema tenemos que trabajar sobre las colecciones, no el archivo
@@ -65,6 +91,11 @@ public class Main {
                         manejoUsuario.salidaUsuarios();  //Carga datos
                     } catch (Exception e) {
                         e.printStackTrace();  //Verificar esto
+                    }
+                    try {
+                        // manejoTarea.salidaTareas();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                     break;
                 default:
@@ -366,7 +397,34 @@ public class Main {
     //**--------------------------------------------------------------------------------------------------------------**
     //SECTOR TAREAS
 
+    /*public static void registrarTarea() {
+        boolean respuesta = false;
+        String titulo;
+        String objetivo;
+        String codigo;
+        int tiempoTranscurrido; //Será automático
+        int calificacion; // (1 a 10)
+        String retroalimentacion; //Mensaje a vos mismo, como te sentistes
+        String fecha;
 
+        id = manejoUsuario.buscarUltimoID()+1;
+        System.out.print("Nombre de usuario: ");
+        nombreUsuario = scanner.next();
+        System.out.print("Contraseña: ");
+        contrasena = scanner.next();
+        System.out.print("Correo electrónico: ");
+        correoElectronico = scanner.next();
+        System.out.println("Nombre del panda: ");
+        nombrePanda = scanner.next();
+        Usuario usuario = new Usuario(id, nombreUsuario, contrasena, correoElectronico, 0, new Panda(nombrePanda));
+        respuesta = manejoUsuario.altaUsuario(usuario);
+        if(respuesta) {
+            System.out.println("¡Usuario registrado correctamente!");
+        }else
+        {
+            System.out.println("El usuario ya esta registrado, intentelo nuevamente");
+        }
+    }*/
 
 
 }

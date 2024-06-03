@@ -3,8 +3,10 @@ package modelo.sistema;
 import excepciones.deLogin.ContrasenaIncorrectaException;
 import excepciones.deLogin.LoginIncorrectoException;
 import excepciones.deLogin.UsuarioIncorrectoException;
+import modelo.tareas.Tarea;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -17,94 +19,34 @@ public class ManejoUsuario {
         listaUsuarios = new HashSet<>();
     }
 
+    // ENTRADA DE NUESTRO SISTEMA DEL ARCHIVO
     public void entradaUsuarios() throws Exception {
+        // Hacemos try con recursos
         try (FileInputStream fileInputStream = new FileInputStream(archivoUsuarios);
-             DataInputStream dataInputStream = new DataInputStream(fileInputStream)) {
-
-            while (dataInputStream.available() > 0) {
-                double id = dataInputStream.readDouble();
-                String nombreUsuario = dataInputStream.readUTF();
-                String contrasena = dataInputStream.readUTF();
-                String correoElectronico = dataInputStream.readUTF();
-                Double bambuesActuales = dataInputStream.readDouble();
-
-                // PANDA:
-                String pandaNombre = dataInputStream.readUTF();
-                Double pandaBambu = dataInputStream.readDouble();
-
-                Usuario usuarioTmp = new Usuario(id, nombreUsuario, contrasena, correoElectronico, bambuesActuales, new Panda(pandaNombre, pandaBambu));
+             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+            while (true) {
+                Usuario usuarioTmp = (Usuario) objectInputStream.readObject();
+                cargarTareas(usuarioTmp);
                 listaUsuarios.add(usuarioTmp);
             }
+        } catch (EOFException e) {
+            //  Esta excepcion la tenemos que tener para que el while se pegue contra ella, pero sin hacer nada
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException("Archivo no encontrado");
-        } catch (IOException e) {
-            throw new IOException("Error en la lectura del archivo", e);
+            File archivo = new File(archivoUsuarios); // Si no existe, lo crea
+            archivo.createNewFile();
         }
     }
-    /*public void entradaUsuarios() throws Exception {
-        FileInputStream fileInputStream = null;
-        DataInputStream dataInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(archivoUsuarios);
-            dataInputStream = new DataInputStream(fileInputStream);
 
-            while (true) {
-                try {
-                    double id = dataInputStream.readDouble();
-                    String nombreUsuario = dataInputStream.readUTF();
-                    String contrasena = dataInputStream.readUTF();
-                    String correoElectronico = dataInputStream.readUTF();
-                    Double bambuesActuales = dataInputStream.readDouble();
-
-                    // PANDA:
-                    String pandaNombre = dataInputStream.readUTF();
-                    Double pandaBambu = dataInputStream.readDouble();
-
-                    Usuario usuarioTmp = new Usuario(id, nombreUsuario, contrasena, correoElectronico, bambuesActuales, new Panda(pandaNombre, pandaBambu));
-                    listaUsuarios.add(usuarioTmp);
-                } catch (EOFException e) {
-                    throw new EOFException("No se pudieron cargar los datos del archivo al set");
-                }
-            }
-        } catch (FileNotFoundException e) {
-            throw new FileNotFoundException("No encontrado");
-        } catch (IOException e) {
-            throw new IOException("Error en la lectura");
-        } finally { // VER SI PUEDO MODIFICARLO CON UN ASSERT
-            try {
-                if (dataInputStream != null) {
-                    dataInputStream.close();
-                }
-                if (fileInputStream != null) {
-                    fileInputStream.close();
-                }
-            } catch (IOException e) {
-                throw new IOException("Problema en la apertura");
-            }
-        }
-    }*/
-
+    // SALIDA DE NUESTRO SISTEMA HACIA EL ARCHIVO
     public void salidaUsuarios() {
         FileOutputStream fileOutputStream = null;
         DataOutputStream dataOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(archivoUsuarios);
-            dataOutputStream = new DataOutputStream(fileOutputStream);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
             for (Usuario usuarioTmp : listaUsuarios) {
-                dataOutputStream.writeDouble(usuarioTmp.getId());
-                dataOutputStream.writeUTF(usuarioTmp.getNombreUsuario());
-                dataOutputStream.writeUTF(usuarioTmp.getContrasena());
-                dataOutputStream.writeUTF(usuarioTmp.getCorreoElectronico());
-                dataOutputStream.writeDouble(usuarioTmp.getBambuesActuales());
-
-                // PANDA: tengo que "sobreescribir" (no es eso pero funciona igual) los metodos de panda en Usuario,
-                // y retorna los de panda, para poder obterner mas facil
-                // otra opcion podria haber sido hacer un pandaTmp pero pierde la persistencia tan facil
-                dataOutputStream.writeUTF(usuarioTmp.getNombrePanda());
-                dataOutputStream.writeDouble(usuarioTmp.getCantBambuConsumidoPanda());
-
-
+                objectOutputStream.writeObject(usuarioTmp);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -139,7 +81,7 @@ public class ManejoUsuario {
         return listaUsuarios.add(usuarioNuevo);
     }
 
-    // DEVUELVE TRUE EN CASO DE QUE SEA CORRECTO, FALSE QUE SEA INCORREC.
+// DEVUELVE TRUE EN CASO DE QUE SEA CORRECTO, FALSE QUE SEA INCORREC.
 
     public Usuario comprobarLogin(String nombre, String contrasena) throws LoginIncorrectoException {
         Usuario encontrado = null;
@@ -174,25 +116,45 @@ public class ManejoUsuario {
 
 
     // ID AUTOITERABLE
-    public double buscarUltimoID()
-    {
+    public double buscarUltimoID() {
         Iterator<Usuario> iterator = listaUsuarios.iterator();
         double id = 0;
         Usuario usuarioTmp = null;
 
-        if(!listaUsuarios.isEmpty())
-        {
-            while(iterator.hasNext())
-            {
-                 usuarioTmp = iterator.next();
+        if (!listaUsuarios.isEmpty()) {
+            while (iterator.hasNext()) {
+                usuarioTmp = iterator.next();
             }
-            if(usuarioTmp != null)
-            {
+            if (usuarioTmp != null) {
                 id = usuarioTmp.getId();
             }
         }
 
         return id;
+    }
+
+    private void cargarTareas(Usuario usuario) {
+        String filename = usuario.getId() + ".dat";
+        File file = new File(filename);
+        if (file.exists()) {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+                HashMap<String, HashSet<Tarea>> tareas = (HashMap<String, HashSet<Tarea>>) ois.readObject(); // casteo
+                usuario.setNotasPersonales(tareas);
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            guardarTareas(usuario); // Crea el archivo si no existe
+        }
+    }
+
+    public void guardarTareas(Usuario usuario) {
+        String filename = usuario.getId() + ".dat";
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(usuario.getNotasPersonales());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

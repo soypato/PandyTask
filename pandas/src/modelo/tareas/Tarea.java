@@ -1,5 +1,7 @@
 package modelo.tareas;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
 
 public abstract class Tarea
@@ -7,33 +9,37 @@ public abstract class Tarea
     private String titulo;
     private String objetivo;
     private String codigo;
-    private int tiempoTranscurrido; //Será automático
-    private int calificacion; // (1 a 10)
-    private String retroalimentacion; //Mensaje a vos mismo, como te sentistes
-    private String fecha; //Con instant (API)
+    private int temporizador;
+    private String fecha;//  Viene del main
+    private String tipoTarea;// esto es para el manejo de archivos
 
+    private int calificacion; // SET (1 a 10)
+    private String retroalimentacion; // SET Mensaje a vos mismo, como te sentistes
 
     //Constructores
-    public Tarea()
+    public Tarea(String tipoTarea) // siempre vamos a tener que tener este tipo, por mas que sea vacio
     {
         this.titulo="";
         this.objetivo="";
         this.codigo= "Tarea Invalida";
-        this.tiempoTranscurrido=0;
+        this.temporizador=0;
         this.calificacion=0;
         this.retroalimentacion="";
         this.fecha="";
+        this.tipoTarea = tipoTarea;
+
     }
 
-    public Tarea(String titulo, String objetivo, String codigo) {
+    public Tarea(String titulo, String objetivo, String codigo, int temporizador, String fecha, String tipoTarea) {
         this.titulo = titulo;
         this.objetivo = objetivo;
         this.codigo=codigo;
-        this.tiempoTranscurrido=0;
-        this.calificacion=0;
+        this.temporizador=temporizador;
+        this.fecha = fecha;
+        this.calificacion=0; // 0 para detectar cuando todavia no coloco nada, ira del 1 al 10.
         this.retroalimentacion="";
         this.fecha="";
-
+        this.tipoTarea = tipoTarea;
     }
 
     //Getters
@@ -50,8 +56,8 @@ public abstract class Tarea
         return codigo;
     }
 
-    public int getTiempoTranscurrido() {
-        return tiempoTranscurrido;
+    public int gettemporizador() {
+        return temporizador;
     }
 
     public int getCalificacion() {
@@ -88,10 +94,16 @@ public abstract class Tarea
                 "titulo='" + titulo + '\'' +
                 ", objetivo='" + objetivo + '\'' +
                 ", codigo='" + codigo + '\'' +
-                ", tiempoTranscurrido=" + tiempoTranscurrido +
+                ", temporizador=" + temporizador +
                 ", calificacion=" + calificacion +
                 ", retroalimentacion='" + retroalimentacion + '\'' +
                 ", fecha='" + fecha + '\'' +
                 '}';
+    }
+
+    public void settemporizador(int i) {
+    }
+
+    public void setFecha(String date) {
     }
 }
