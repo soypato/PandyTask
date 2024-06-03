@@ -208,9 +208,6 @@ public class Main {
 
         }
         while (usuarioActual == null);
-
-
-
     }
 
     // OP1.1 LOGIN EXITOSO

@@ -46,10 +46,10 @@ public class ManejoUsuario {
     // SALIDA DE NUESTRO SISTEMA HACIA EL ARCHIVO
     public void salidaUsuarios() throws Exception {
         FileOutputStream fileOutputStream = null;
-        DataOutputStream dataOutputStream = null;
+        ObjectOutputStream objectOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(archivoUsuarios);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
             for (Usuario usuarioTmp : listaUsuarios) {
                 objectOutputStream.writeObject(usuarioTmp); // esto guarda en el archivo la info de todos los usuarios
@@ -59,8 +59,8 @@ public class ManejoUsuario {
             e.printStackTrace();
         } finally {
             try {
-                if (dataOutputStream != null) {
-                    dataOutputStream.close();
+                if (objectOutputStream != null) {
+                    objectOutputStream.close();
                 }
                 if (fileOutputStream != null) {
                     fileOutputStream.close();
@@ -157,12 +157,16 @@ public class ManejoUsuario {
     }
 
     public String mostrarTodosLosUsuarios() {
-        String respuesta = " ";
+        String respuesta = "";
         Iterator<Usuario> iterator = listaUsuarios.iterator();
+        respuesta+="-----------------------------------\n";
+
         while (iterator.hasNext()) {
             Usuario usuarioTmp = iterator.next();
-            respuesta += usuarioTmp.toString(); // IMPORTANTE: EL TOSTRING NO MUESTRA LA CONTRASENA
+            respuesta += usuarioTmp.toString() + "\n"; // IMPORTANTE: EL TOSTRING NO MUESTRA LA CONTRASENA
         }
+        respuesta+="-------------------------------------";
+
         return respuesta;
     }
 }
