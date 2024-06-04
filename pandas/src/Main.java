@@ -319,6 +319,7 @@ public class Main {
         int opcion;
         do {
             System.out.println("Menu Tienda");
+            System.out.println("Tu cantidad de bambues actual es de: " + usuarioActual.getBambuesActuales() + " bambues");
             System.out.println("1. Alimentar a tu panda con un bambu | (50 bambues)");
             System.out.println("2. Plantar un arbol de bambu | (150 bambues)");
             System.out.println("3. Limpiar al panda | (100 bambues)");
@@ -326,6 +327,7 @@ public class Main {
             System.out.println("5. Contratar un veterinario para cuidar la salud del panda | (1000 bambues)");
             System.out.println("6. Adquirir instalaciones y habitats para el centro de pandas | (10000 bambues)");
             System.out.println("7. Salir");
+            System.out.println("8. cheat");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             switch (opcion) {
@@ -373,12 +375,22 @@ public class Main {
                     try {
                         adquirirInstalaciones(usuarioActual);
                     } catch (CantidadBambuesInsuficientesException e) {
-                        String mensaje = e.getMensaje();
-                        System.out.println(mensaje);
+                        if(usuarioActual.getInstalacionesAdquiridas())
+                        {
+                            System.out.println("Ya a adquirido las instalaciones. No hay mas instalaciones que comprar. Gracias!");
+                        } else
+                        {
+                            String mensaje = e.getMensaje();
+                            System.out.println(mensaje);
+                        }
+
                     }
                     break;
                 case 7:
                     System.out.println("Volviendo al menú principal...");
+                    break;
+                case 8:
+                    aumentarBambues(usuarioActual, 30000);
                     break;
                 default:
                     System.out.println("Opción inválida");
@@ -555,10 +567,10 @@ public class Main {
     }
     public static void adquirirInstalaciones(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
     {
-        if(usuarioActual.getBambuesActuales() >= 10000)  {
+        if(usuarioActual.getBambuesActuales() >= 10000 && !usuarioActual.getInstalacionesAdquiridas())  {
             System.out.println("Ayudaste al centro de refugios de pandas, adquiriendo nuevas instalaciones ...");
             usuarioActual.modificarInstalaciones();
-            System.out.println("Felicidades " +usuarioActual.getNombreUsuario()+ "acabas de ayudar a todos los pandas del refugio!");
+            System.out.println("Felicidades " +usuarioActual.getNombreUsuario()+ ", acabas de ayudar a todos los pandas del refugio!");
             reducirBambues(usuarioActual, 10000);
         }else
         {
