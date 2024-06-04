@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fab5d630-f119-4e06-9c84-4e663108790c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/1.0.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2.0.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/322.0.dat" beforeDir="false" afterPath="$PROJECT_DIR$/322.0.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/324.0.dat" beforeDir="false" afterPath="$PROJECT_DIR$/324.0.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/322.0.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/324.0.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/325.0.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/sistema/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/sistema/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/ManejoTarea.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelo/tareas/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/Tarea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usuarios.dat" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.dat" afterDir="false" />
     </list>

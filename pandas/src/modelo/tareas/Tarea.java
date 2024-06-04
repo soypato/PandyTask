@@ -36,10 +36,9 @@ public abstract class Tarea implements Serializable
         this.objetivo = objetivo;
         this.codigo=codigo;
         this.temporizador=temporizador;
-        this.fecha = fecha;
         this.calificacion=0; // 0 para detectar cuando todavia no coloco nada, ira del 1 al 10.
         this.retroalimentacion="";
-        this.fecha="";
+        this.fecha=fecha;
         this.tipoTarea = tipoTarea;
     }
 
