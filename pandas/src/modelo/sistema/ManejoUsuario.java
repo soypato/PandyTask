@@ -38,9 +38,6 @@ public class ManejoUsuario {
             File archivo = new File(archivoUsuarios); // Si no existe, lo crea
             archivo.createNewFile();
         }
-
-
-
     }
 
     // SALIDA DE NUESTRO SISTEMA HACIA EL ARCHIVO
@@ -92,6 +89,22 @@ public class ManejoUsuario {
     /// METODOS DE TAREAS /////////////////////////////////////////////////////////////////////////////////////
 
     // CARGA Y DESCARGA: FUNCIONES AUXILIARES QUE PERMITEN CARGAR Y GUARDAR EN LOS ARCHIVOS DE LOS METODOS ANTERIORES
+
+    /*
+    * Quizá no quedó muy clara la idea detrás de esto: como Usuario tiene un atributo que es un HashMap, dentro
+    * un HashSet de Tarea, al momento de serializarlo le paso el Usuario, quien es portador esa información,
+    * <b>Toda la información que tiene el usuario respecto a las colecciones las devuelve un getter</b>
+    * Es ese getter quien después, se escribe en (id).dat, donde nosotros estamos escribiendo to_do.
+    *
+    * Al momento de deserializar hago lo contario = como es un paquete, y en el sólo se encuentra un HashMap y Set<Tarea>,
+    si yo convierto la información a un HashMap, Set<Tarea>, voy a obtenerla nuevamente, y la agrego con el setter del usuario.
+    *
+    *  Como Java trabaja por puntero, queda afectado el usuario y sus colección.
+    *
+    * */
+
+
+    // Leo en (id).bat sus tareas.
     private void entradaTareas(Usuario usuario) {
         String filename = usuario.getId() + ".dat"; // concateno para el archivo
         File file = new File(filename); // creo un nuevo archivo
@@ -106,7 +119,7 @@ public class ManejoUsuario {
             salidaTareas(usuario); // Crea el archivo si no existe
         }
     }
-
+    // Mando al archi (id).bat las tareas del usuario
     public void salidaTareas(Usuario usuario) {
         String filename = usuario.getId() + ".dat";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {

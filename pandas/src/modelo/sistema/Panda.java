@@ -53,4 +53,5 @@ public class Panda implements Serializable {
     public void setCantBambuConsumido(double cantBambuConsumido) {
         this.cantBambuConsumido = cantBambuConsumido;
     }
+
 }
