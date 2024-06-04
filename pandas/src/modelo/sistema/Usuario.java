@@ -11,6 +11,11 @@ public class Usuario implements Comparable, Serializable {
     private String correoElectronico;
     private double bambuesActuales;
     private Panda pandaDelUsuario;
+    private double cantArbolesPlantados;
+    private double cantLavados;
+    private double cantJuguetes;
+    private double cantVisitasVeterinario;
+    public boolean instalacionesAdquiridas;
     private HashMap<String, HashSet<Tarea>> tareasPersonales;
 
     /*
@@ -28,12 +33,17 @@ public class Usuario implements Comparable, Serializable {
 
     // CONSTRUCTORES
 
-    public Usuario(double id, String nombreUsuario, String contrasena, String correoElectronico, double bambuesActuales, Panda pandaDelUsuario) {
+    public Usuario(double id, String nombreUsuario, String contrasena, String correoElectronico, double bambuesActuales, Panda pandaDelUsuario, double cantArbolesPlantados, double cantLavados, double cantJuguetes, double cantVisitasVeterinario, boolean instalacionesAdquiridas) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.correoElectronico = correoElectronico;
         this.bambuesActuales = bambuesActuales;
+        this.cantArbolesPlantados = cantArbolesPlantados;
+        this.cantLavados = cantLavados;
+        this.cantJuguetes = cantJuguetes;
+        this.cantVisitasVeterinario = cantVisitasVeterinario;
+        this.instalacionesAdquiridas = instalacionesAdquiridas;
         this.pandaDelUsuario = pandaDelUsuario;
 
         // Manejo del map con el set y sus respectivas clases
@@ -53,6 +63,11 @@ public class Usuario implements Comparable, Serializable {
         this.correoElectronico = " ";
         this.bambuesActuales = 0;
         this.pandaDelUsuario = new Panda();
+        this.cantArbolesPlantados = 0;
+        this.cantLavados = 0;
+        this.cantJuguetes = 0;
+        this.cantVisitasVeterinario = 0;
+        this.instalacionesAdquiridas = false;
     }
 
     // GETTERS
@@ -78,6 +93,11 @@ public class Usuario implements Comparable, Serializable {
         return bambuesActuales;
     }
 
+    public double getCantArbolesPlantados() {return cantArbolesPlantados;}
+    public double getCantLavados() {return cantLavados;}
+    public double getCantJuguetes() {return cantJuguetes;}
+    public double getCantVisitasVeterinario() { return cantVisitasVeterinario; }
+    public boolean getInstalacionesAdquiridas() {return instalacionesAdquiridas;}
     // Esto para el archivo
     public String getNombrePanda()
     {
@@ -116,8 +136,48 @@ public class Usuario implements Comparable, Serializable {
         this.bambuesActuales = bambuesActuales;
     }
 
+    public void setCantArbolesPlantados(double cantArbolesPlantados) {this.cantArbolesPlantados = cantArbolesPlantados;}
+    public void setCantLavados(double cantLavados) {this.cantLavados = cantLavados;}
+    public void setCantJuguetes(double cantJuguetes) {this.cantJuguetes = cantJuguetes;}
+    public void setCantVisitasVeterinario(double cantVisitasVeterinario) {this.cantVisitasVeterinario = cantVisitasVeterinario;}
+    public void setInstalacionesAdquiridas(boolean instalacionesAdquiridas) {this.instalacionesAdquiridas = instalacionesAdquiridas;}
     public void setTareasPersonales(HashMap<String, HashSet<Tarea>> tareasPersonales) {
         this.tareasPersonales = tareasPersonales;
+    }
+
+    public void alimentarPandaUsuario() //aumentando en uno el atributo bambuconsumido
+    {
+        double suma = pandaDelUsuario.getCantBambuConsumido();
+        suma++;
+        pandaDelUsuario.setCantBambuConsumido(suma);
+    }
+    public void aumentarCantArbolesPlantados() //aumentamos en uno el valor de cantArbolesPlantados
+    {
+        double suma = getCantArbolesPlantados();
+        suma++;
+        setCantArbolesPlantados(suma);
+    }
+    public void aumentarLavados()
+    {
+        double suma = getCantLavados();
+        suma++;
+        setCantLavados(suma);
+    }
+    public void aumentarCantJuguetes()
+    {
+        double suma = getCantJuguetes();
+        suma++;
+        setCantJuguetes(suma);
+    }
+    public void aumentarVisitas()
+    {
+        double suma = getCantVisitasVeterinario();
+        suma++;
+        setCantVisitasVeterinario(suma);
+    }
+    public void modificarInstalaciones()
+    {
+        setInstalacionesAdquiridas(true);
     }
 
 

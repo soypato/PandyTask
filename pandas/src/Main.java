@@ -2,6 +2,7 @@ import java.sql.SQLOutput;
 import java.util.Scanner;
 
 import excepciones.deLogin.LoginIncorrectoException;
+import excepciones.dePanda.CantidadBambuesInsuficientesException;
 import modelo.extra.Receta;
 import modelo.sistema.ManejoUsuario;
 import modelo.sistema.Panda;
@@ -53,8 +54,8 @@ public class Main {
 
 
         // manejoTarea.altaTarea(tareaPrueba);
-        Usuario usuario1 = new Usuario(322, "pato", "1234", "patriciotubio" ,0, new Panda("Pandita"));
-        Usuario usuario2 = new Usuario(324, "nachito", "676", "mailNachito", 0, new Panda("Pandito"));
+        Usuario usuario1 = new Usuario(322, "pato", "1234", "patriciotubio" ,0, new Panda("Pandita"), 10, 0, 2, 0, false);
+        Usuario usuario2 = new Usuario(324, "nachito", "676", "mailNachito", 0, new Panda("Pandito"), 5, 10, 0, 0, true);
 
         //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego
         //con el altaUsuario. Una vez hecho todo esto, entrará al método de salidaUsuario, por lo tanto, el usuario estará
@@ -166,7 +167,7 @@ public class Main {
         correoElectronico = scanner.next();
         System.out.println("Nombre del panda: ");
         nombrePanda = scanner.next();
-        Usuario usuario = new Usuario(id, nombreUsuario, contrasena, correoElectronico, 0, new Panda(nombrePanda));
+        Usuario usuario = new Usuario(id, nombreUsuario, contrasena, correoElectronico, 0, new Panda(nombrePanda), 0, 0, 0, 0, false);
         respuesta = manejoUsuario.altaUsuario(usuario);
         if(respuesta) {
             System.out.println("¡Usuario registrado correctamente!");
@@ -226,9 +227,10 @@ public class Main {
             System.out.println("---------------------------------");
             System.out.println("1. Menu de tareas ");
             System.out.println("2. Menu de recompensas ");
-            System.out.println("3. Menu de misiones");
-            System.out.println("4. Configuraciones");
-            System.out.println("5. Salir");
+            System.out.println("3. Menu de tienda");
+            System.out.println("4. Menu de misiones");
+            System.out.println("5. Configuraciones");
+            System.out.println("6. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             switch (opcion) {
@@ -239,18 +241,21 @@ public class Main {
                     mostrarMenuRecompensas(usuarioActual);
                     break;
                 case 3:
-                    mostrarMenuMisiones(usuarioActual);
+                    mostrarMenuTienda(usuarioActual);
                     break;
                 case 4:
-                    mostrarMenuConfiguracion(usuarioActual);
+                    mostrarMenuMisiones(usuarioActual);
                     break;
                 case 5:
+                    mostrarMenuConfiguracion(usuarioActual);
+                    break;
+                case 6:
                     System.out.println("Saliendo del programa...");
                     break;
                 default:
                     System.out.println("Opción inválida");
             }
-        } while (opcion != 5);
+        } while (opcion != 6);
     }
 
     //OP 1.1.1 MENU TAREAS (tendriamos que recuperar las tareas por puntero)
@@ -310,27 +315,104 @@ public class Main {
     }
 
     //OP 1.3.0
-    public static void mostrarMenuMisiones(Usuario usuarioActual) {
+    public static void mostrarMenuTienda(Usuario usuarioActual) {
         int opcion;
         do {
-            System.out.println("Menu Misiones");
-            System.out.println("1. Ver misiones");
-            System.out.println("2. Salir");
+            System.out.println("Menu Tienda");
+            System.out.println("1. Alimentar a tu panda con un bambu | (50 bambues)");
+            System.out.println("2. Plantar un arbol de bambu | (150 bambues)");
+            System.out.println("3. Limpiar al panda | (100 bambues)");
+            System.out.println("4. Comprar un juguete para el panda | (300 bambues)");
+            System.out.println("5. Contratar un veterinario para cuidar la salud del panda | (1000 bambues)");
+            System.out.println("6. Adquirir instalaciones y habitats para el centro de pandas | (10000 bambues)");
+            System.out.println("7. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    // Ver misiones
+                    try {
+                        alimentarPanda(usuarioActual);
+                    } catch (CantidadBambuesInsuficientesException e) {
+                        String mensaje = e.getMensaje();
+                        System.out.println(mensaje);
+                    }
                     break;
                 case 2:
+                    try {
+                        plantarArbol(usuarioActual);
+                    } catch (CantidadBambuesInsuficientesException e) {
+                        String mensaje = e.getMensaje();
+                        System.out.println(mensaje);
+                    }
+                    break;
+                case 3:
+                    try {
+                        limpiarPanda(usuarioActual);
+                    } catch (CantidadBambuesInsuficientesException e) {
+                        String mensaje = e.getMensaje();
+                        System.out.println(mensaje);
+                    }
+                    break;
+                case 4:
+                    try {
+                        comprarJuguete(usuarioActual);
+                    } catch (CantidadBambuesInsuficientesException e) {
+                        String mensaje = e.getMensaje();
+                        System.out.println(mensaje);
+                    }
+                    break;
+                case 5:
+                    try {
+                        comprarVisitaVeterinario(usuarioActual);
+                    } catch (CantidadBambuesInsuficientesException e) {
+                        String mensaje = e.getMensaje();
+                        System.out.println(mensaje);
+                    }
+                    break;
+                case 6:
+                    try {
+                        adquirirInstalaciones(usuarioActual);
+                    } catch (CantidadBambuesInsuficientesException e) {
+                        String mensaje = e.getMensaje();
+                        System.out.println(mensaje);
+                    }
+                    break;
+                case 7:
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
                     System.out.println("Opción inválida");
             }
-        } while (opcion != 2);
+        } while (opcion != 7);
     }
-
+    public static void mostrarMenuMisiones(Usuario usuarioActual) {
+        int opcion;
+        do {
+            System.out.println("Menu Misiones");
+            System.out.println("1. Crear campania de concientizacion sobre pandas");
+            System.out.println("Financia una campaña educativa para aumentar la conciencia sobre la importancia de proteger a los pandas.");
+            System.out.println("2. Mejorar el hábitat de los pandas");
+            System.out.println("Mejora el habitat natural de los pandas, anadiendo mas vegetacion y agua potable.");
+            System.out.println("3. Organizar una excursion educativa sobre pandas");
+            System.out.println("Organiza una excursion educativa para enseñar a los visitantes sobre la vida y la importancia de los pandas.");
+            System.out.println("4. ");
+            System.out.print("Seleccione una opción: ");
+            opcion = scanner.nextInt();
+            switch (opcion) {
+                case 1:
+                    cambiarNombre(usuarioActual); // Cambiar nombre
+                    break;
+                case 2:
+                    cambiarContrasena(usuarioActual);  // Cambiar contraseña| Es lo mismo que restablecer contrasena
+                    break;
+                case 3:
+                    System.out.println("Volviendo al menú principal...");
+                    break;
+                default:
+                    System.out.println("Opción inválida");
+            }
+        } while (opcion != 3);
+    }
     //OP 1.4.0
     public static void mostrarMenuConfiguracion(Usuario usuarioActual) {
         int opcion;
@@ -390,6 +472,99 @@ public class Main {
     }
 
     //**--------------------------------------------------------------------------------------------------------------**
+
+    //SECTOR TIENDA
+
+    public static void reducirBambues(Usuario usuarioActual, double bambuesARestar)
+    {
+        double bambuesActuales = usuarioActual.getBambuesActuales();
+        bambuesActuales -= bambuesARestar;
+        usuarioActual.setBambuesActuales(bambuesActuales);
+    }
+
+    public static void aumentarBambues(Usuario usuarioActual, double bambuesASumar)
+    {
+        double bambuesActuales = usuarioActual.getBambuesActuales();
+        bambuesActuales += bambuesASumar;
+        usuarioActual.setBambuesActuales(bambuesActuales);
+    }
+
+    public static void alimentarPanda(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
+    {
+        if(usuarioActual.getBambuesActuales() >= 50)  {
+        System.out.println("Alimentaste a tu panda con un bambu ...");
+        usuarioActual.alimentarPandaUsuario();
+        System.out.println(usuarioActual.getNombrePanda() + " ha comido " + usuarioActual.getCantBambuConsumidoPanda() + " bambues");
+        reducirBambues(usuarioActual, 50);
+        }else
+        {
+            throw new CantidadBambuesInsuficientesException("No tienes la suficiente cantidad de bambues ...");
+        }
+    }
+
+    public static void plantarArbol(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
+    {
+        if(usuarioActual.getBambuesActuales() >= 150)  {
+            System.out.println("Plantaste un arbol de bambu ...");
+            usuarioActual.aumentarCantArbolesPlantados();
+            System.out.println(usuarioActual.getNombreUsuario()+" haz plantado " + usuarioActual.getCantArbolesPlantados() + " arboles");
+            reducirBambues(usuarioActual, 150);
+        }else
+        {
+            throw new CantidadBambuesInsuficientesException("No tienes la suficiente cantidad de bambues ...");
+        }
+    }
+
+    public static void limpiarPanda(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
+    {
+        if(usuarioActual.getBambuesActuales() >= 100)  {
+            System.out.println("Lavaste a tu panda ...");
+            usuarioActual.aumentarLavados();
+            System.out.println(usuarioActual.getNombreUsuario()+" haz lavado " + usuarioActual.getCantLavados() + " veces a tu panda");
+            reducirBambues(usuarioActual, 100);
+        }else
+        {
+            throw new CantidadBambuesInsuficientesException("No tienes la suficiente cantidad de bambues ...");
+        }
+    }
+
+    public static void comprarJuguete(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
+    {
+        if(usuarioActual.getBambuesActuales() >= 300)  {
+            System.out.println("Compraste un nuevo juguete para tu panda ...");
+            usuarioActual.aumentarCantJuguetes();
+            System.out.println(usuarioActual.getNombreUsuario()+" haz comprado " + usuarioActual.getCantJuguetes() + " a tu panda");
+            reducirBambues(usuarioActual, 300);
+        }else
+        {
+            throw new CantidadBambuesInsuficientesException("No tienes la suficiente cantidad de bambues ...");
+        }
+    }
+
+    public static void comprarVisitaVeterinario(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
+    {
+        if(usuarioActual.getBambuesActuales() >= 1000)  {
+            System.out.println("Adquiriste una visita al veterinario a tu panda ...");
+            usuarioActual.aumentarVisitas();
+            System.out.println(usuarioActual.getNombreUsuario()+" haz adquirido " + usuarioActual.getCantVisitasVeterinario() + " visitas a tu panda");
+            reducirBambues(usuarioActual, 1000);
+        }else
+        {
+            throw new CantidadBambuesInsuficientesException("No tienes la suficiente cantidad de bambues ...");
+        }
+    }
+    public static void adquirirInstalaciones(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
+    {
+        if(usuarioActual.getBambuesActuales() >= 10000)  {
+            System.out.println("Ayudaste al centro de refugios de pandas, adquiriendo nuevas instalaciones ...");
+            usuarioActual.modificarInstalaciones();
+            System.out.println("Felicidades " +usuarioActual.getNombreUsuario()+ "acabas de ayudar a todos los pandas del refugio!");
+            reducirBambues(usuarioActual, 10000);
+        }else
+        {
+            throw new CantidadBambuesInsuficientesException("No tienes la suficiente cantidad de bambues ...");
+        }
+    }
     //SECTOR TAREAS
 
     /*public static void registrarTarea() {
