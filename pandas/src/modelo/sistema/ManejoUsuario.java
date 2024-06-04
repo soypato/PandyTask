@@ -92,6 +92,8 @@ public class ManejoUsuario {
     /// METODOS DE TAREAS /////////////////////////////////////////////////////////////////////////////////////
 
     // CARGA Y DESCARGA: FUNCIONES AUXILIARES QUE PERMITEN CARGAR Y GUARDAR EN LOS ARCHIVOS DE LOS METODOS ANTERIORES
+
+    // Leo en (id).bat sus tareas.
     private void entradaTareas(Usuario usuario) {
         String filename = usuario.getId() + ".dat"; // concateno para el archivo
         File file = new File(filename); // creo un nuevo archivo
@@ -106,7 +108,7 @@ public class ManejoUsuario {
             salidaTareas(usuario); // Crea el archivo si no existe
         }
     }
-
+    // Mando al archi (id).bat las tareas del usuario
     public void salidaTareas(Usuario usuario) {
         String filename = usuario.getId() + ".dat";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
