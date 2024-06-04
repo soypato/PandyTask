@@ -1,5 +1,6 @@
 package modelo.sistema;
-import modelo.tareas.Tarea;
+import modelo.tareas.*;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -234,4 +235,56 @@ public class Usuario implements Comparable, Serializable {
                 ", correoElectronico='" + correoElectronico + '\'' +
                 '}';
     }  // IMPORTANTE: EL TOSTRING NO MUESTRA LA CONTRASENA
+
+    // MANEJO TAREA ////////////////////////////////////////////////////////////////////////////////////////
+
+    public void nuevaTareaALaColeccion(Tarea nuevaTarea) {
+        if (nuevaTarea instanceof SeccionEstudio) {
+            tareasPersonales.get("SeccionEstudio").add(nuevaTarea);
+        } else if (nuevaTarea instanceof SeccionDeporte) {
+            tareasPersonales.get("SeccionDeporte").add(nuevaTarea);
+        } else if (nuevaTarea instanceof SeccionTrabajo) {
+            tareasPersonales.get("SeccionTrabajo").add(nuevaTarea);
+        } else if (nuevaTarea instanceof SeccionCocina) {
+            tareasPersonales.get("SeccionCocina").add(nuevaTarea);
+        }
+    }
+
+    public String buscarTareaPorId(String codigo) {
+        for (String tipoTarea : tareasPersonales.keySet()) {
+            for (Tarea tarea : tareasPersonales.get(tipoTarea)) {
+                if (tarea.getCodigo().equals(codigo)) {
+                    return tarea.toString();
+                }
+            }
+        }
+        return "Tarea con ID " + codigo + " no encontrada.";
+    }
+
+    public String listarTareas() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Listado de todas las tareas:\n");
+        sb.append("--------------------------------------------------\n");
+        for (String tipoTarea : tareasPersonales.keySet()) {
+            sb.append("Tipo de Tarea: ").append(tipoTarea).append("\n");
+            for (Tarea tarea : tareasPersonales.get(tipoTarea)) {
+                sb.append(tarea.toString() + "\n");
+            }
+        }
+        return sb.toString();
+    }
+
+    public String bajaTareaDeLaColeccion(String codigo) {
+        for (String tipoTarea : tareasPersonales.keySet()) {
+            for (Tarea tarea : tareasPersonales.get(tipoTarea)) {
+                if (tarea.getCodigo().equals(codigo)) {
+                    tareasPersonales.get(tipoTarea).remove(tarea);
+                    return "La tarea con código " + codigo + " fue eliminada exitosamente.";
+                }
+            }
+        }
+        return "La tarea con código " + codigo + " no fue encontrada en la colección.";
+    }
+
+
 }

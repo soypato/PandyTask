@@ -1,10 +1,11 @@
 package modelo.tareas;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 
-public abstract class Tarea
+public abstract class Tarea implements Serializable
 {
     private String titulo;
     private String objetivo;
@@ -35,10 +36,9 @@ public abstract class Tarea
         this.objetivo = objetivo;
         this.codigo=codigo;
         this.temporizador=temporizador;
-        this.fecha = fecha;
         this.calificacion=0; // 0 para detectar cuando todavia no coloco nada, ira del 1 al 10.
         this.retroalimentacion="";
-        this.fecha="";
+        this.fecha=fecha;
         this.tipoTarea = tipoTarea;
     }
 
