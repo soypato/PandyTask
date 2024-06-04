@@ -1,10 +1,11 @@
 package modelo.tareas;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 
-public abstract class Tarea
+public abstract class Tarea implements Serializable
 {
     private String titulo;
     private String objetivo;

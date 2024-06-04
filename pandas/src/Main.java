@@ -261,30 +261,8 @@ public class Main {
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    // Crear algunas tareas
-                    Tarea tarea1 = new SeccionTrabajo("Trabajo1", "Objetivo1", "ID001", 30, "2024-06-01", "IT", "2024-06-10");
-                    Tarea tarea2 = new SeccionEstudio("Estudio1", "Objetivo2", "ID002", 45, "2024-06-02", "Ciencia", "Matematicas", "Unidad1");
-                    Tarea tarea3 = new SeccionDeporte("Deporte1", "Objetivo3", "ID003", 60, "2024-06-03", "Correr");
 
-                    // Agregar tareas al usuario
-                    usuarioActual.nuevaTareaALaColeccion(tarea1);
-                    usuarioActual.nuevaTareaALaColeccion(tarea2);
-                    usuarioActual.nuevaTareaALaColeccion(tarea3);
-
-                    // Listar tareas
                     String listaTareas = usuarioActual.listarTareas();
-                    System.out.println(listaTareas);
-
-                    // Buscar una tarea por ID
-                    String tareaBuscada = usuarioActual.buscarTareaPorId("ID002");
-                    System.out.println(tareaBuscada);
-
-                    // Eliminar una tarea por ID
-                    String resultadoEliminacion = usuarioActual.bajaTareaDeLaColeccion("ID003");
-                    System.out.println(resultadoEliminacion);
-
-                    // Listar tareas nuevamente para verificar la eliminación
-                    listaTareas = usuarioActual.listarTareas();
                     System.out.println(listaTareas);
                     break;
                 case 2:

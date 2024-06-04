@@ -9,8 +9,8 @@
       <change beforePath="$PROJECT_DIR$/322.0.dat" beforeDir="false" afterPath="$PROJECT_DIR$/322.0.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/324.0.dat" beforeDir="false" afterPath="$PROJECT_DIR$/324.0.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/sistema/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/sistema/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/ManejoTarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/ManejoTarea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/Tarea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usuarios.dat" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.dat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
