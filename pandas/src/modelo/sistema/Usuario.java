@@ -117,6 +117,8 @@ public class Usuario implements Comparable, Serializable {
         this.bambuesActuales = bambuesActuales;
     }
 
+    public void sumarBambues(double bambuesNuevos) { this.bambuesActuales += bambuesNuevos;}
+
     public void setTareasPersonales(HashMap<String, HashSet<Tarea>> tareasPersonales) {
         this.tareasPersonales = tareasPersonales;
     }
