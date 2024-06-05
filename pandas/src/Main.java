@@ -3,6 +3,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.Random;
 
 import excepciones.deLogin.LoginIncorrectoException;
 import excepciones.dePanda.CantidadBambuesInsuficientesException;
@@ -19,6 +20,7 @@ import static utiles.JsonUtiles.grabar;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
+    private static Random random = new Random();
     static ManejoUsuario manejoUsuario;
     // static ManejoTarea manejoTarea;
 
@@ -107,18 +109,16 @@ public class Main {
 
     // OP1 INICIAR SESION
     public static void iniciarSesion() {
-        String usuario;
-        String contrasena;
+        limpiarBuffer();
+        String usuario = "";
+        String contrasena = "";
         Usuario usuarioActual = null;
         do {
             System.out.println(manejoUsuario.mostrarTodosLosNombreUsuarios());
-            System.out.println("Introduzca el usuario");
-            scanner.nextLine();
+            System.out.println("Ingrese el nombre del usuario");
             usuario = scanner.nextLine();
-
-            System.out.println("Vamos con la contrasena");
+            System.out.println("Ingrese la contrasena del usuario");
             contrasena = scanner.nextLine();
-
             try {
                 usuarioActual = manejoUsuario.comprobarLogin(usuario, contrasena);
                 if (usuarioActual != null) {
@@ -142,6 +142,7 @@ public class Main {
 
     // OP2 REGISTRAR
     public static void registrarUsuario() {
+        limpiarBuffer();
         boolean respuesta = false;
         Double id;
         String nombreUsuario;
@@ -170,6 +171,7 @@ public class Main {
 
     //OP3 RESTABLECER CONTRASEÑA
     public static void restablecerContrasena() {
+        limpiarBuffer();
         String usuario;
         String contrasena;
         String nuevaContrasena;
@@ -408,16 +410,31 @@ public class Main {
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    System.out.println("Financia una campaña educativa para aumentar la conciencia sobre la importancia de proteger a los pandas.");
-                    aumentarBambues(usuarioActual, 300);
+                    if (misiónExitosa(50)) {
+                        System.out.println("Financia una campaña educativa para aumentar la conciencia sobre la importancia de proteger a los pandas.");
+                        System.out.println("Has conseguido 300 bambues!");
+                        aumentarBambues(usuarioActual, 300);
+                    } else {
+                        System.out.println("No se cumplió el objetivo de la campaña educativa.");
+                    }
                     break;
                 case 2:
-                    System.out.println("Mejora el habitat natural de los pandas, anadiendo mas vegetacion y agua potable.");
-                    aumentarBambues(usuarioActual, 1000);
+                    if (misiónExitosa(33)) {
+                        System.out.println("Mejora el habitat natural de los pandas, anadiendo mas vegetacion y agua potable.");
+                        System.out.println("Has conseguido 1000 bambues!");
+                        aumentarBambues(usuarioActual, 1000);
+                    } else {
+                        System.out.println("No se cumplió el objetivo de mejorar el hábitat.");
+                    }
                     break;
                 case 3:
-                    System.out.println("Organiza una excursion educativa para enseñar a los visitantes sobre la vida y la importancia de los pandas.");
-                    aumentarBambues(usuarioActual, 1500);
+                    if (misiónExitosa(20)) {
+                        System.out.println("Organiza una excursion educativa para enseñar a los visitantes sobre la vida y la importancia de los pandas.");
+                        System.out.println("Has conseguido 1500 bambues!");
+                        aumentarBambues(usuarioActual, 1500);
+                    } else {
+                        System.out.println("No se cumplió el objetivo de la excursión educativa.");
+                    }
                     break;
                 case 4:
                     System.out.println("Volviendo al menú principal...");
@@ -463,6 +480,7 @@ public class Main {
     //OP 1.4.1
 
     public static void cambiarNombre(Usuario usuarioActual) {
+        limpiarBuffer();
         String nuevoNombre;
         if (usuarioActual != null) {
             System.out.println("Introduzca su nuevo nombre");
@@ -479,6 +497,7 @@ public class Main {
     //OP 1.4.2
 
     public static void cambiarContrasena(Usuario usuarioActual) {
+        limpiarBuffer();
         String nuevaContrasena;
 
         if (usuarioActual != null) {
@@ -493,6 +512,13 @@ public class Main {
             }
         }
     }
+
+    // SECTOR MISIONES
+
+    private static boolean misiónExitosa(int porcentajeExito) {
+        return random.nextInt(100) < porcentajeExito;
+    }
+
     //**--------------------------------------------------------------------------------------------------------------**
 
     //SECTOR TIENDA
@@ -512,6 +538,7 @@ public class Main {
 
     public static void alimentarPanda(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
     {
+        limpiarBuffer();
         if(usuarioActual.getBambuesActuales() >= 50)  {
         System.out.println("Alimentaste a tu panda con un bambu ...");
         usuarioActual.alimentarPandaUsuario();
@@ -525,6 +552,7 @@ public class Main {
 
     public static void plantarArbol(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
     {
+        limpiarBuffer();
         if(usuarioActual.getBambuesActuales() >= 150)  {
             System.out.println("Plantaste un arbol de bambu ...");
             usuarioActual.aumentarCantArbolesPlantados();
@@ -538,6 +566,7 @@ public class Main {
 
     public static void limpiarPanda(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
     {
+        limpiarBuffer();
         if(usuarioActual.getBambuesActuales() >= 100)  {
             System.out.println("Lavaste a tu panda ...");
             usuarioActual.aumentarLavados();
@@ -551,6 +580,7 @@ public class Main {
 
     public static void comprarJuguete(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
     {
+        limpiarBuffer();
         if(usuarioActual.getBambuesActuales() >= 300)  {
             System.out.println("Compraste un nuevo juguete para tu panda ...");
             usuarioActual.aumentarCantJuguetes();
@@ -564,6 +594,7 @@ public class Main {
 
     public static void comprarVisitaVeterinario(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
     {
+        limpiarBuffer();
         if(usuarioActual.getBambuesActuales() >= 1000)  {
             System.out.println("Adquiriste una visita al veterinario a tu panda ...");
             usuarioActual.aumentarVisitas();
@@ -577,6 +608,7 @@ public class Main {
 
     public static void adquirirInstalaciones(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
     {
+        limpiarBuffer();
         if(usuarioActual.getBambuesActuales() >= 10000 && !usuarioActual.getInstalacionesAdquiridas())  {
             System.out.println("Ayudaste al centro de refugios de pandas, adquiriendo nuevas instalaciones ...");
             usuarioActual.modificarInstalaciones();
@@ -589,7 +621,7 @@ public class Main {
     }
     //SECTOR TAREAS
     public static void nuevaTarea(Usuario usuarioActual) {
-
+        limpiarBuffer();
         System.out.println("Este es el asistente para crear una nueva tarea.");
         try {
             sleep(500);
@@ -745,7 +777,7 @@ public class Main {
 
     ///////////////////// GENERADORES DE TAREA
     public static SeccionTrabajo generarTrabajo(Usuario usuarioActual, String titulo, String objetivo, String fecha, int minutos) {
-
+        limpiarBuffer();
         SeccionTrabajo res = null;
 
         System.out.print("Sector de la tarea: ");
@@ -768,6 +800,7 @@ public class Main {
     }
 
     public static SeccionEstudio generarEstudio(Usuario usuarioActual, String titulo, String objetivo, String fecha, int minutos) {
+        limpiarBuffer();
         System.out.println("-------------------------");
         System.out.print("Categoría: ");
         scanner.nextLine();
@@ -788,6 +821,7 @@ public class Main {
     }
 
     public static SeccionDeporte generarDeporte(Usuario usuarioActual, String titulo, String objetivo, String fecha, int minutos) {
+        limpiarBuffer();
         System.out.println("-------------------------");
         System.out.print("Ejercicios: ");
         scanner.nextLine();
@@ -800,6 +834,7 @@ public class Main {
     }
 
     public static SeccionCocina generarCocina(Usuario usuarioActual, String titulo, String objetivo, String fecha, int minutos) {
+        limpiarBuffer();
         System.out.println("-------------------------");
         System.out.print("Ingredientes (separados por coma): ");
         scanner.nextLine();
@@ -838,7 +873,7 @@ public class Main {
             if (finalizado.get()) {
                 System.out.println("El temporizador ha sido finalizado antes de tiempo.");
                 try {
-                    Thread.sleep(500);
+                    sleep(500);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -881,6 +916,11 @@ public class Main {
         System.out.println("Chequea el archivo " + rutaArchivo + ".json por favor");
         System.out.println("-------------------------");
 
+    }
+    public static void limpiarBuffer(){
+        if (scanner.hasNextLine()) {
+            scanner.nextLine(); // Limpiar el buffer
+        }
     }
 
 
