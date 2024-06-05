@@ -677,9 +677,6 @@ public class Main {
                 break;
             case 3:
                 SeccionDeporte deporteTmp = generarDeporte(usuarioActual, titulo, objetivo, fecha, minutos);
-                // NECESITAMOS QUE LUEGO NOS DIGA LAS CALORIAS CON FINES ESTADISTICOS
-                System.out.println("Cuantas calorias quemo?");
-                deporteTmp.setCaloriasQuemadas(scanner.nextInt());
 
                 System.out.println("Como calificarias esta tarea del 1 al 10?");
                 do {
@@ -697,11 +694,8 @@ public class Main {
                 deporteTmp.setCalificacion(calificTemp);
                 deporteTmp.setRetroalimentacion(retroalimentacion);
 
-
-
                 usuarioActual.nuevaTareaALaColeccion(deporteTmp);
                 System.out.println("La tarea ha sido agregada exitosamente");
-                System.out.println(deporteTmp.toString());
                 break;
             case 4:
                 SeccionCocina cocinaTmp = generarCocina(usuarioActual, titulo, objetivo, fecha, minutos);
@@ -790,6 +784,13 @@ public class Main {
         System.out.print("Ejercicios: ");
         scanner.nextLine();
         String ejercicios = scanner.nextLine();
+        System.out.print("Duracion: ");
+        double duracion =scanner.nextDouble();
+        System.out.println("Intensidad: ");
+        scanner.nextLine();
+        String intensidad =scanner.nextLine();
+
+
         System.out.println("-------------------------");
         int minutosCumplidos;
 
@@ -798,7 +799,7 @@ public class Main {
 
         minutosCumplidos = iniciarTemporizador(minutos);
         usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
-        return new SeccionDeporte(titulo, objetivo, "000", minutosCumplidos, fecha, ejercicios);
+        return new SeccionDeporte(titulo, objetivo, "000", minutosCumplidos, fecha, ejercicios, duracion,intensidad);
     }
 
     public static SeccionCocina generarCocina(Usuario usuarioActual, String titulo, String objetivo, String fecha, int minutos) {
