@@ -730,7 +730,7 @@ public class Main {
         int minutosCumplidos = iniciarTemporizador(minutos);
 
         res = new SeccionTrabajo(titulo, objetivo, "000", minutosCumplidos, fecha, sector, fechaLimite);
-        usuarioActual.sumarBambues(minutosCumplidos * 10);
+        usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
 
         System.out.println("Has sumado " + minutos * 10 + "bambues");
 
@@ -754,7 +754,7 @@ public class Main {
 
         int minutosCumplidos = iniciarTemporizador(minutos);
 
-        usuarioActual.sumarBambues(minutosCumplidos * 10);
+        usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
         return new SeccionEstudio(titulo, objetivo, "000", minutosCumplidos, fecha, categoria, materia, unidad);
     }
 
@@ -766,7 +766,7 @@ public class Main {
         System.out.println("-------------------------");
         int minutosCumplidos = iniciarTemporizador(minutos);
 
-        usuarioActual.sumarBambues(minutosCumplidos * 10);
+        usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
         return new SeccionDeporte(titulo, objetivo, "000", minutosCumplidos, fecha, ejercicios);
     }
 
@@ -784,7 +784,7 @@ public class Main {
 
         int minutosCumplidos = iniciarTemporizador(minutos);
 
-        usuarioActual.sumarBambues(minutosCumplidos * 10);
+        usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
         return new SeccionCocina(titulo, objetivo, "000", minutosCumplidos, fecha, receta);
     }
 
