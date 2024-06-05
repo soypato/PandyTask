@@ -1,5 +1,8 @@
 package modelo.tareas;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -100,6 +103,24 @@ public abstract class Tarea implements Serializable
                 ", fecha='" + fecha + '\'' +
                 '}';
     }
+
+    public JSONObject toJson()
+    {
+        JSONObject res = new JSONObject();
+        try
+        {
+            res.put("titulo", titulo);
+            res.put("objetivo", objetivo);
+            res.put("codigo", codigo);
+            res.put("temporizador", temporizador);
+            res.put("fecha", fecha);
+            res.put("tipoTarea", tipoTarea);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        return res;
+    }
+
 
     public void settemporizador(int i) {
     }

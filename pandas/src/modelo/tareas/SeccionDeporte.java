@@ -1,5 +1,8 @@
 package modelo.tareas;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SeccionDeporte extends Tarea implements Comparable{
     private String ejercicios;
     private double caloriasQuemadas; // 0 si no lo sabe
@@ -79,6 +82,20 @@ public class SeccionDeporte extends Tarea implements Comparable{
         }
         return res;
     }
+
+    @Override
+    public JSONObject toJson()
+    {
+        JSONObject res = super.toJson();
+        try {
+            res.put("ejercicios", ejercicios);
+            res.put("caloriasQuemadas", caloriasQuemadas);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        return res;
+    }
+
 
     @Override
     public String toString() {

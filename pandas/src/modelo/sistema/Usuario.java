@@ -1,5 +1,6 @@
 package modelo.sistema;
 import modelo.tareas.*;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -288,5 +289,19 @@ public class Usuario implements Comparable, Serializable {
         return "La tarea con código " + codigo + " no fue encontrada en la colección.";
     }
 
+
+    public JSONObject toJSONTareas() throws JSONException {
+        JSONObject res = new JSONObject();
+        for(String tipoTarea : tareasPersonales.keySet()) // solo con el valor puedo recorrer
+        {
+            JSONArray tareasArray = new JSONArray(); // COMO DENTRO DEL VALUE TENGO UNA COLEC. HAGO UN ARREGLO
+            for(Tarea tarea : tareasPersonales.get(tipoTarea))
+            {
+                tareasArray.put(tarea.toJson()); // MANDO TODOS LOS ELEMENTOS DEL SET AL ARREGLO
+            }
+            res.put(tipoTarea, tareasArray); // AGREGO EL ARR A LA OBJ
+        }
+        return res;
+    }
 
 }

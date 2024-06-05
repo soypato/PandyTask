@@ -1,6 +1,9 @@
 package modelo.tareas;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SeccionTrabajo extends Tarea implements Comparable {
     private String sector;
     private String fechaLimite;
@@ -63,6 +66,19 @@ public class SeccionTrabajo extends Tarea implements Comparable {
                 res = trabajoTmp.getTitulo().compareTo(this.getTitulo());
             }
 
+        }
+        return res;
+    }
+
+    @Override
+    public JSONObject toJson()
+    {
+        JSONObject res = super.toJson();
+        try {
+            res.put("sector", sector);
+            res.put("fechaLimite", fechaLimite);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
         }
         return res;
     }

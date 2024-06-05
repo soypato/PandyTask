@@ -5,11 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fab5d630-f119-4e06-9c84-4e663108790c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/322.0.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tareas.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tareas322.0.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/extra/Receta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/extra/Receta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelo/sistema/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/sistema/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/SeccionCocina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/SeccionCocina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/SeccionDeporte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/SeccionDeporte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/SeccionEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/SeccionEstudio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelo/tareas/SeccionTrabajo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/SeccionTrabajo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/jsonUtilesBenoffi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utiles/JsonUtiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/Tarea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios.dat" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.dat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

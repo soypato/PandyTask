@@ -11,9 +11,10 @@ import modelo.sistema.ManejoUsuario;
 import modelo.sistema.Panda;
 import modelo.sistema.Usuario;
 import modelo.tareas.*;
-import utiles.JsonUtiles; // lo importo fixeando el paquete
+import org.json.JSONException;
 
 import static java.lang.Thread.sleep;
+import static utiles.JsonUtiles.grabar;
 
 
 public class Main {
@@ -126,6 +127,8 @@ public class Main {
             } catch (
                     LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
                 System.out.println("Usuario y contrasena incorrecto");
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
             }
 
 
@@ -191,6 +194,8 @@ public class Main {
             } catch (
                     LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
                 System.out.println("Usuario y contrasena incorrecto");
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
             }
 
 
@@ -199,7 +204,7 @@ public class Main {
     }
     /////////////////// LOGIN EXITOSO
 
-    public static void mostrarMenuInicio(Usuario usuarioActual) {
+    public static void mostrarMenuInicio(Usuario usuarioActual) throws JSONException {
         int opcion;
         do {
             System.out.println("---------------------------------");
@@ -216,8 +221,9 @@ public class Main {
             System.out.println("2. Menu de recompensas ");
             System.out.println("3. Menu de tienda");
             System.out.println("4. Menu de misiones");
-            System.out.println("5. Configuraciones");
-            System.out.println("6. Salir");
+            System.out.println("5. Configuracion de cuenta");
+            System.out.println("6. Exportar tareas");
+            System.out.println("7. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             switch (opcion) {
@@ -237,6 +243,9 @@ public class Main {
                     mostrarMenuConfiguracion(usuarioActual);
                     break;
                 case 6:
+                    archivoJSON(usuarioActual);
+                    break;
+                case 7:
                     System.out.println("Saliendo del programa...");
                     break;
                 default:
@@ -246,6 +255,7 @@ public class Main {
     }
 
     //OP 1.1.1 MENU TAREAS (tendriamos que recuperar las tareas por puntero)
+
     public static void mostrarMenuTareas(Usuario usuarioActual) {
         int opcion;
         do {
@@ -279,8 +289,8 @@ public class Main {
             }
         } while (opcion != 5);
     }
-
     //OP 1.2.0
+
     public static void mostrarMenuRecompensas(Usuario usuarioActual) {
         int opcion;
         do {
@@ -301,8 +311,8 @@ public class Main {
             }
         } while (opcion != 2);
     }
-
     //OP 1.3.0
+
     public static void mostrarMenuTienda(Usuario usuarioActual) {
         int opcion;
         do {
@@ -440,8 +450,8 @@ public class Main {
 
 
     }
-
     //OP 1.4.1
+
     public static void cambiarNombre(Usuario usuarioActual) {
         String nuevoNombre;
         if (usuarioActual != null) {
@@ -449,11 +459,15 @@ public class Main {
             scanner.nextLine();
             nuevoNombre = scanner.nextLine();
             usuarioActual.setNombreUsuario(nuevoNombre);
-            mostrarMenuInicio(usuarioActual);
+            try {
+                mostrarMenuInicio(usuarioActual);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
-
     //OP 1.4.2
+
     public static void cambiarContrasena(Usuario usuarioActual) {
         String nuevaContrasena;
 
@@ -461,13 +475,16 @@ public class Main {
             System.out.println("Ingrese la nueva contrasena");
             nuevaContrasena = scanner.nextLine();
             usuarioActual.setContrasena(nuevaContrasena);
-            mostrarMenuInicio(usuarioActual);
+            try {
+                mostrarMenuInicio(usuarioActual);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
     //**--------------------------------------------------------------------------------------------------------------**
 
     //SECTOR TIENDA
-
     public static void reducirBambues(Usuario usuarioActual, double bambuesARestar)
     {
         double bambuesActuales = usuarioActual.getBambuesActuales();
@@ -546,6 +563,7 @@ public class Main {
             throw new CantidadBambuesInsuficientesException("No tienes la suficiente cantidad de bambues ...");
         }
     }
+
     public static void adquirirInstalaciones(Usuario usuarioActual) throws CantidadBambuesInsuficientesException
     {
         if(usuarioActual.getBambuesActuales() >= 10000 && !usuarioActual.getInstalacionesAdquiridas())  {
@@ -715,7 +733,6 @@ public class Main {
     }
 
     ///////////////////// GENERADORES DE TAREA
-
     public static SeccionTrabajo generarTrabajo(Usuario usuarioActual, String titulo, String objetivo, String fecha, int minutos) {
 
         SeccionTrabajo res = null;
@@ -733,7 +750,7 @@ public class Main {
         res = new SeccionTrabajo(titulo, objetivo, "000", minutosCumplidos, fecha, sector, fechaLimite);
         usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
 
-        System.out.println("Has sumado " + minutos * 10 + "bambues");
+        System.out.println("Has sumado " + minutos * 10 + " bambues");
 
 
         return res;
@@ -790,6 +807,7 @@ public class Main {
     }
 
     ///////////  FUNCION PROPIA DE JAVA PARA MANEJO DE TEMPORIZADOR
+
     private static int iniciarTemporizador(int minutos) {
         final AtomicBoolean finalizado = new AtomicBoolean(false);
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
@@ -836,5 +854,23 @@ public class Main {
 
         return (int) minutosCumplidos[0];
     }
+
+
+    // FRONT DE JSON
+    public static void archivoJSON(Usuario usuarioActual)
+    {
+        String rutaArchivo = "tareas" + usuarioActual.getId();
+        try {
+            grabar(usuarioActual.toJSONTareas(), rutaArchivo);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("-------------------------");
+        System.out.println("Chequea el archivo " + rutaArchivo + ".json por favor");
+        System.out.println("-------------------------");
+
+    }
+
+
 }
 

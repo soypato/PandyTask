@@ -1,6 +1,9 @@
 package modelo.tareas;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SeccionEstudio extends Tarea
 {
     private String categoria;
@@ -77,6 +80,20 @@ public class SeccionEstudio extends Tarea
                 res = estudioTmp.getObjetivo().compareTo(this.getObjetivo());
             }
 
+        }
+        return res;
+    }
+
+    @Override
+    public JSONObject toJson()
+    {
+        JSONObject res = super.toJson();
+        try {
+            res.put("categoria", categoria);
+            res.put("materia", materia);
+            res.put("unidad", unidad);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
         }
         return res;
     }
