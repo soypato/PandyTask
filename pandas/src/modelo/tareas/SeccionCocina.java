@@ -1,6 +1,8 @@
 package modelo.tareas;
 
 import modelo.extra.Receta;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SeccionCocina extends Tarea{
     private Receta receta;
@@ -21,6 +23,19 @@ public class SeccionCocina extends Tarea{
     public int hashCode() {
         return 1;
     }
+
+
+    public JSONObject toJson()
+    {
+        JSONObject res = super.toJson();
+        try {
+            res.put("receta", receta.toJson());
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        return res;
+    }
+
 
     @Override
     public String toString() {

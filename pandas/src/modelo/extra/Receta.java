@@ -1,5 +1,8 @@
 package modelo.extra;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Receta {
     private String ingredientes;
     private String pasoAPaso;
@@ -20,5 +23,26 @@ public class Receta {
 
     public String getPasoAPaso() {
         return pasoAPaso;
+    }
+
+    public JSONObject toJson()
+    {
+        JSONObject res = new JSONObject();
+        try {
+            res.put("ingredientes", ingredientes);
+            res.put("pasoAPaso", pasoAPaso);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        return res;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Receta{" +
+                "ingredientes='" + ingredientes + '\'' +
+                ", pasoAPaso='" + pasoAPaso + '\'' +
+                '}';
     }
 }
