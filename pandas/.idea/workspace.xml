@@ -5,20 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fab5d630-f119-4e06-9c84-4e663108790c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/322.0.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tareas.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tareas322.0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tareas324.0.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/extra/Receta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/extra/Receta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/sistema/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/sistema/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/SeccionCocina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/SeccionCocina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/SeccionDeporte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/SeccionDeporte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/SeccionEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/SeccionEstudio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/SeccionTrabajo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/SeccionTrabajo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/Tarea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usuarios.dat" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto-labo3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-labo3.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,20 +47,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/wadmin11/Desktop/ACD-BOOKING-main&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "05/06-working",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Programación/PROYECTO LABO 3/proyecto-labo3/pandas",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -83,6 +81,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -91,8 +97,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717125316769</updated>
+      <workItem from="1717618332078" duration="2745000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="OPEN_GENERIC_TABS">

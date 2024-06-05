@@ -57,6 +57,7 @@ public class Main {
 
 
         manejoUsuario.altaUsuario(usuario1);
+        manejoUsuario.altaUsuario(usuario2);
 
         int opcion;
         do {
@@ -110,7 +111,7 @@ public class Main {
         String contrasena;
         Usuario usuarioActual = null;
         do {
-            System.out.println("-------------------------");
+            System.out.println(manejoUsuario.mostrarTodosLosNombreUsuarios());
             System.out.println("Introduzca el usuario");
             scanner.nextLine();
             usuario = scanner.nextLine();
@@ -223,7 +224,7 @@ public class Main {
             System.out.println("4. Menu de misiones");
             System.out.println("5. Configuracion de cuenta");
             System.out.println("6. Exportar tareas");
-            System.out.println("7. Salir");
+            System.out.println("7. Volver al menu principal");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             switch (opcion) {
@@ -246,12 +247,12 @@ public class Main {
                     archivoJSON(usuarioActual);
                     break;
                 case 7:
-                    System.out.println("Saliendo del programa...");
+                    System.out.println("Volviendo al menu principal...");
                     break;
                 default:
                     System.out.println("Opción inválida");
             }
-        } while (opcion != 6);
+        } while (opcion != 7);
     }
 
     //OP 1.1.1 MENU TAREAS (tendriamos que recuperar las tareas por puntero)
@@ -399,29 +400,32 @@ public class Main {
         int opcion;
         do {
             System.out.println("Menu Misiones");
-            System.out.println("1. Crear campania de concientizacion sobre pandas");
-            System.out.println("Financia una campaña educativa para aumentar la conciencia sobre la importancia de proteger a los pandas.");
-            System.out.println("2. Mejorar el hábitat de los pandas");
-            System.out.println("Mejora el habitat natural de los pandas, anadiendo mas vegetacion y agua potable.");
-            System.out.println("3. Organizar una excursion educativa sobre pandas");
-            System.out.println("Organiza una excursion educativa para enseñar a los visitantes sobre la vida y la importancia de los pandas.");
+            System.out.println("1. Crear campania de concientizacion sobre pandas | (+300 bambues)");
+            System.out.println("2. Mejorar el hábitat de los pandas | (+1000 bambues)");
+            System.out.println("3. Organizar una excursion educativa sobre pandas | (+1500 bambues)");
             System.out.println("4. Volver al menu de usuario");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    cambiarNombre(usuarioActual); // Cambiar nombre
+                    System.out.println("Financia una campaña educativa para aumentar la conciencia sobre la importancia de proteger a los pandas.");
+                    aumentarBambues(usuarioActual, 300);
                     break;
                 case 2:
-                    cambiarContrasena(usuarioActual);  // Cambiar contraseña| Es lo mismo que restablecer contrasena
+                    System.out.println("Mejora el habitat natural de los pandas, anadiendo mas vegetacion y agua potable.");
+                    aumentarBambues(usuarioActual, 1000);
                     break;
                 case 3:
+                    System.out.println("Organiza una excursion educativa para enseñar a los visitantes sobre la vida y la importancia de los pandas.");
+                    aumentarBambues(usuarioActual, 1500);
+                    break;
+                case 4:
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
                     System.out.println("Opción inválida");
             }
-        } while (opcion != 3);
+        } while (opcion != 4);
     }
     //OP 1.4.0
     public static void mostrarMenuConfiguracion(Usuario usuarioActual) {
@@ -442,9 +446,15 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Volviendo al menú principal...");
+                    try {
+                        mostrarMenuInicio(usuarioActual);
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
                     break;
                 default:
                     System.out.println("Opción inválida");
+                    break;
             }
         } while (opcion != 3);
 
@@ -473,6 +483,7 @@ public class Main {
 
         if (usuarioActual != null) {
             System.out.println("Ingrese la nueva contrasena");
+            scanner.nextLine();
             nuevaContrasena = scanner.nextLine();
             usuarioActual.setContrasena(nuevaContrasena);
             try {
@@ -612,7 +623,7 @@ public class Main {
         scanner.nextLine();
         String objetivo = scanner.nextLine();
         System.out.println("-------------------------");
-        System.out.print("Fecha de la tarea: (presiona enter y luego ingresa)");
+        System.out.print("Fecha de la tarea (YYYY/MM/DD): (presiona enter y luego ingresa)");
         scanner.nextLine();
         String fecha = scanner.nextLine();
 
@@ -716,7 +727,7 @@ public class Main {
                     }
                 } while(calificTemp <= 0 || calificTemp > 10);
 
-                System.out.println("Comenta brevemente como te sentiste con esta tarea. Antes presiona enter.");
+                System.out.println("Comenta brevemente como te sentiste con esta tarea.");
                 scanner.nextLine();
                 retroalimentacion = scanner.nextLine();
 
@@ -737,11 +748,11 @@ public class Main {
 
         SeccionTrabajo res = null;
 
-        System.out.print("Sector de la tarea: (presiona enter y luego ingresa)");
+        System.out.print("Sector de la tarea: ");
         scanner.nextLine();
         String sector = scanner.nextLine();
 
-        System.out.print("Fecha límite -- deadline de la tarea: (presiona enter y luego ingresa)");
+        System.out.print("Fecha límite (YYYY/MM/DD)-- deadline de la tarea: (presiona enter y luego ingresa)");
         scanner.nextLine();
         String fechaLimite = scanner.nextLine();
 
@@ -840,6 +851,7 @@ public class Main {
 
             if (minutosCumplidos[0] >= minutos) {
                 System.out.println("El temporizador ha finalizado después de " + minutos + " minutos.");
+                System.out.println("Presione ENTER para continuar");
                 finalizado.set(true);
                 scheduler.shutdownNow();
             }

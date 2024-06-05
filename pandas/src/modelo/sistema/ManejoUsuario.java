@@ -183,5 +183,19 @@ public class ManejoUsuario {
         return respuesta;
     }
 
+    public String mostrarTodosLosNombreUsuarios() {
+        String respuesta = "";
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        respuesta+="-----------------------------------\n";
+
+        while (iterator.hasNext()) {
+            Usuario usuarioTmp = iterator.next();
+            respuesta += usuarioTmp.getNombreUsuario() + "\n"; // Muestro el nombre nothing more
+        }
+        respuesta+="-------------------------------------";
+
+        return respuesta;
+    }
+
 
 }
