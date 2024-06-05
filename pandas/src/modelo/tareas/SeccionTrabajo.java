@@ -74,4 +74,5 @@ public class SeccionTrabajo extends Tarea implements Comparable {
                 ", fechaLimite='" + fechaLimite + '\'' +
                 '}';
     }
+
 }

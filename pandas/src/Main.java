@@ -11,8 +11,7 @@ import modelo.sistema.ManejoUsuario;
 import modelo.sistema.Panda;
 import modelo.sistema.Usuario;
 import modelo.tareas.*;
-
-import org.json.*;
+import utiles.JsonUtiles; // lo importo fixeando el paquete
 
 import static java.lang.Thread.sleep;
 

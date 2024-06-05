@@ -1,5 +1,7 @@
 package modelo.sistema;
 import modelo.tareas.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.HashMap;
