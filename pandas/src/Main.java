@@ -745,7 +745,12 @@ public class Main {
         scanner.nextLine();
         String fechaLimite = scanner.nextLine();
 
-        int minutosCumplidos = iniciarTemporizador(minutos);
+        int minutosCumplidos;
+
+        System.out.println("Presiona 'Enter' para comenzar la tarea...");
+        scanner.nextLine();
+
+        minutosCumplidos = iniciarTemporizador(minutos);
 
         res = new SeccionTrabajo(titulo, objetivo, "000", minutosCumplidos, fecha, sector, fechaLimite);
         usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
@@ -770,8 +775,12 @@ public class Main {
         scanner.nextLine();
         String unidad = scanner.nextLine();
 
-        int minutosCumplidos = iniciarTemporizador(minutos);
+        int minutosCumplidos;
 
+        System.out.println("Presiona 'Enter' para comenzar la tarea...");
+        scanner.nextLine();
+
+        minutosCumplidos = iniciarTemporizador(minutos);
         usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
         return new SeccionEstudio(titulo, objetivo, "000", minutosCumplidos, fecha, categoria, materia, unidad);
     }
@@ -782,8 +791,12 @@ public class Main {
         scanner.nextLine();
         String ejercicios = scanner.nextLine();
         System.out.println("-------------------------");
-        int minutosCumplidos = iniciarTemporizador(minutos);
+        int minutosCumplidos;
 
+        System.out.println("Presiona 'Enter' para comenzar la tarea...");
+        scanner.nextLine();
+
+        minutosCumplidos = iniciarTemporizador(minutos);
         usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
         return new SeccionDeporte(titulo, objetivo, "000", minutosCumplidos, fecha, ejercicios);
     }
@@ -800,8 +813,12 @@ public class Main {
         System.out.println("-------------------------");
         Receta receta = new Receta(ingredientes, pasoAPaso);
 
-        int minutosCumplidos = iniciarTemporizador(minutos);
+        int minutosCumplidos;
 
+        System.out.println("Presiona 'Enter' para comenzar la tarea...");
+        scanner.nextLine();
+
+        minutosCumplidos = iniciarTemporizador(minutos);
         usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
         return new SeccionCocina(titulo, objetivo, "000", minutosCumplidos, fecha, receta);
     }
@@ -811,7 +828,8 @@ public class Main {
     private static int iniciarTemporizador(int minutos) {
         final AtomicBoolean finalizado = new AtomicBoolean(false);
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        final long[] minutosCumplidos = {0};
+        final long[] segundosCumplidos = {0};
+        final long totalSegundos = minutos * 60;
 
         System.out.println("Presiona 'Enter' para finalizar el temporizador antes de tiempo.");
 
@@ -826,25 +844,31 @@ public class Main {
         scheduler.scheduleAtFixedRate(() -> {
             if (finalizado.get()) {
                 System.out.println("El temporizador ha sido finalizado antes de tiempo.");
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                System.out.println("Presione una tecla para continuar...");
                 return;
             }
 
-            minutosCumplidos[0]++;
-            System.out.println("Llevas " + minutosCumplidos[0] + " / " + minutos + " minutos.");
+            // Limpiar la consola
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
 
-            if (minutosCumplidos[0] >= minutos) {
+            int minutosTranscurridos = (int) (segundosCumplidos[0] / 60);
+            int segundosTranscurridos = (int) (segundosCumplidos[0] % 60);
+            double porcentaje = ((double) segundosCumplidos[0] / totalSegundos) * 100;
+
+            String barraProgreso = generarBarraProgreso(porcentaje);
+
+            System.out.printf("Llevas %d minutos y %d segundos. [%s] %.2f%%\n",
+                    minutosTranscurridos, segundosTranscurridos, barraProgreso, porcentaje);
+
+            if (segundosCumplidos[0] >= totalSegundos) {
                 System.out.println("El temporizador ha finalizado después de " + minutos + " minutos.");
                 finalizado.set(true);
                 scheduler.shutdownNow();
+            } else {
+                segundosCumplidos[0] += 10;
             }
 
-        }, 1, 1, TimeUnit.MINUTES);
+        }, 0, 10, TimeUnit.SECONDS);
 
         try {
             hiloFinalizar.join();
@@ -852,10 +876,21 @@ public class Main {
             e.printStackTrace();
         }
 
-        return (int) minutosCumplidos[0];
+        return (int) (segundosCumplidos[0] / 60);
     }
 
-
+    private static String generarBarraProgreso(double porcentaje) {
+        int totalCaracteres = 20; // longitud de la barra de progreso
+        int caracteresLlenos = (int) (porcentaje / 100 * totalCaracteres);
+        StringBuilder barra = new StringBuilder();
+        for (int i = 0; i < caracteresLlenos; i++) {
+            barra.append("=");
+        }
+        for (int i = caracteresLlenos; i < totalCaracteres; i++) {
+            barra.append(" ");
+        }
+        return barra.toString();
+    }
     // FRONT DE JSON
     public static void archivoJSON(Usuario usuarioActual)
     {
