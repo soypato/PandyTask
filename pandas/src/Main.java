@@ -220,8 +220,8 @@ public class Main {
             System.out.println("---------------------------------");
             System.out.println("Menu de usuario");
             System.out.println("---------------------------------");
-            System.out.println("1. Menu de tareas ");
-            System.out.println("2. Menu de recompensas ");
+            System.out.println("1. Menu de tareas");
+            System.out.println("2. Menu de estadisticas");
             System.out.println("3. Menu de tienda");
             System.out.println("4. Menu de misiones");
             System.out.println("5. Configuracion de cuenta");
@@ -234,7 +234,7 @@ public class Main {
                     mostrarMenuTareas(usuarioActual);
                     break;
                 case 2:
-                    mostrarMenuRecompensas(usuarioActual);
+                    mostrarMenuEstadisticas(usuarioActual);
                     break;
                 case 3:
                     mostrarMenuTienda(usuarioActual);
@@ -264,7 +264,7 @@ public class Main {
         do {
             System.out.println("Menu Tareas");
             System.out.println("1. Ver y reanudar tareas");
-            System.out.println("2. Ver historial");
+            System.out.println("2. Ver historial de tareas");
             System.out.println("3. Crear nueva tarea");
             System.out.println("4. Modificar tareas");
             System.out.println("5. Volver al menu de usuario");
@@ -273,12 +273,36 @@ public class Main {
             switch (opcion) {
                 case 1:
                     // Ver/reanudar tareas
+                    int eleccion = 0;
                     String listaTareas = usuarioActual.listarTareas();
                     System.out.println(listaTareas);
+                    System.out.println("Ingrese a que seccion desea acceder: ");
+                    System.out.println("1. Seccion trabajo");
+                    System.out.println("2. Seccion estudio");
+                    System.out.println("3. Seccion deporte");
+                    System.out.println("4. Seccion cocina");
+                    eleccion = scanner.nextInt();
+                    switch (eleccion) {
+                        case 1:
+                            System.out.println("Ingrese el codigo de la tarea a reanudar: ");
+                            String eleccionReanudar = scanner.nextLine();
+
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                        default:
+                            System.out.println("Opcion invalida");
+                    }
                     break;
                 case 2:
                     // Ver historial
+                    System.out.println(usuarioActual.listarTareas());
                 case 3:
+                    // Crear una nueva tarea
                     nuevaTarea(usuarioActual);
                     break;
                 case 4:
@@ -294,25 +318,45 @@ public class Main {
     }
     //OP 1.2.0
 
-    public static void mostrarMenuRecompensas(Usuario usuarioActual) {
+    public static void mostrarMenuEstadisticas(Usuario usuarioActual) {
         int opcion;
         do {
-            System.out.println("Menu Recompensas");
-            System.out.println("1. Ver y reanudar tareas");
-            System.out.println("2. Volver al menu de usuario");
+            System.out.println("Menu Estadisticas");
+            System.out.println("1. Ver bambueas actuales");
+            System.out.println("2. Ver tareas");
+            System.out.println("3. Ver cantidad de veces que alimentaste a "+usuarioActual.getNombrePanda());
+            System.out.println("4. Ver cantidad de veces que plantaste un arbol");
+            System.out.println("5. Ver cantidad de baños que le diste a "+usuarioActual.getNombrePanda());
+            System.out.println("6. Ver cantidad de juguetes que le compraste a "+usuarioActual.getNombrePanda());
+            System.out.println("7. Volver al menu de inicio");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    // Ver y reanudar tareas
+                    System.out.println(usuarioActual.getBambuesActuales());
                     break;
                 case 2:
-                    System.out.println("Volviendo al menú principal...");
+                    System.out.println(usuarioActual.listarTareas());
+                    break;
+                case 3:
+                    System.out.println(usuarioActual.getCantBambuConsumidoPanda());
+                    break;
+                case 4:
+                    System.out.println(usuarioActual.getCantArbolesPlantados());
+                    break;
+                case 5:
+                    System.out.println(usuarioActual.getCantLavados());
+                    break;
+                case 6:
+                    System.out.println(usuarioActual.getCantJuguetes());
+                    break;
+                case 7:
+                    System.out.println("Volviendo al menu de inicio ...");
                     break;
                 default:
                     System.out.println("Opción inválida");
             }
-        } while (opcion != 2);
+        } while (opcion != 7);
     }
     //OP 1.3.0
 
