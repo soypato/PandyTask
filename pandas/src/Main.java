@@ -558,11 +558,6 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Volviendo al menú principal...");
-                    try {
-                        mostrarMenuInicio(usuarioActual);
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
                     break;
                 default:
                     System.out.println("Opción inválida");
@@ -579,14 +574,8 @@ public class Main {
         String nuevoNombre;
         if (usuarioActual != null) {
             System.out.println("Introduzca su nuevo nombre");
-            scanner.nextLine();
             nuevoNombre = scanner.nextLine();
             usuarioActual.setNombreUsuario(nuevoNombre);
-            try {
-                mostrarMenuInicio(usuarioActual);
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
     //OP 1.4.2
@@ -597,14 +586,8 @@ public class Main {
 
         if (usuarioActual != null) {
             System.out.println("Ingrese la nueva contrasena");
-            scanner.nextLine();
             nuevaContrasena = scanner.nextLine();
             usuarioActual.setContrasena(nuevaContrasena);
-            try {
-                mostrarMenuInicio(usuarioActual);
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 
