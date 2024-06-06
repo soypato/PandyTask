@@ -108,7 +108,7 @@ public class Main {
         String contrasena = "";
         Usuario usuarioActual = null;
         do {
-
+            System.out.println("Quien esta mirando?");
             System.out.println(manejoUsuario.mostrarTodosLosNombreUsuarios());
 
             System.out.println("Ingrese el nombre del usuario");
