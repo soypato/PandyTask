@@ -4,8 +4,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import excepciones.deLogin.LoginIncorrectoException;
 import excepciones.dePanda.CantidadBambuesInsuficientesException;
@@ -265,52 +263,123 @@ public class Main {
 
     public static void mostrarMenuTareas(Usuario usuarioActual) {
         int opcion;
+        int eleccionTareaInt=0;
+        String eleccionTarea = "";
+        String idTarea = "";
+        Tarea tareaTmp = null;
         do {
             System.out.println("Menu Tareas");
-            System.out.println("1. Ver y reanudar tareas");
-            System.out.println("2. Ver historial de tareas");
-            System.out.println("3. Crear nueva tarea");
+            System.out.println("1. Ver y comenzar/reanudar");
+            System.out.println("2. Crear nueva tarea");
+            System.out.println("3. Ver historial de tareas");
             System.out.println("4. Modificar tareas");
             System.out.println("5. Volver al menu de usuario");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    // Ver/reanudar tareas
-                    int eleccion = 0;
-                    String listaTareas = usuarioActual.listarTareas();
-                    System.out.println(listaTareas);
-                    System.out.println("Ingrese a que seccion desea acceder: ");
-                    System.out.println("1. Seccion trabajo");
-                    System.out.println("2. Seccion estudio");
-                    System.out.println("3. Seccion deporte");
-                    System.out.println("4. Seccion cocina");
-                    eleccion = scanner.nextInt();
-                    switch (eleccion) {
-                        case 1:
-                            System.out.println("Ingrese el codigo de la tarea a reanudar: ");
-                            String eleccionReanudar = scanner.nextLine();
+                    int tiempoTotal=0;
+                    if(!usuarioActual.hayTareasCreadas())
+                    {
+                        System.out.println("Menu de arranque tareas");
+                        System.out.println(usuarioActual.listarTareas());
+                        System.out.println("Ingrese a que seccion desea acceder: ");
+                        System.out.println("1. SeccionTrabajo");
+                        System.out.println("2. SeccionEstudio");
+                        System.out.println("3. SeccionDeporte");
+                        System.out.println("4. SeccionCocina");
+                        eleccionTareaInt = scanner.nextInt();
+                        if(eleccionTareaInt == 1)
+                        {
+                            eleccionTarea = "SeccionTrabajo";
+                        }else if(eleccionTareaInt == 2)
+                        {
+                            eleccionTarea = "SeccionEstudio";
+                        }
+                        else if(eleccionTareaInt == 3)
+                        {
+                            eleccionTarea = "SeccionDeporte";
+                        }
+                        else if(eleccionTareaInt == 4)
+                        {
+                            eleccionTarea = "SeccionCocina";
+                        }else {
+                            System.out.println("Opcion incorrecta");
+                        }
+                        System.out.println("Ingrese el ID de la tarea a comenzar: ");
+                        scanner.nextLine();
+                        idTarea = scanner.nextLine();
 
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            break;
-                        default:
-                            System.out.println("Opcion invalida");
+                        tareaTmp = manejoUsuario.buscarEntreTareas(idTarea, eleccionTarea, usuarioActual);
+                        int minutosRestantes=tareaTmp.getTemporizador() - tareaTmp.getMinutosTrancurridos();
+                        System.out.println("Llevas trabajados en la tarea: "+tareaTmp.getMinutosTrancurridos()+" minutos, de los: "+tareaTmp.getTemporizador()+" minutos totales.");
+                        System.out.println("Desea comenzar la tarea? (s/n)");
+                        char decision = scanner.next().charAt(0);
+                        if (decision == 's') {
+                            System.out.println("Presiona 'Enter' para comenzar la tarea...");
+                            scanner.nextLine();
+                            scanner.nextLine();
+                            int minutosCumplidos = iniciarTemporizador(tareaTmp.getTemporizador(), tareaTmp.getMinutosTrancurridos());
+                            System.out.println("Minutos cumplidos: "+minutosCumplidos);
+                            usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 30));
+                            System.out.println("Has sumado " + minutosCumplidos * 30 + " bambues");
+                            tiempoTotal = tareaTmp.getMinutosTrancurridos() + minutosCumplidos;
+                            System.out.println("Llevas trabajando en la tarea: "+tiempoTotal);
+                            tareaTmp.setMinutosTrancurridos(tareaTmp.getMinutosTrancurridos() + minutosCumplidos);
+                        }
+                        else {
+                            System.out.println("Volviendo ...");
+                        }
+                    }else {
+                        System.out.println("No hay tareas creadas, cree una tarea antes de arrancarla");
                     }
                     break;
                 case 2:
-                    // Ver historial
-                    System.out.println(usuarioActual.listarTareas());
-                case 3:
                     // Crear una nueva tarea
                     nuevaTarea(usuarioActual);
+                    // Ver historial
+                    System.out.println("Este es el historial de todas las tareas del usuario ...");
+                    System.out.println(usuarioActual.listarTareas());
+                    break;
+                case 3:
+                    // Ver historial
+                    System.out.println("Este es el historial de todas las tareas del usuario ...");
+                    System.out.println(usuarioActual.listarTareas());
                     break;
                 case 4:
                     // Modificar tareas
+                    System.out.println("Menu de modificacion");
+                    System.out.println(usuarioActual.listarTareas());
+                    System.out.println("Ingrese a que seccion desea acceder: ");
+                    System.out.println("1. SeccionTrabajo");
+                    System.out.println("2. SeccionEstudio");
+                    System.out.println("3. SeccionDeporte");
+                    scanner.nextLine();
+                    eleccionTareaInt = scanner.nextInt();
+                    if(eleccionTareaInt == 1)
+                    {
+                        eleccionTarea = "SeccionTrabajo";
+                    }else if(eleccionTareaInt == 2)
+                    {
+                        eleccionTarea = "SeccionEstudio";
+                    }
+                    else if(eleccionTareaInt == 3)
+                    {
+                        eleccionTarea = "SeccionDeporte";
+                    }
+                    else if(eleccionTareaInt == 4)
+                    {
+                        eleccionTarea = "SeccionCocina";
+                    }else {
+                        System.out.println("Opcion incorrecta");
+                    }
+                    System.out.println("Ingrese el ID de la tarea a modificar: ");
+                    scanner.nextLine();
+                    idTarea = scanner.nextLine();
+
+                    tareaTmp = manejoUsuario.buscarEntreTareas(idTarea, eleccionTarea, usuarioActual);
+                    modificarTarea(tareaTmp, eleccionTarea);
+                    System.out.println("Tarea modificada con exito");
                     break;
                 case 5:
                     System.out.println("Volviendo al menú principal...");
@@ -697,14 +766,14 @@ public class Main {
         int minutos;
         do {
             System.out.println("-------------------------");
-            System.out.print("Cantidad de minutos que durara la tarea: ");
+            System.out.print("Cantidad de minutos que durara la tarea (Mayor a 1 minuto): ");
             minutos = scanner.nextInt();
             System.out.println("-------------------------");
-            if (minutos <= 0) {
+            if (minutos <= 1) {
                 System.out.println("Has introducido una cantidad invalida de minutos. Intentalo de nuevo.");
             }
 
-        } while (minutos <= 0);
+        } while (minutos <= 1);
 
         switch (opcion) {
             case 1:
@@ -727,7 +796,6 @@ public class Main {
 
                 usuarioActual.nuevaTareaALaColeccion(estudioTmp);
                 System.out.println("La tarea ha sido agregada exitosamente");
-                System.out.println(estudioTmp.toString());
                 break;
             case 2:
                 SeccionTrabajo trabajoTmp = generarTrabajo(usuarioActual, titulo, objetivo, fecha, minutos);
@@ -749,7 +817,6 @@ public class Main {
 
                 usuarioActual.nuevaTareaALaColeccion(trabajoTmp);
                 System.out.println("La tarea ha sido agregada exitosamente");
-                System.out.println(trabajoTmp.toString());
                 break;
             case 3:
                 SeccionDeporte deporteTmp = generarDeporte(usuarioActual, titulo, objetivo, fecha, minutos);
@@ -791,7 +858,6 @@ public class Main {
                 cocinaTmp.setRetroalimentacion(retroalimentacion);
 
                 System.out.println("La tarea ha sido agregada exitosamente");
-                System.out.println(cocinaTmp.toString());
                 break;
             default:
                 System.out.println("Opción no válida");
@@ -813,25 +879,14 @@ public class Main {
         String fechaLimite = scanner.nextLine();
 
         String idNuevo = manejoUsuario.incrementarID("SeccionTrabajo", usuarioActual);
-        int minutosCumplidos = iniciarTemporizador(minutos);
-        System.out.println("Presiona 'Enter' para comenzar la tarea...");
-        scanner.nextLine();
-        minutosCumplidos = iniciarTemporizador(minutos);
 
-
-        res = new SeccionTrabajo(titulo, objetivo, idNuevo, minutosCumplidos, fecha, sector, fechaLimite);
-        usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
-
-        System.out.println("Has sumado " + minutos * 10 + " bambues");
-
-
-        return res;
+        return new SeccionTrabajo(titulo, objetivo, idNuevo, minutos, 0, fecha, sector, fechaLimite);
     }
 
     public static SeccionEstudio generarEstudio(Usuario usuarioActual, String titulo, String objetivo, String fecha, int minutos) {
         limpiarBuffer();
         System.out.println("-------------------------");
-        System.out.print("Categoría: ");
+        System.out.print("Categoría: (presiona enter y luego ingresa)");
         scanner.nextLine();
         String categoria = scanner.nextLine();
         System.out.println("-------------------------");
@@ -844,13 +899,10 @@ public class Main {
         String unidad = scanner.nextLine();
 
         String idNuevo = manejoUsuario.incrementarID("SeccionEstudio", usuarioActual);
-        int minutosCumplidos = iniciarTemporizador(minutos);
-        System.out.println("Presiona 'Enter' para comenzar la tarea...");
-        scanner.nextLine();
+        System.out.println(idNuevo);
+        return new SeccionEstudio(titulo, objetivo, idNuevo, minutos, 0, fecha, categoria, materia, unidad);
 
-        minutosCumplidos = iniciarTemporizador(minutos);
-        usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
-        return new SeccionEstudio(titulo, objetivo, idNuevo, minutosCumplidos, fecha, categoria, materia, unidad);
+
     }
 
     public static SeccionDeporte generarDeporte(Usuario usuarioActual, String titulo, String objetivo, String fecha, int minutos) {
@@ -859,30 +911,23 @@ public class Main {
         System.out.print("Ejercicios: ");
         scanner.nextLine();
         String ejercicios = scanner.nextLine();
+        System.out.println("-------------------------");
         System.out.print("Duracion: ");
         double duracion =scanner.nextDouble();
+        System.out.println("-------------------------");
         System.out.println("Intensidad: ");
         scanner.nextLine();
         String intensidad =scanner.nextLine();
-
-
-        System.out.println("-------------------------");
-        int minutosCumplidos;
-
-        System.out.println("Presiona 'Enter' para comenzar la tarea...");
-        scanner.nextLine();
-
         String idNuevo = manejoUsuario.incrementarID("SeccionDeporte", usuarioActual);
-        minutosCumplidos = iniciarTemporizador(minutos);
-        usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
-        return new SeccionDeporte(titulo, objetivo, idNuevo, minutosCumplidos, fecha, ejercicios, duracion,intensidad);
+
+        return new SeccionDeporte(titulo, objetivo, idNuevo, minutos, 0, fecha, ejercicios, duracion,intensidad);
 
     }
 
     public static SeccionCocina generarCocina(Usuario usuarioActual, String titulo, String objetivo, String fecha, int minutos) {
         limpiarBuffer();
         System.out.println("-------------------------");
-        System.out.print("Ingredientes (separados por coma): ");
+        System.out.print("Ingredientes (separados por coma)(presiona enter antes): ");
         scanner.nextLine();
         String ingredientes = scanner.nextLine();
         System.out.println("-------------------------");
@@ -890,23 +935,16 @@ public class Main {
         scanner.nextLine();
         String pasoAPaso = scanner.nextLine();
         System.out.println("-------------------------");
-        Receta receta = new Receta(ingredientes, pasoAPaso);
 
 
         String idNuevo = manejoUsuario.incrementarID("SeccionCocina", usuarioActual);
-        int minutosCumplidos = iniciarTemporizador(minutos);
 
-        System.out.println("Presiona 'Enter' para comenzar la tarea...");
-        scanner.nextLine();
-
-        minutosCumplidos = iniciarTemporizador(minutos);
-        usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 10));
-        return new SeccionCocina(titulo, objetivo, idNuevo, minutosCumplidos, fecha, receta);
+        return new SeccionCocina(titulo, objetivo, idNuevo, minutos, 0, fecha, ingredientes, pasoAPaso);
     }
 
     ///////////  FUNCION PROPIA DE JAVA PARA MANEJO DE TEMPORIZADOR
 
-    private static int iniciarTemporizador(int minutos) {
+    /*private static int iniciarTemporizador(int minutos) {
         final AtomicBoolean finalizado = new AtomicBoolean(false);
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         final long[] segundosCumplidos = {0};
@@ -966,7 +1004,73 @@ public class Main {
         }
 
         return (int) (segundosCumplidos[0] / 60);
+    }*/
+    private static int iniciarTemporizador(int minutos, int minutosTrabajados) {
+        final AtomicBoolean finalizado = new AtomicBoolean(false);
+        final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        final long totalSegundos = minutos * 60;
+        final long[] tiempoTotal = {minutosTrabajados * 60}; // Inicializar con el tiempo trabajado
+        final long tiempoInicio = System.currentTimeMillis() / 1000; // Tiempo de inicio en segundos
+
+        System.out.println("Presiona 'Enter' para finalizar el temporizador antes de tiempo.");
+
+        Thread hiloFinalizar = new Thread(() -> {
+            scanner.nextLine();
+            finalizado.set(true);
+            scheduler.shutdownNow();
+        });
+
+        hiloFinalizar.start();
+
+        scheduler.scheduleAtFixedRate(() -> {
+            if (finalizado.get()) {
+                System.out.println("El temporizador ha sido finalizado antes de tiempo.");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.println("Presione una tecla para continuar...");
+                scanner.nextLine();
+                return;
+            }
+
+            // Limpiar la consola
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+
+            int minutosTranscurridos = (int) ((tiempoTotal[0] / 60) % 60);
+            int segundosTranscurridos = (int) (tiempoTotal[0] % 60);
+            double porcentaje = ((double) tiempoTotal[0] / totalSegundos) * 100;
+
+            String barraProgreso = generarBarraProgreso(porcentaje);
+
+            System.out.printf("Llevas %d minutos y %d segundos. [%s] %.2f%%\n",
+                    minutosTranscurridos, segundosTranscurridos, barraProgreso, porcentaje);
+
+            tiempoTotal[0] += 60; // Incrementar el tiempo total después de imprimir
+
+            if (tiempoTotal[0] >= totalSegundos) {
+                System.out.println("El temporizador ha finalizado después de " + minutos + " minutos.");
+                System.out.println("Presione ENTER para continuar");
+                finalizado.set(true);
+                scheduler.shutdownNow();
+            }
+        }, 0, 60, TimeUnit.SECONDS); // Primera ejecución inmediatamente, luego cada 60 segundos
+
+        try {
+            hiloFinalizar.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        long tiempoFin = System.currentTimeMillis() / 1000; // Tiempo de finalización en segundos
+        long tiempoEjecutado = tiempoFin - tiempoInicio; // Calcular la diferencia en segundos
+
+        return (int) (tiempoEjecutado / 60); // Retornar el tiempo ejecutado en minutos
     }
+
+
 
     private static String generarBarraProgreso(double porcentaje) {
         int totalCaracteres = 20; // longitud de la barra de progreso
@@ -999,7 +1103,167 @@ public class Main {
             scanner.nextLine(); // Limpiar el buffer
         }
     }
+    // MODIFICACION DE TAREAS
 
+    public void modificarTareaSeleccionada(Usuario usuario, ManejoUsuario manejoUsuario, Scanner scanner) {
+        System.out.println("Ingrese el ID de la tarea que desea modificar:");
+        String idTarea = scanner.nextLine();
+        System.out.println("Ingrese el tipo de tarea que desea modificar:");
+        String tipoTarea = scanner.nextLine();
+        Tarea tarea = manejoUsuario.buscarEntreTareas(idTarea, tipoTarea, usuario);
+        if (tarea != null) {
+            modificarTarea(tarea, tipoTarea);
+            System.out.println("Tarea modificada exitosamente.");
+        } else {
+            System.out.println("La tarea no fue encontrada.");
+        }
+    }
 
+    private static void modificarTarea(Tarea tarea, String tipoTarea) {
+        boolean continuar = true;
+        while (continuar) {
+            System.out.println("Seleccione el atributo que desea modificar:");
+            System.out.println("1. Título");
+            System.out.println("2. Objetivo");
+            System.out.println("3. Fecha");
+            System.out.println("4. Calificación");
+            System.out.println("5. Retroalimentación");
+            System.out.println("6. Atributos específicos de " + tipoTarea);
+            System.out.println("7. Salir");
+            System.out.print("Opción: ");
+            int opcion = Integer.parseInt(scanner.nextLine());
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("Ingrese el nuevo título:");
+                    tarea.setTitulo(scanner.nextLine());
+                    break;
+                case 2:
+                    System.out.println("Ingrese el nuevo objetivo:");
+                    tarea.setObjetivo(scanner.nextLine());
+                    break;
+                case 3:
+                    System.out.println("Ingrese la nueva fecha (YYYY-MM-DD):");
+                    tarea.setFecha(scanner.nextLine());
+                    break;
+                case 4:
+                    System.out.println("Ingrese la nueva calificación (1 a 10):");
+                    tarea.setCalificacion(Integer.parseInt(scanner.nextLine()));
+                    break;
+                case 5:
+                    System.out.println("Ingrese la nueva retroalimentación:");
+                    tarea.setRetroalimentacion(scanner.nextLine());
+                    break;
+                case 6:
+                    modificarAtributosEspecificos(tarea, tipoTarea, scanner);
+                    break;
+                case 7:
+                    continuar = false;
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
+    }
+
+    private static void modificarAtributosEspecificos(Tarea tarea, String tipoTarea, Scanner scanner) {
+        boolean continuar = true;
+        while (continuar) {
+            switch (tipoTarea) {
+                case "SeccionTrabajo":
+                    continuar = modificarSeccionTrabajo((SeccionTrabajo) tarea, scanner);
+                    break;
+                case "SeccionEstudio":
+                    continuar = modificarSeccionEstudio((SeccionEstudio) tarea, scanner);
+                    break;
+                case "SeccionDeporte":
+                    continuar = modificarSeccionDeporte((SeccionDeporte) tarea, scanner);
+                    break;
+                default:
+                    System.out.println("Tipo de tarea no válido.");
+                    continuar = false;
+            }
+        }
+    }
+
+    private static boolean modificarSeccionTrabajo(SeccionTrabajo tarea, Scanner scanner) {
+        System.out.println("Seleccione el atributo que desea modificar:");
+        System.out.println("1. Sector de trabajo");
+        System.out.println("2. Fecha límite");
+        System.out.println("3. Salir");
+        System.out.print("Opción: ");
+        int opcion = Integer.parseInt(scanner.nextLine());
+
+        switch (opcion) {
+            case 1:
+                System.out.println("Ingrese el nuevo sector de trabajo:");
+                tarea.setSector(scanner.nextLine());
+                break;
+            case 2:
+                System.out.println("Ingrese la nueva fecha límite:");
+                tarea.setFechaLimite(scanner.nextLine());
+                break;
+            case 3:
+                return false;
+            default:
+                System.out.println("Opción no válida.");
+        }
+        return true;
+    }
+
+    private static boolean modificarSeccionEstudio(SeccionEstudio tarea, Scanner scanner) {
+        System.out.println("Seleccione el atributo que desea modificar:");
+        System.out.println("1. Categoría");
+        System.out.println("2. Materia");
+        System.out.println("3. Unidad");
+        System.out.println("4. Salir");
+        System.out.print("Opción: ");
+        int opcion = Integer.parseInt(scanner.nextLine());
+
+        switch (opcion) {
+            case 1:
+                System.out.println("Ingrese la nueva categoría:");
+                tarea.setCategoria(scanner.nextLine());
+                break;
+            case 2:
+                System.out.println("Ingrese la nueva materia:");
+                tarea.setMateria(scanner.nextLine());
+                break;
+            case 3:
+                System.out.println("Ingrese la nueva unidad:");
+                tarea.setUnidad(scanner.nextLine());
+                break;
+            case 4:
+                return false;
+            default:
+                System.out.println("Opción no válida.");
+        }
+        return true;
+    }
+
+    private static boolean modificarSeccionDeporte(SeccionDeporte tarea, Scanner scanner) {
+        System.out.println("Seleccione el atributo que desea modificar:");
+        System.out.println("1. Duración");
+        System.out.println("2. Intensidad");
+        System.out.println("3. Salir");
+        System.out.print("Opción: ");
+        int opcion = Integer.parseInt(scanner.nextLine());
+
+        switch (opcion) {
+            case 1:
+                System.out.println("Ingrese la nueva duración:");
+                tarea.setDuracion(Double.parseDouble(scanner.nextLine()));
+                break;
+            case 2:
+                System.out.println("Ingrese la nueva intensidad:");
+                tarea.setIntensidad(scanner.nextLine());
+                break;
+            case 3:
+                return false;
+            default:
+                System.out.println("Opción no válida.");
+        }
+        return true;
+    }
 }
 

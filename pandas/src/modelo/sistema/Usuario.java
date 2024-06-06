@@ -184,7 +184,15 @@ public class Usuario implements Comparable, Serializable {
         setInstalacionesAdquiridas(true);
     }
 
-
+    public boolean hayTareasCreadas() {
+        boolean rta = true;
+        for (HashSet<Tarea> tareas : tareasPersonales.values()) {
+            if (!tareas.isEmpty()) {
+                rta = false; // Si alguna colección de tareas no está vacía, hay tareas creadas
+            }
+        }
+        return rta; // Si ninguna colección tiene tareas, entonces no hay tareas creadas
+    }
     @Override
     public boolean equals(Object obj)
     {

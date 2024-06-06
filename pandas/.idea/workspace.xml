@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fab5d630-f119-4e06-9c84-4e663108790c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Interfaces/ICalcularCalorias.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/SeccionDeporte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/SeccionDeporte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../proyecto-labo3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto-labo3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/tareas/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/tareas/Tarea.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,16 +50,11 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Main.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "05/06-working",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/docs/learning-aprendizaje/AA Tecnología/Docs/UTN/TUP/cursada/tercer cuatrimestre/prog-labotorio iii/proyecto final/PandyTask/pandas",
-    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Interfaces",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Users/Usuario/Desktop/proyecto-labo3/pandas",
+    "last_opened_file_path": "D:/docs/learning-aprendizaje/AA Tecnología/Docs/UTN/TUP/cursada/tercer cuatrimestre/prog-labotorio iii/proyecto final/PandyTask/pandas",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -89,13 +80,6 @@
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-22-openjdk-22-4caba194b151-f504ca98" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

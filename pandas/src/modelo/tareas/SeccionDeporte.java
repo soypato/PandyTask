@@ -10,8 +10,8 @@ public class SeccionDeporte extends Tarea implements Comparable, ICalcularCalori
     private double duracion;
     private String intensidad;
 
-    public SeccionDeporte(String titulo, String objetivo, String codigo, int temporizador, String fecha, String ejercicios, double duracion, String intensidad) {
-        super(titulo,objetivo, codigo, temporizador, fecha, "SeccionDeporte");
+    public SeccionDeporte(String titulo, String objetivo, String codigo, int temporizador, int minutosTranscurridos, String fecha, String ejercicios, double duracion, String intensidad) {
+        super(titulo,objetivo, codigo, temporizador, minutosTranscurridos, fecha, "SeccionDeporte");
         this.ejercicios = ejercicios;
         this.duracion=duracion;
         this.intensidad=intensidad;

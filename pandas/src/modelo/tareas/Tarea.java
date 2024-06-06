@@ -14,6 +14,7 @@ public abstract class Tarea implements Serializable
     private String objetivo;
     private String codigo;
     private int temporizador;
+    private int minutosTranscurridos;
     private String fecha;//  Viene del main
     private String tipoTarea;// esto es para el manejo de archivos
 
@@ -27,6 +28,7 @@ public abstract class Tarea implements Serializable
         this.objetivo="";
         this.codigo= "Tarea Invalida";
         this.temporizador=0;
+        this.minutosTranscurridos=0;
         this.calificacion=0;
         this.retroalimentacion="";
         this.fecha="";
@@ -34,11 +36,12 @@ public abstract class Tarea implements Serializable
 
     }
 
-    public Tarea(String titulo, String objetivo, String codigo, int temporizador, String fecha, String tipoTarea) {
+    public Tarea(String titulo, String objetivo, String codigo, int temporizador, int minutosTrancurrido, String fecha, String tipoTarea) {
         this.titulo = titulo;
         this.objetivo = objetivo;
         this.codigo=codigo;
         this.temporizador=temporizador;
+        this.minutosTranscurridos=minutosTrancurrido;
         this.calificacion=0; // 0 para detectar cuando todavia no coloco nada, ira del 1 al 10.
         this.retroalimentacion="";
         this.fecha=fecha;
@@ -59,9 +62,10 @@ public abstract class Tarea implements Serializable
         return codigo;
     }
 
-    public int gettemporizador() {
+    public int getTemporizador() {
         return temporizador;
     }
+    public int getMinutosTrancurridos() {return minutosTranscurridos;}
 
     public int getCalificacion() {
         return calificacion;
@@ -88,6 +92,17 @@ public abstract class Tarea implements Serializable
         this.retroalimentacion = retroalimentacion;
     }
 
+    public void setMinutosTrancurridos(int minutosTrancurridos) {this.minutosTranscurridos=minutosTrancurridos;}
+
+    public void setObjetivo(String objetivo)
+    {
+        this.objetivo = objetivo;
+    }
+    public void settemporizador(int i) {
+    }
+
+    public void setFecha(String date) {
+    }
     @Override
     public abstract int hashCode();
 
@@ -98,7 +113,8 @@ public abstract class Tarea implements Serializable
                 "titulo='" + titulo + '\'' +
                 ", objetivo='" + objetivo + '\'' +
                 ", codigo='" + codigo + '\'' +
-                ", temporizador=" + temporizador +
+                ", duracion=" + temporizador +
+                ", minutos transcurridos=" + minutosTranscurridos +
                 ", calificacion=" + calificacion +
                 ", retroalimentacion='" + retroalimentacion + '\'' +
                 ", fecha='" + fecha + '\'' +
@@ -123,9 +139,5 @@ public abstract class Tarea implements Serializable
     }
 
 
-    public void settemporizador(int i) {
-    }
 
-    public void setFecha(String date) {
-    }
 }
