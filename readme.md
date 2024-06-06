@@ -7,7 +7,7 @@ PandyTask es un sistema de gestión de tareas innovador que integra un sistema d
 ## Características Principales
 
 - **Gestión de Tareas**: Crea, edita y organiza tus tareas diarias de manera eficiente.
-- **Sistema de Recompensas**: Obtén pandas virtuales como recompensa por completar tareas.
+- **Sistema de Recompensas**: Obtén bambúes virtuales como recompensa por completar tareas.
 - **Perfil de Usuario**: Visualiza y edita tu información personal y el historial de tareas completadas.
 - **Canje de Pandas**: Canjea tus pandas acumulados por recompensas virtuales.
 
@@ -47,7 +47,7 @@ PandyTask es un sistema de gestión de tareas innovador que integra un sistema d
     - Edita tu información personal si es necesario.
 
 6. **Recompensas**:
-    - Canjea tus pandas acumulados por recompensas virtuales disponibles.
+    - Canjea tus bambúes acumulados por recompensas virtuales disponibles.
 
 7. **Cerrar Sesión**:
     - Cierra sesión cuando termines de usar el programa para proteger tu cuenta.
