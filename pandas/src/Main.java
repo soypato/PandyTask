@@ -22,7 +22,6 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
     private static Random random = new Random();
     static ManejoUsuario manejoUsuario;
-    // static ManejoTarea manejoTarea;
 
     public static void main(String[] args) throws Exception {
 
@@ -33,21 +32,10 @@ public class Main {
         try {
             manejoUsuario.entradaUsuarios();
             System.out.println("Bienvenido a PandyTask.");
+            System.out.println("Tu sistema de tareas."); // mas friendly que "tareas cargadas correctamente"...
         } catch (Exception e) {
             System.err.println("Se produjo un error al iniciar el programa, importar el archivo de inicio: si es el primer inicio, reinicia presionando 4.");
         }
-        try {
-            // manejoTarea.entradaTarea();
-            System.out.println("Tu sistema de tareas."); // mas friendly que "tareas cargadas correctamente"...
-        } catch (Exception e) {
-            System.err.println("Se produjo un error al cargar las tareas: si es el primer inicio del programa, reinicia presionando 4.");
-            e.printStackTrace();
-        }
-
-        //Primero leemos en el archivo para verificar que no haya datos, luego "hardcodeo" un usuario y lo agrego
-        //con el altaUsuario. Una vez hecho to-do esto, entrará al método de salidaUsuario, por lo tanto, el usuario estará
-        //cargado en el archivo, luego en otra instancia, leeremos el archivo y cuando se cierre mostramos la colección
-        // para verificar que el dato se haya cargado correctamente.
 
         // Durante to-do el sistema tenemos que trabajar sobre las colecciones, no el archivo
         // El archivo se actualiza a lo ultimo
@@ -73,11 +61,6 @@ public class Main {
                         manejoUsuario.salidaUsuarios();  //Carga datos
                     } catch (Exception e) {
                         e.printStackTrace();  //Verificar esto
-                    }
-                    try {
-                        // manejoTarea.salidaTareas();
-                    } catch (Exception e) {
-                        e.printStackTrace();
                     }
                     break;
                 default:
@@ -514,6 +497,7 @@ public class Main {
         } while (opcion != 7);
     }
 
+    //OP 1.4.0
     public static void mostrarMenuMisiones(Usuario usuarioActual) {
         int opcion;
         do {
@@ -561,7 +545,7 @@ public class Main {
         } while (opcion != 4);
     }
 
-    //OP 1.4.0
+    //OP 1.5.0
     public static void mostrarMenuConfiguracion(Usuario usuarioActual) {
         int opcion;
         do {
@@ -589,7 +573,7 @@ public class Main {
 
 
     }
-    //OP 1.4.1
+    //OP 1.5.1
 
     public static void cambiarNombre(Usuario usuarioActual) {
         limpiarBuffer();
@@ -600,7 +584,7 @@ public class Main {
             usuarioActual.setNombreUsuario(nuevoNombre);
         }
     }
-    //OP 1.4.2
+    //OP 1.5.2
 
     public static void cambiarContrasena(Usuario usuarioActual) {
         limpiarBuffer();
