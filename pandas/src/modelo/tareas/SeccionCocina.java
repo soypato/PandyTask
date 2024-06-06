@@ -59,10 +59,11 @@ public class SeccionCocina extends Tarea{
 
     @Override
     public String toString() {
-        return "SeccionCocina{\n" + super.toString() + " " +
-                "ingredientes=" + ingredientes +
-                ", pasoAPaso=" + pasoAPaso +
-                '}';
+        return "SeccionCocina{\n" +
+                super.toString() +
+                "\n\tIngredientes: " + ingredientes +
+                ",\n\tPaso a Paso: " + pasoAPaso +
+                "\n}";
     }
 
 

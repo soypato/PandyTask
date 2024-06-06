@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67bf95d5-87ca-4ed4-88c2-4acd15fa1a9a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/1.0.dat" beforeDir="false" afterPath="$PROJECT_DIR$/1.0.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pandas/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionCocina.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionCocina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionDeporte.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionDeporte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionEstudio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionTrabajo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionTrabajo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/Tarea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios.dat" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.dat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +83,7 @@
       <workItem from="1717665387798" duration="234000" />
       <workItem from="1717693619085" duration="854000" />
       <workItem from="1717694531410" duration="111000" />
-      <workItem from="1717706770568" duration="4920000" />
+      <workItem from="1717706770568" duration="5719000" />
     </task>
     <servers />
   </component>

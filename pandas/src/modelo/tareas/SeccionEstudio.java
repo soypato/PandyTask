@@ -100,10 +100,11 @@ public class SeccionEstudio extends Tarea
 
     @Override
     public String toString() {
-        return "SeccionEstudio{\n" + super.toString() + " " +
-                "categoria='" + categoria + '\'' +
-                ", materia='" + materia + '\'' +
-                ", unidad='" + unidad + '\'' +
-                '}';
+        return "SeccionEstudio{\n" +
+                super.toString() +
+                "\n\tCategoría: '" + categoria + '\'' +
+                ",\n\tMateria: '" + materia + '\'' +
+                ",\n\tUnidad: '" + unidad + '\'' +
+                "\n}";
     }
 }

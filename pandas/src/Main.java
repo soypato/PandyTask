@@ -198,24 +198,31 @@ public class Main {
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
+                    System.out.println("---------------------------------");
                     mostrarMenuTareas(usuarioActual);
                     break;
                 case 2:
+                    System.out.println("---------------------------------");
                     mostrarMenuEstadisticas(usuarioActual);
                     break;
                 case 3:
+                    System.out.println("---------------------------------");
                     mostrarMenuTienda(usuarioActual);
                     break;
                 case 4:
+                    System.out.println("---------------------------------");
                     mostrarMenuMisiones(usuarioActual);
                     break;
                 case 5:
+                    System.out.println("---------------------------------");
                     mostrarMenuConfiguracion(usuarioActual);
                     break;
                 case 6:
+                    System.out.println("---------------------------------");
                     archivoJSON(usuarioActual);
                     break;
                 case 7:
+                    System.out.println("---------------------------------");
                     System.out.println("Volviendo al menu principal...");
                     break;
                 default:
@@ -249,6 +256,7 @@ public class Main {
                     int calificTemp = 0;
                     String retroalimentacion = "";
                     if (!usuarioActual.hayTareasCreadas()) {
+                        System.out.println("---------------------------------");
                         System.out.println("Menu de arranque tareas");
                         System.out.println(usuarioActual.listarTareas());
                         System.out.println("Ingrese a que seccion desea acceder: ");
@@ -258,6 +266,7 @@ public class Main {
                         System.out.println("4. SeccionCocina");
                         eleccionTareaInt = scanner.nextInt();
                         eleccionTarea = getEleccionTarea(eleccionTareaInt, eleccionTarea);
+                        System.out.println("---------------------------------");
                         System.out.println("Ingrese el ID de la tarea a comenzar: ");
                         scanner.nextLine();
                         idTarea = scanner.nextLine();
@@ -268,6 +277,7 @@ public class Main {
                         } else {
 
                             int minutosRestantes = tareaTmp.getTemporizador() - tareaTmp.getMinutosTrancurridos();
+                            System.out.println("---------------------------------");
                             System.out.println("Llevas trabajados en la tarea: " + tareaTmp.getMinutosTrancurridos() + " minutos, de los: " + tareaTmp.getTemporizador() + " minutos totales.");
                             System.out.println("Desea comenzar la tarea? (s/n)");
                             char decision1 = scanner.next().charAt(0);
@@ -281,6 +291,7 @@ public class Main {
                                 System.out.println("Has sumado " + minutosCumplidos * 30 + " bambues");
                                 tiempoTotal = tareaTmp.getMinutosTrancurridos() + minutosCumplidos;
                                 System.out.println("Llevas trabajando en la tarea: " + tiempoTotal);
+                                System.out.println("---------------------------------");
                                 System.out.println("Desea darnos una retroalimentacion sobre la tarea? (s/n)");
                                 decision = scanner.next().charAt(0);
                                 if(decision == 's') {
@@ -301,6 +312,7 @@ public class Main {
                                 }
                                 tareaTmp.setMinutosTrancurridos(tareaTmp.getMinutosTrancurridos() + minutosCumplidos);
                             } else {
+                                System.out.println("---------------------------------");
                                 System.out.println("Volviendo ...");
                             }
                         }
@@ -312,16 +324,19 @@ public class Main {
                     // Crear una nueva tarea
                     nuevaTarea(usuarioActual);
                     // Ver historial
+                    System.out.println("---------------------------------");
                     System.out.println("Este es el historial de todas las tareas del usuario ...");
                     System.out.println(usuarioActual.listarTareas());
                     break;
                 case 3:
                     // Ver historial
+                    System.out.println("---------------------------------");
                     System.out.println("Este es el historial de todas las tareas del usuario ...");
                     System.out.println(usuarioActual.listarTareas());
                     break;
                 case 4:
                     // Modificar tareas
+                    System.out.println("---------------------------------");
                     System.out.println("Menu de modificacion");
                     System.out.println(usuarioActual.listarTareas());
                     System.out.println("Ingrese a que seccion desea acceder: ");
@@ -332,6 +347,7 @@ public class Main {
                     scanner.nextLine();
                     eleccionTareaInt = scanner.nextInt();
                     eleccionTarea = getEleccionTarea(eleccionTareaInt, eleccionTarea);
+                    System.out.println("---------------------------------");
                     System.out.println("Ingrese el ID de la tarea a modificar: ");
                     scanner.nextLine();
                     idTarea = scanner.nextLine();
@@ -342,9 +358,11 @@ public class Main {
                     } else {
                         System.out.println("Vuelve a intentarlo");
                     }
+                    System.out.println("---------------------------------");
                     System.out.println("Tarea modificada con exito");
                     break;
                 case 5:
+                    System.out.println("---------------------------------");
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
@@ -372,6 +390,7 @@ public class Main {
     public static void mostrarMenuEstadisticas(Usuario usuarioActual) {
         int opcion;
         do {
+            System.out.println("---------------------------------");
             System.out.println("Menu Estadisticas");
             System.out.println("1. Ver bambueas actuales");
             System.out.println("2. Ver tareas");
@@ -384,24 +403,31 @@ public class Main {
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    System.out.println("Bambueas actuales: " + usuarioActual.getBambuesActuales());
+                    System.out.println("---------------------------------");
+                    System.out.println("Bambues actuales: " + usuarioActual.getBambuesActuales());
                     break;
                 case 2:
+                    System.out.println("---------------------------------");
                     System.out.println("Tareas: " + usuarioActual.listarTareas());
                     break;
                 case 3:
+                    System.out.println("---------------------------------");
                     System.out.println("Veces que has alimentado a " + usuarioActual.getNombrePanda() + ": " + usuarioActual.getCantBambuConsumidoPanda());
                     break;
                 case 4:
+                    System.out.println("---------------------------------");
                     System.out.println("Veces que has plantado un árbol: " + usuarioActual.getCantArbolesPlantados());
                     break;
                 case 5:
+                    System.out.println("---------------------------------");
                     System.out.println("Veces que has dado baño a " + usuarioActual.getNombrePanda() + ": " + usuarioActual.getCantLavados());
                     break;
                 case 6:
+                    System.out.println("---------------------------------");
                     System.out.println("Cantidad de juguetes que has comprado para " + usuarioActual.getNombrePanda() + ": " + usuarioActual.getCantJuguetes());
                     break;
                 case 7:
+                    System.out.println("---------------------------------");
                     System.out.println("Volviendo al menu de inicio ...");
                     break;
                 default:
@@ -414,6 +440,7 @@ public class Main {
     public static void mostrarMenuTienda(Usuario usuarioActual) {
         int opcion;
         do {
+            System.out.println("---------------------------------");
             System.out.println("Menu Tienda");
             System.out.println("Tu cantidad de bambues actual es de: " + usuarioActual.getBambuesActuales() + " bambues");
             System.out.println("1. Alimentar a tu panda con un bambu | (50 bambues)");
@@ -423,11 +450,11 @@ public class Main {
             System.out.println("5. Contratar un veterinario para cuidar la salud del panda | (1000 bambues)");
             System.out.println("6. Adquirir instalaciones y habitats para el centro de pandas | (10000 bambues)");
             System.out.println("7. Salir");
-            System.out.println("8. cheat");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
+                    System.out.println("---------------------------------");
                     try {
                         alimentarPanda(usuarioActual);
                     } catch (CantidadBambuesInsuficientesException e) {
@@ -436,6 +463,7 @@ public class Main {
                     }
                     break;
                 case 2:
+                    System.out.println("---------------------------------");
                     try {
                         plantarArbol(usuarioActual);
                     } catch (CantidadBambuesInsuficientesException e) {
@@ -444,6 +472,7 @@ public class Main {
                     }
                     break;
                 case 3:
+                    System.out.println("---------------------------------");
                     try {
                         limpiarPanda(usuarioActual);
                     } catch (CantidadBambuesInsuficientesException e) {
@@ -452,6 +481,7 @@ public class Main {
                     }
                     break;
                 case 4:
+                    System.out.println("---------------------------------");
                     try {
                         comprarJuguete(usuarioActual);
                     } catch (CantidadBambuesInsuficientesException e) {
@@ -460,6 +490,7 @@ public class Main {
                     }
                     break;
                 case 5:
+                    System.out.println("---------------------------------");
                     try {
                         comprarVisitaVeterinario(usuarioActual);
                     } catch (CantidadBambuesInsuficientesException e) {
@@ -468,6 +499,7 @@ public class Main {
                     }
                     break;
                 case 6:
+                    System.out.println("---------------------------------");
                     try {
                         adquirirInstalaciones(usuarioActual);
                     } catch (CantidadBambuesInsuficientesException e) {
@@ -481,10 +513,8 @@ public class Main {
                     }
                     break;
                 case 7:
+                    System.out.println("---------------------------------");
                     System.out.println("Volviendo al menú principal...");
-                    break;
-                case 8:
-                    aumentarBambues(usuarioActual, 30000);
                     break;
                 default:
                     System.out.println("Opción inválida");
@@ -496,54 +526,77 @@ public class Main {
     public static void mostrarMenuMisiones(Usuario usuarioActual) {
         int opcion;
         do {
+            System.out.println("---------------------------------");
             System.out.println("Menu Misiones");
-            System.out.println("1. Crear campania de concientizacion sobre pandas | (+300 bambues)");
-            System.out.println("2. Mejorar el hábitat de los pandas | (+1000 bambues)");
-            System.out.println("3. Organizar una excursion educativa sobre pandas | (+1500 bambues)");
-            System.out.println("4. Volver al menu de usuario");
+            System.out.println("1. Ver progreso de misiones");
+            System.out.println("2. Reclamar recompensas");
+            System.out.println("3. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    if (misiónExitosa(50)) {
-                        System.out.println("Financia una campaña educativa para aumentar la conciencia sobre la importancia de proteger a los pandas.");
-                        System.out.println("Has conseguido 300 bambues!");
-                        aumentarBambues(usuarioActual, 300);
-                    } else {
-                        System.out.println("No se cumplió el objetivo de la campaña educativa.");
-                    }
+                    System.out.println("---------------------------------");
+                    System.out.println("Progreso de Misiones:");
+                    System.out.println("1. Plantar 10 árboles de bambú: " + usuarioActual.getCantArbolesPlantados() + "/10");
+                    System.out.println("2. Lavar al panda 5 veces: " + usuarioActual.getCantLavados() + "/5");
+                    System.out.println("3. Comprar 3 juguetes para el panda: " + usuarioActual.getCantJuguetes() + "/3");
+                    System.out.println("4. Contratar al veterinario 2 veces: " + usuarioActual.getCantVisitasVeterinario() + "/2");
                     break;
                 case 2:
-                    if (misiónExitosa(33)) {
-                        System.out.println("Mejora el habitat natural de los pandas, anadiendo mas vegetacion y agua potable.");
-                        System.out.println("Has conseguido 1000 bambues!");
-                        aumentarBambues(usuarioActual, 1000);
+                    System.out.println("---------------------------------");
+                    System.out.println("Reclamar Recompensas:");
+                    if (usuarioActual.getCantArbolesPlantados() >= 10) {
+                        System.out.println("Recompensa por plantar 10 árboles reclamada. Has ganado 2000 bambues");
+                        System.out.println("---------------------------------");
+                        double actual = usuarioActual.getBambuesActuales();
+                        usuarioActual.setBambuesActuales(actual + 2000);
+                        usuarioActual.setCantArbolesPlantados(0); // Resetear el contador o alguna otra acción
                     } else {
-                        System.out.println("No se cumplió el objetivo de mejorar el hábitat.");
+                        System.out.println("Aún no has completado la misión de plantar 10 árboles.");
+                    }
+                    if (usuarioActual.getCantLavados() >= 5) {
+                        System.out.println("Recompensa por lavar al panda 5 veces reclamada. Has ganado 3000 bambues");
+                        System.out.println("---------------------------------");
+                        double actual = usuarioActual.getBambuesActuales();
+                        usuarioActual.setBambuesActuales(actual + 3000);
+                        usuarioActual.setCantLavados(0); // Resetear el contador o alguna otra acción
+                    } else {
+                        System.out.println("Aún no has completado la misión de lavar al panda 5 veces.");
+                    }
+                    if (usuarioActual.getCantJuguetes() >= 3) {
+                        System.out.println("Recompensa por comprar 3 juguetes reclamada. Has ganado 5000 bambues");
+                        System.out.println("---------------------------------");
+                        double actual = usuarioActual.getBambuesActuales();
+                        usuarioActual.setBambuesActuales(actual + 5000);
+                        usuarioActual.setCantJuguetes(0); // Resetear el contador o alguna otra acción
+                    } else {
+                        System.out.println("Aún no has completado la misión de comprar 3 juguetes.");
+                    }
+                    if (usuarioActual.getCantVisitasVeterinario() >= 2) {
+                        System.out.println("Recompensa por contratar al veterinario 2 veces reclamada. Has ganado 8000 bambues");
+                        System.out.println("---------------------------------");
+                        double actual = usuarioActual.getBambuesActuales();
+                        usuarioActual.setBambuesActuales(actual + 8000);
+                        usuarioActual.setCantVisitasVeterinario(0); // Resetear el contador o alguna otra acción
+                    } else {
+                        System.out.println("Aún no has completado la misión de contratar al veterinario 2 veces.");
                     }
                     break;
                 case 3:
-                    if (misiónExitosa(20)) {
-                        System.out.println("Organiza una excursion educativa para enseñar a los visitantes sobre la vida y la importancia de los pandas.");
-                        System.out.println("Has conseguido 1500 bambues!");
-                        aumentarBambues(usuarioActual, 1500);
-                    } else {
-                        System.out.println("No se cumplió el objetivo de la excursión educativa.");
-                    }
-                    break;
-                case 4:
+                    System.out.println("---------------------------------");
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
                     System.out.println("Opción inválida");
             }
-        } while (opcion != 4);
+        } while (opcion != 3);
     }
 
     //OP 1.5.0
     public static void mostrarMenuConfiguracion(Usuario usuarioActual) {
         int opcion;
         do {
+            System.out.println("---------------------------------");
             System.out.println("Menu Configuración");
             System.out.println("1. Cambiar nombre");
             System.out.println("2. Cambiar contraseña");
@@ -552,12 +605,15 @@ public class Main {
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
+                    System.out.println("---------------------------------");
                     cambiarNombre(usuarioActual); // Cambiar nombre
                     break;
                 case 2:
+                    System.out.println("---------------------------------");
                     cambiarContrasena(usuarioActual);  // Cambiar contraseña| Es lo mismo que restablecer contrasena
                     break;
                 case 3:
+                    System.out.println("---------------------------------");
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
@@ -574,6 +630,7 @@ public class Main {
         limpiarBuffer();
         String nuevoNombre;
         if (usuarioActual != null) {
+            System.out.println("---------------------------------");
             System.out.println("Introduzca su nuevo nombre");
             nuevoNombre = scanner.nextLine();
             usuarioActual.setNombreUsuario(nuevoNombre);
@@ -586,16 +643,11 @@ public class Main {
         String nuevaContrasena;
 
         if (usuarioActual != null) {
+            System.out.println("---------------------------------");
             System.out.println("Ingrese la nueva contrasena");
             nuevaContrasena = scanner.nextLine();
             usuarioActual.setContrasena(nuevaContrasena);
         }
-    }
-
-    // SECTOR MISIONES
-
-    private static boolean misiónExitosa(int porcentajeExito) {
-        return random.nextInt(100) < porcentajeExito;
     }
 
     //**--------------------------------------------------------------------------------------------------------------**
@@ -616,6 +668,7 @@ public class Main {
     public static void alimentarPanda(Usuario usuarioActual) throws CantidadBambuesInsuficientesException {
         limpiarBuffer();
         if (usuarioActual.getBambuesActuales() >= 50) {
+            System.out.println("---------------------------------");
             System.out.println("Alimentaste a tu panda con un bambu ...");
             usuarioActual.alimentarPandaUsuario();
             System.out.println(usuarioActual.getNombrePanda() + " ha comido " + usuarioActual.getCantBambuConsumidoPanda() + " bambues");
@@ -628,6 +681,7 @@ public class Main {
     public static void plantarArbol(Usuario usuarioActual) throws CantidadBambuesInsuficientesException {
         limpiarBuffer();
         if (usuarioActual.getBambuesActuales() >= 150) {
+            System.out.println("---------------------------------");
             System.out.println("Plantaste un arbol de bambu ...");
             usuarioActual.aumentarCantArbolesPlantados();
             System.out.println(usuarioActual.getNombreUsuario() + " haz plantado " + usuarioActual.getCantArbolesPlantados() + " arboles");
@@ -640,6 +694,7 @@ public class Main {
     public static void limpiarPanda(Usuario usuarioActual) throws CantidadBambuesInsuficientesException {
         limpiarBuffer();
         if (usuarioActual.getBambuesActuales() >= 100) {
+            System.out.println("---------------------------------");
             System.out.println("Lavaste a tu panda ...");
             usuarioActual.aumentarLavados();
             System.out.println(usuarioActual.getNombreUsuario() + " haz lavado " + usuarioActual.getCantLavados() + " veces a tu panda");
@@ -652,6 +707,7 @@ public class Main {
     public static void comprarJuguete(Usuario usuarioActual) throws CantidadBambuesInsuficientesException {
         limpiarBuffer();
         if (usuarioActual.getBambuesActuales() >= 300) {
+            System.out.println("---------------------------------");
             System.out.println("Compraste un nuevo juguete para tu panda ...");
             usuarioActual.aumentarCantJuguetes();
             System.out.println(usuarioActual.getNombreUsuario() + " haz comprado " + usuarioActual.getCantJuguetes() + " a tu panda");
@@ -664,6 +720,7 @@ public class Main {
     public static void comprarVisitaVeterinario(Usuario usuarioActual) throws CantidadBambuesInsuficientesException {
         limpiarBuffer();
         if (usuarioActual.getBambuesActuales() >= 1000) {
+            System.out.println("---------------------------------");
             System.out.println("Adquiriste una visita al veterinario a tu panda ...");
             usuarioActual.aumentarVisitas();
             System.out.println(usuarioActual.getNombreUsuario() + " haz adquirido " + usuarioActual.getCantVisitasVeterinario() + " visitas a tu panda");
@@ -676,8 +733,10 @@ public class Main {
     public static void adquirirInstalaciones(Usuario usuarioActual) throws CantidadBambuesInsuficientesException {
         limpiarBuffer();
         if (usuarioActual.getBambuesActuales() >= 10000 && !usuarioActual.getInstalacionesAdquiridas()) {
+            System.out.println("---------------------------------");
             System.out.println("Ayudaste al centro de refugios de pandas, adquiriendo nuevas instalaciones ...");
             usuarioActual.modificarInstalaciones();
+            System.out.println("---------------------------------");
             System.out.println("Felicidades " + usuarioActual.getNombreUsuario() + ", acabas de ayudar a todos los pandas del refugio!");
             reducirBambues(usuarioActual, 10000);
         } else {
@@ -688,6 +747,7 @@ public class Main {
     //SECTOR TAREAS
     public static void nuevaTarea(Usuario usuarioActual) {
         limpiarBuffer();
+        System.out.println("---------------------------------");
         System.out.println("Este es el asistente para crear una nueva tarea.");
         try {
             sleep(500);

@@ -110,16 +110,17 @@ public abstract class Tarea implements Serializable
     @Override
     public String toString() {
         return "Tarea{" +
-                "titulo='" + titulo + '\'' +
-                ", objetivo='" + objetivo + '\'' +
-                ", codigo='" + codigo + '\'' +
-                ", duracion=" + temporizador +
-                ", minutos transcurridos=" + minutosTranscurridos +
-                ", calificacion=" + calificacion +
-                ", retroalimentacion='" + retroalimentacion + '\'' +
-                ", fecha='" + fecha + '\'' +
-                '}';
+                "\n\tTítulo: '" + titulo + '\'' +
+                ",\n\tObjetivo: '" + objetivo + '\'' +
+                ",\n\tCódigo: '" + codigo + '\'' +
+                ",\n\tDuración: " + temporizador + " minutos" +
+                ",\n\tMinutos transcurridos: " + minutosTranscurridos +
+                ",\n\tCalificación: " + calificacion +
+                ",\n\tRetroalimentación: '" + retroalimentacion + '\'' +
+                ",\n\tFecha: '" + fecha + '\'' +
+                "\n}";
     }
+
 
     public JSONObject toJson()
     {
