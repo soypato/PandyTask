@@ -4,8 +4,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import excepciones.deLogin.LoginIncorrectoException;
 import excepciones.dePanda.CantidadBambuesInsuficientesException;
@@ -265,6 +263,9 @@ public class Main {
 
     public static void mostrarMenuTareas(Usuario usuarioActual) {
         int opcion;
+        String eleccionTarea;
+        String idTarea;
+        Tarea tareaTmp = null;
         do {
             System.out.println("Menu Tareas");
             System.out.println("1. Ver y reanudar tareas");
@@ -280,12 +281,7 @@ public class Main {
                     int eleccion = 0;
                     String listaTareas = usuarioActual.listarTareas();
                     System.out.println(listaTareas);
-                    System.out.println("Ingrese a que seccion desea acceder: ");
-                    System.out.println("1. Seccion trabajo");
-                    System.out.println("2. Seccion estudio");
-                    System.out.println("3. Seccion deporte");
-                    System.out.println("4. Seccion cocina");
-                    eleccion = scanner.nextInt();
+
                     switch (eleccion) {
                         case 1:
                             System.out.println("Ingrese el codigo de la tarea a reanudar: ");
@@ -297,6 +293,23 @@ public class Main {
                         case 3:
                             break;
                         case 4:
+
+                            // mostrar todas las tareas de todas las secciones
+                            System.out.println(usuarioActual.listarTareas());
+
+                            System.out.println("Ingrese a que seccion desea acceder: ");
+                            System.out.println("1. SeccionTrabajo");
+                            System.out.println("2. SeccionEstudio");
+                            System.out.println("3. SeccionDeporte");
+                            eleccionTarea = scanner.nextLine();
+
+                            System.out.println("Ingrese el ID de la tarea a modificar: ");
+                            idTarea = scanner.nextLine();
+
+                            tareaTmp = manejoUsuario.buscarEntreTareas(idTarea, eleccionTarea, usuarioActual);
+                            modificarTarea(tareaTmp, eleccionTarea);
+
+
                             break;
                         default:
                             System.out.println("Opcion invalida");
@@ -999,7 +1012,167 @@ public class Main {
             scanner.nextLine(); // Limpiar el buffer
         }
     }
+    // MODIFICACION DE TAREAS
 
+    public void modificarTareaSeleccionada(Usuario usuario, ManejoUsuario manejoUsuario, Scanner scanner) {
+        System.out.println("Ingrese el ID de la tarea que desea modificar:");
+        String idTarea = scanner.nextLine();
+        System.out.println("Ingrese el tipo de tarea que desea modificar:");
+        String tipoTarea = scanner.nextLine();
+        Tarea tarea = manejoUsuario.buscarEntreTareas(idTarea, tipoTarea, usuario);
+        if (tarea != null) {
+            modificarTarea(tarea, tipoTarea);
+            System.out.println("Tarea modificada exitosamente.");
+        } else {
+            System.out.println("La tarea no fue encontrada.");
+        }
+    }
 
+    private static void modificarTarea(Tarea tarea, String tipoTarea) {
+        boolean continuar = true;
+        while (continuar) {
+            System.out.println("Seleccione el atributo que desea modificar:");
+            System.out.println("1. Título");
+            System.out.println("2. Objetivo");
+            System.out.println("3. Fecha");
+            System.out.println("4. Calificación");
+            System.out.println("5. Retroalimentación");
+            System.out.println("6. Atributos específicos de " + tipoTarea);
+            System.out.println("7. Salir");
+            System.out.print("Opción: ");
+            int opcion = Integer.parseInt(scanner.nextLine());
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("Ingrese el nuevo título:");
+                    tarea.setTitulo(scanner.nextLine());
+                    break;
+                case 2:
+                    System.out.println("Ingrese el nuevo objetivo:");
+                    tarea.setObjetivo(scanner.nextLine());
+                    break;
+                case 3:
+                    System.out.println("Ingrese la nueva fecha (YYYY-MM-DD):");
+                    tarea.setFecha(scanner.nextLine());
+                    break;
+                case 4:
+                    System.out.println("Ingrese la nueva calificación (1 a 10):");
+                    tarea.setCalificacion(Integer.parseInt(scanner.nextLine()));
+                    break;
+                case 5:
+                    System.out.println("Ingrese la nueva retroalimentación:");
+                    tarea.setRetroalimentacion(scanner.nextLine());
+                    break;
+                case 6:
+                    modificarAtributosEspecificos(tarea, tipoTarea);
+                    break;
+                case 7:
+                    continuar = false;
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
+    }
+
+    private void modificarAtributosEspecificos(Tarea tarea, String tipoTarea, Scanner scanner) {
+        boolean continuar = true;
+        while (continuar) {
+            switch (tipoTarea) {
+                case "SeccionTrabajo":
+                    continuar = modificarSeccionTrabajo((SeccionTrabajo) tarea, scanner);
+                    break;
+                case "SeccionEstudio":
+                    continuar = modificarSeccionEstudio((SeccionEstudio) tarea, scanner);
+                    break;
+                case "SeccionDeporte":
+                    continuar = modificarSeccionDeporte((SeccionDeporte) tarea, scanner);
+                    break;
+                default:
+                    System.out.println("Tipo de tarea no válido.");
+                    continuar = false;
+            }
+        }
+    }
+
+    private boolean modificarSeccionTrabajo(SeccionTrabajo tarea, Scanner scanner) {
+        System.out.println("Seleccione el atributo que desea modificar:");
+        System.out.println("1. Sector de trabajo");
+        System.out.println("2. Fecha límite");
+        System.out.println("3. Salir");
+        System.out.print("Opción: ");
+        int opcion = Integer.parseInt(scanner.nextLine());
+
+        switch (opcion) {
+            case 1:
+                System.out.println("Ingrese el nuevo sector de trabajo:");
+                tarea.setSector(scanner.nextLine());
+                break;
+            case 2:
+                System.out.println("Ingrese la nueva fecha límite:");
+                tarea.setFechaLimite(scanner.nextLine());
+                break;
+            case 3:
+                return false;
+            default:
+                System.out.println("Opción no válida.");
+        }
+        return true;
+    }
+
+    private boolean modificarSeccionEstudio(SeccionEstudio tarea, Scanner scanner) {
+        System.out.println("Seleccione el atributo que desea modificar:");
+        System.out.println("1. Categoría");
+        System.out.println("2. Materia");
+        System.out.println("3. Unidad");
+        System.out.println("4. Salir");
+        System.out.print("Opción: ");
+        int opcion = Integer.parseInt(scanner.nextLine());
+
+        switch (opcion) {
+            case 1:
+                System.out.println("Ingrese la nueva categoría:");
+                tarea.setCategoria(scanner.nextLine());
+                break;
+            case 2:
+                System.out.println("Ingrese la nueva materia:");
+                tarea.setMateria(scanner.nextLine());
+                break;
+            case 3:
+                System.out.println("Ingrese la nueva unidad:");
+                tarea.setUnidad(scanner.nextLine());
+                break;
+            case 4:
+                return false;
+            default:
+                System.out.println("Opción no válida.");
+        }
+        return true;
+    }
+
+    private boolean modificarSeccionDeporte(SeccionDeporte tarea, Scanner scanner) {
+        System.out.println("Seleccione el atributo que desea modificar:");
+        System.out.println("1. Duración");
+        System.out.println("2. Intensidad");
+        System.out.println("3. Salir");
+        System.out.print("Opción: ");
+        int opcion = Integer.parseInt(scanner.nextLine());
+
+        switch (opcion) {
+            case 1:
+                System.out.println("Ingrese la nueva duración:");
+                tarea.setDuracion(Double.parseDouble(scanner.nextLine()));
+                break;
+            case 2:
+                System.out.println("Ingrese la nueva intensidad:");
+                tarea.setIntensidad(scanner.nextLine());
+                break;
+            case 3:
+                return false;
+            default:
+                System.out.println("Opción no válida.");
+        }
+        return true;
+    }
 }
 

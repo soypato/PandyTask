@@ -88,6 +88,11 @@ public abstract class Tarea implements Serializable
         this.retroalimentacion = retroalimentacion;
     }
 
+    public void setObjetivo(String objetivo)
+    {
+        this.objetivo = objetivo;
+    }
+
     @Override
     public abstract int hashCode();
 

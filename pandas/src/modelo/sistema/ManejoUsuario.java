@@ -250,5 +250,38 @@ public class ManejoUsuario {
         return resultado;
     }
 
+    public Tarea buscarEntreTareas(String id, String tipoTarea, Usuario manejoUsuario)
+    {
+        Tarea res = null;
+        HashMap<String, HashSet<Tarea>> tareasUser = manejoUsuario.getTareasPersonales();
+        HashSet<Tarea> tareasIndividual = tareasUser.get(tipoTarea);
+        Tarea tareaTmp = null;
+
+        if(!(tareasIndividual.isEmpty()))
+        {
+            Iterator iterator = tareasIndividual.iterator();
+            while(iterator.hasNext())
+            {
+                tareaTmp = (Tarea) iterator.next();
+                if(tareaTmp.getCodigo().equals(id))
+                {
+                    res = tareaTmp;
+                }
+            }
+        }
+        return res;
+    }
+
+    public boolean borrarTarea(Tarea aBorrar, String tipoTarea, Usuario manejoUsuario)
+    {
+        boolean res;
+        HashMap<String, HashSet<Tarea>> tareasPersonales = manejoUsuario.getTareasPersonales();
+        HashSet<Tarea> tareasSeccion = tareasPersonales.get(tipoTarea);
+
+        res = tareasSeccion.remove(aBorrar);
+        return res;
+    }
+
+
 
 }
