@@ -22,6 +22,10 @@ public class ManejoUsuario {
         listaUsuarios = new HashSet<>();
     }
 
+    public int numeroDeUsuarios() {
+        return listaUsuarios.size();
+    }
+
     /// METODOS DE ARCHIVO ///////////////////////////////////////////////////////////////////////////////////
 
     // ENTRADA DE NUESTRO SISTEMA DEL ARCHIVO
