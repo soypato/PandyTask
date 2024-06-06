@@ -9,6 +9,8 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ManejoUsuario {
     // ATRIBUTOS
@@ -119,6 +121,7 @@ public class ManejoUsuario {
             salidaTareas(usuario); // Crea el archivo si no existe
         }
     }
+
     // Mando al archi (id).bat las tareas del usuario
     public void salidaTareas(Usuario usuario) {
         String filename = usuario.getId() + ".dat";
@@ -172,13 +175,13 @@ public class ManejoUsuario {
     public String mostrarTodosLosUsuarios() {
         String respuesta = "";
         Iterator<Usuario> iterator = listaUsuarios.iterator();
-        respuesta+="-----------------------------------\n";
+        respuesta += "-----------------------------------\n";
 
         while (iterator.hasNext()) {
             Usuario usuarioTmp = iterator.next();
             respuesta += usuarioTmp.toString() + "\n"; // IMPORTANTE: EL TOSTRING NO MUESTRA LA CONTRASENA
         }
-        respuesta+="-------------------------------------";
+        respuesta += "-------------------------------------";
 
         return respuesta;
     }
@@ -186,15 +189,61 @@ public class ManejoUsuario {
     public String mostrarTodosLosNombreUsuarios() {
         String respuesta = "";
         Iterator<Usuario> iterator = listaUsuarios.iterator();
-        respuesta+="-----------------------------------\n";
+        respuesta += "-----------------------------------\n";
 
         while (iterator.hasNext()) {
             Usuario usuarioTmp = iterator.next();
             respuesta += usuarioTmp.getNombreUsuario() + "\n"; // Muestro el nombre nothing more
         }
-        respuesta+="-------------------------------------";
+        respuesta += "-------------------------------------";
 
         return respuesta;
+    }
+
+    public String incrementarID(String seccionAIncrementar, Usuario usuarioActual) {
+        Tarea ultima = null;
+        String res = "";
+        HashMap<String, HashSet<Tarea>> coleccionDelUsuario = usuarioActual.getTareasPersonales(); // recupero la coleccion entera del usuario
+        HashSet<Tarea> tareasDeLaSeccion = coleccionDelUsuario.get(seccionAIncrementar); // desde la coleccion, le paso la key que el usuario me pasa: su valor sera el hashset de esa seccionx
+        if (!(tareasDeLaSeccion.isEmpty())) { // si tiene ya datos: significa que hay que incrementar en uno
+            Iterator iterator = tareasDeLaSeccion.iterator();
+
+            while (iterator.hasNext()) {
+                ultima = (Tarea) iterator.next();
+            }
+
+            res = idAutoincrementable(ultima.getCodigo());
+        } else { // si no tiene ya sabemos que tiene que ser la primera
+            res = (usuarioActual.getId() + "_" + seccionAIncrementar + "_" + "00");
+        }
+        return res;
+    }
+
+    protected String idAutoincrementable(String input) {
+        String resultado = "";
+
+        // Definir una expresión regular para encontrar el número al final de la cadena
+        Pattern pattern = Pattern.compile("(\\d+)$");
+        Matcher matcher = pattern.matcher(input);
+
+        // Verificar si la cadena coincide con el patrón
+        if (matcher.find()) {
+            String numberStr = matcher.group(1);  // Parte numérica
+
+            // Convertir la parte numérica a un número entero, incrementarlo en 1 y formatearlo nuevamente
+            int number = Integer.parseInt(numberStr);
+            number += 1;
+
+            // Formatear el número con ceros a la izquierda según la longitud original
+            String newNumberStr = String.format("%02d", number);
+
+            // Ensamblar la cadena con el número incrementado
+            resultado = input.replaceAll(numberStr + "$", newNumberStr);
+        } else {
+            throw new IllegalArgumentException("No se encontró un número al final de la cadena.");
+        }
+
+        return resultado;
     }
 
 
