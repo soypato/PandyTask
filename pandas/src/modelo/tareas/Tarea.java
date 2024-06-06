@@ -91,6 +91,7 @@ public abstract class Tarea implements Serializable
     @Override
     public abstract int hashCode();
 
+
     @Override
     public String toString() {
         return "Tarea{" +
