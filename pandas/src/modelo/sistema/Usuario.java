@@ -144,6 +144,7 @@ public class Usuario implements Comparable, Serializable {
     public void setCantLavados(double cantLavados) {this.cantLavados = cantLavados;}
     public void setCantJuguetes(double cantJuguetes) {this.cantJuguetes = cantJuguetes;}
     public void setCantVisitasVeterinario(double cantVisitasVeterinario) {this.cantVisitasVeterinario = cantVisitasVeterinario;}
+    public void setBambuesConsumidosPorPanda (double bambuesConsumidosPorPanda) {this.pandaDelUsuario.setCantBambuConsumido(bambuesConsumidosPorPanda);}
     public void setInstalacionesAdquiridas(boolean instalacionesAdquiridas) {this.instalacionesAdquiridas = instalacionesAdquiridas;}
     public void setTareasPersonales(HashMap<String, HashSet<Tarea>> tareasPersonales) {
         this.tareasPersonales = tareasPersonales;
