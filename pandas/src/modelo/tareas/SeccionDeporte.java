@@ -1,17 +1,21 @@
 package modelo.tareas;
 
+import Interfaces.ICalcularCalorias;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SeccionDeporte extends Tarea implements Comparable{
+public class SeccionDeporte extends Tarea implements Comparable, ICalcularCalorias {
     private String ejercicios;
     private double caloriasQuemadas; // 0 si no lo sabe
+    private double duracion;
+    private String intensidad;
 
-    public SeccionDeporte(String titulo, String objetivo, String codigo, int temporizador, String fecha, String ejercicios) {
+    public SeccionDeporte(String titulo, String objetivo, String codigo, int temporizador, String fecha, String ejercicios, double duracion, String intensidad) {
         super(titulo,objetivo, codigo, temporizador, fecha, "SeccionDeporte");
         this.ejercicios = ejercicios;
-        this.caloriasQuemadas = -1; // -1 para que sepamos que viene de aca, esto tiene que pasar despues de la tarea con un setter
-        // cuando el usuario sepa cuantas calorias quemo
+        this.duracion=duracion;
+        this.intensidad=intensidad;
+        this.caloriasQuemadas = calcularCaloriasQuemadas(intensidad);
     }
 
     public SeccionDeporte()
@@ -19,6 +23,8 @@ public class SeccionDeporte extends Tarea implements Comparable{
             super("SeccionDeporte");
             this.ejercicios = " ";
             this.caloriasQuemadas = -1;
+            this.duracion=0;
+            this.intensidad="";
     }
 
     public String getEjercicios() {
@@ -29,12 +35,29 @@ public class SeccionDeporte extends Tarea implements Comparable{
         return caloriasQuemadas;
     }
 
+    public double getDuracion() {
+        return duracion;
+    }
+
+    public String getIntensidad() {
+        return intensidad;
+    }
+
     public void setEjercicios(String ejercicios) {
         this.ejercicios = ejercicios;
     }
 
     public void setCaloriasQuemadas(double caloriasQuemadas) {
         this.caloriasQuemadas = caloriasQuemadas;
+    }
+
+
+    public void setDuracion(double duracion) {
+        this.duracion = duracion;
+    }
+
+    public void setIntensidad(String intensidad) {
+        this.intensidad = intensidad;
     }
 
     public int hashCode()
@@ -90,6 +113,8 @@ public class SeccionDeporte extends Tarea implements Comparable{
         try {
             res.put("ejercicios", ejercicios);
             res.put("caloriasQuemadas", caloriasQuemadas);
+            res.put("duracion", duracion);
+            res.put("intensidad", intensidad);
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -99,9 +124,51 @@ public class SeccionDeporte extends Tarea implements Comparable{
 
     @Override
     public String toString() {
-        return "SeccionDeporte{\n" + super.toString() + " " +
+        return "SeccionDeporte{" +
                 "ejercicios='" + ejercicios + '\'' +
                 ", caloriasQuemadas=" + caloriasQuemadas +
+                ", duracion=" + duracion +
+                ", intensidad='" + intensidad + '\'' +
                 '}';
     }
+
+    public double calcularCaloriasQuemadas(String intensidad)
+    {
+        double calorias=convertirIntensidadACalorias(intensidad);
+
+        if(calorias==-1)
+        {
+            calorias=0;
+        }
+
+        return duracion*calorias;
+    }
+
+    public double convertirIntensidadACalorias(String intensidad)
+    {
+        double intensidadCalculada=0;
+        switch (intensidad.toLowerCase())
+        {
+            case "baja":
+                intensidadCalculada = 3.5;
+                break;
+
+            case "media":
+                intensidadCalculada = 7.0;
+                break;
+
+            case "alta":
+                intensidadCalculada= 12.0;
+                break;
+
+            default:
+               intensidadCalculada=-1;
+
+        }
+
+        return intensidadCalculada;
+    }
+
+
+
 }
