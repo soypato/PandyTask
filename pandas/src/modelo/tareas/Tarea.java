@@ -129,9 +129,12 @@ public abstract class Tarea implements Serializable
             res.put("titulo", titulo);
             res.put("objetivo", objetivo);
             res.put("codigo", codigo);
-            res.put("temporizador", temporizador);
+            res.put("duracion", temporizador);
             res.put("fecha", fecha);
             res.put("tipoTarea", tipoTarea);
+            res.put("transcurridos", minutosTranscurridos);
+            res.put("calificacion", calificacion);
+            res.put("retroalimentacion", retroalimentacion);
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
