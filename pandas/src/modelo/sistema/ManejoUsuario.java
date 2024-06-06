@@ -255,6 +255,7 @@ public class ManejoUsuario {
         Tarea res = null;
         HashMap<String, HashSet<Tarea>> tareasUser = manejoUsuario.getTareasPersonales();
         HashSet<Tarea> tareasIndividual = tareasUser.get(tipoTarea);
+
         Tarea tareaTmp = null;
 
         if(!(tareasIndividual.isEmpty()))

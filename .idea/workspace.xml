@@ -6,8 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="67bf95d5-87ca-4ed4-88c2-4acd15fa1a9a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proyecto-labo3/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proyecto-labo3/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/sistema/ManejoUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/sistema/ManejoUsuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/sistema/Panda.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/sistema/Panda.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/sistema/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/sistema/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/tareas/SeccionCocina.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/tareas/SeccionCocina.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/tareas/SeccionDeporte.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/tareas/SeccionDeporte.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/tareas/SeccionEstudio.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/tareas/SeccionEstudio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/tareas/SeccionTrabajo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/tareas/SeccionTrabajo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/tareas/Tarea.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/tareas/Tarea.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pandas/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pandas/src/modelo/sistema/ManejoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/sistema/ManejoUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/sistema/Panda.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/sistema/Panda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/sistema/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/sistema/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionCocina.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionCocina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionDeporte.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionDeporte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionEstudio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionTrabajo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionTrabajo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/Tarea.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +54,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "desarrolloJuanma3",
+    "git-widget-placeholder": "non-stable-modificar-tarea",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Users/Usuario/Desktop/proyecto-labo3/pandas",
     "node.js.detected.package.eslint": "true",
@@ -71,7 +87,8 @@
       <workItem from="1717622536287" duration="7570000" />
       <workItem from="1717630194359" duration="3000" />
       <workItem from="1717630211018" duration="15000" />
-      <workItem from="1717648136337" duration="1223000" />
+      <workItem from="1717648136337" duration="4238000" />
+      <workItem from="1717653214222" duration="11639000" />
     </task>
     <servers />
   </component>

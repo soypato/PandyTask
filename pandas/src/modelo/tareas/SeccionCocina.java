@@ -5,18 +5,37 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SeccionCocina extends Tarea{
-    private Receta receta;
+    private String ingredientes;
+    private String pasoAPaso;
 
-    public SeccionCocina(String titulo, String objetivo, String codigo, int temporizador, String fecha, Receta receta)
+    public SeccionCocina(String titulo, String objetivo, String codigo, int temporizador, int minutosTranscurridos, String fecha, String ingredientes, String pasoAPaso)
     {
-        super(titulo, objetivo, codigo, temporizador, fecha, "SeccionCocina");
-        this.receta = receta;
+        super(titulo, objetivo, codigo, temporizador, minutosTranscurridos, fecha, "SeccionCocina");
+        this.ingredientes = ingredientes;
+        this.pasoAPaso = pasoAPaso;
     }
 
     public SeccionCocina()
     {
         super("SeccionCocina");
-        this.receta = new Receta();
+        this.ingredientes = "";
+        this.pasoAPaso = "";
+    }
+
+    public String getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setIngredientes(String ingredientes) {
+        this.ingredientes = ingredientes;
+    }
+
+    public String getPasoAPaso() {
+        return pasoAPaso;
+    }
+
+    public void setPasoAPaso(String pasoAPaso) {
+        this.pasoAPaso = pasoAPaso;
     }
 
     @Override
@@ -29,7 +48,8 @@ public class SeccionCocina extends Tarea{
     {
         JSONObject res = super.toJson();
         try {
-            res.put("receta", receta.toJson());
+            res.put("ingredientes", ingredientes);
+            res.put("pasoAPaso", pasoAPaso);
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -40,12 +60,10 @@ public class SeccionCocina extends Tarea{
     @Override
     public String toString() {
         return "SeccionCocina{\n" + super.toString() + " " +
-                "receta=" + receta +
+                "ingredientes=" + ingredientes +
+                ", pasoAPaso=" + pasoAPaso +
                 '}';
     }
 
-    public Receta getReceta()
-    {
-        return  receta;
-    }
+
 }

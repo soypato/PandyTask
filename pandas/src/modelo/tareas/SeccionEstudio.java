@@ -11,8 +11,8 @@ public class SeccionEstudio extends Tarea
     private String unidad;
 
     // CONSTRUCTORES
-    public SeccionEstudio(String titulo, String objetivo, String codigo, int temporizador, String fecha, String categoria, String materia, String unidad) {
-        super(titulo, objetivo, codigo, temporizador, fecha, "SeccionEstudio");
+    public SeccionEstudio(String titulo, String objetivo, String codigo, int temporizador, int minutosTranscurridos, String fecha, String categoria, String materia, String unidad) {
+        super(titulo, objetivo, codigo, temporizador, minutosTranscurridos, fecha, "SeccionEstudio");
         this.categoria = categoria;
         this.materia = materia;
         this.unidad = unidad;
