@@ -277,17 +277,6 @@ public class Usuario implements Comparable, Serializable {
         return sb.toString();
     }
 
-    public String bajaTareaDeLaColeccion(String codigo) {
-        for (String tipoTarea : tareasPersonales.keySet()) {
-            for (Tarea tarea : tareasPersonales.get(tipoTarea)) {
-                if (tarea.getCodigo().equals(codigo)) {
-                    tareasPersonales.get(tipoTarea).remove(tarea);
-                    return "La tarea con código " + codigo + " fue eliminada exitosamente.";
-                }
-            }
-        }
-        return "La tarea con código " + codigo + " no fue encontrada en la colección.";
-    }
 
 
     public JSONObject toJSONTareas() throws JSONException {
