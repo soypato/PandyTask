@@ -7,7 +7,6 @@ import java.util.Random;
 
 import excepciones.deLogin.LoginIncorrectoException;
 import excepciones.dePanda.CantidadBambuesInsuficientesException;
-import modelo.extra.Receta;
 import modelo.sistema.ManejoUsuario;
 import modelo.sistema.Panda;
 import modelo.sistema.Usuario;

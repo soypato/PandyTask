@@ -1,6 +1,6 @@
 package modelo.tareas;
 
-import modelo.extra.Receta;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
