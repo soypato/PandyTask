@@ -257,17 +257,7 @@ public class Main {
                         System.out.println("3. SeccionDeporte");
                         System.out.println("4. SeccionCocina");
                         eleccionTareaInt = scanner.nextInt();
-                        if (eleccionTareaInt == 1) {
-                            eleccionTarea = "SeccionTrabajo";
-                        } else if (eleccionTareaInt == 2) {
-                            eleccionTarea = "SeccionEstudio";
-                        } else if (eleccionTareaInt == 3) {
-                            eleccionTarea = "SeccionDeporte";
-                        } else if (eleccionTareaInt == 4) {
-                            eleccionTarea = "SeccionCocina";
-                        } else {
-                            System.out.println("Opcion incorrecta");
-                        }
+                        eleccionTarea = getEleccionTarea(eleccionTareaInt, eleccionTarea);
                         System.out.println("Ingrese el ID de la tarea a comenzar: ");
                         scanner.nextLine();
                         idTarea = scanner.nextLine();
@@ -341,17 +331,7 @@ public class Main {
                     System.out.println("4. SeccionCocina");
                     scanner.nextLine();
                     eleccionTareaInt = scanner.nextInt();
-                    if (eleccionTareaInt == 1) {
-                        eleccionTarea = "SeccionTrabajo";
-                    } else if (eleccionTareaInt == 2) {
-                        eleccionTarea = "SeccionEstudio";
-                    } else if (eleccionTareaInt == 3) {
-                        eleccionTarea = "SeccionDeporte";
-                    } else if (eleccionTareaInt == 4) {
-                        eleccionTarea = "SeccionCocina";
-                    } else {
-                        System.out.println("Opcion incorrecta");
-                    }
+                    eleccionTarea = getEleccionTarea(eleccionTareaInt, eleccionTarea);
                     System.out.println("Ingrese el ID de la tarea a modificar: ");
                     scanner.nextLine();
                     idTarea = scanner.nextLine();
@@ -371,6 +351,21 @@ public class Main {
                     System.out.println("Opción inválida");
             }
         } while (opcion != 5);
+    }
+
+    public static String getEleccionTarea(int eleccionTareaInt, String eleccionTarea) {
+        if (eleccionTareaInt == 1) {
+            eleccionTarea = "SeccionTrabajo";
+        } else if (eleccionTareaInt == 2) {
+            eleccionTarea = "SeccionEstudio";
+        } else if (eleccionTareaInt == 3) {
+            eleccionTarea = "SeccionDeporte";
+        } else if (eleccionTareaInt == 4) {
+            eleccionTarea = "SeccionCocina";
+        } else {
+            System.out.println("Opcion incorrecta");
+        }
+        return eleccionTarea;
     }
     //OP 1.2.0
 
