@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="67bf95d5-87ca-4ed4-88c2-4acd15fa1a9a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandas/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionCocina.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionCocina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/sistema/Panda.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proyecto-labo3/modelo/sistema/Panda.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/sistema/Panda.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/sistema/Panda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios.dat" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.dat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +39,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "last-day-of-work-06/06-juanma",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Users/Usuario/Desktop/proyecto-labo3/pandas",
     "node.js.detected.package.eslint": "true",
@@ -73,7 +74,8 @@
       <workItem from="1717630211018" duration="15000" />
       <workItem from="1717648136337" duration="4238000" />
       <workItem from="1717653214222" duration="11639000" />
-      <workItem from="1717665387798" duration="50000" />
+      <workItem from="1717665387798" duration="234000" />
+      <workItem from="1717693619085" duration="494000" />
     </task>
     <servers />
   </component>
