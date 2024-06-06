@@ -7,6 +7,7 @@ import java.util.Random;
 
 import excepciones.deLogin.LoginIncorrectoException;
 import excepciones.dePanda.CantidadBambuesInsuficientesException;
+import excepciones.deTarea.TareaInvalidaExcpetion;
 import modelo.sistema.ManejoUsuario;
 import modelo.sistema.Panda;
 import modelo.sistema.Usuario;
@@ -108,8 +109,7 @@ public class Main {
             System.out.println("No hay usuarios creados. Por favor, cree una cuenta primero.");
             System.out.println("Ingrese los datos para crear su nueva cuenta. Apreta ENTER para continuar");
             registrarUsuario();
-        } else
-        {
+        } else {
             do {
                 System.out.println("Quien esta mirando?");
                 System.out.println(manejoUsuario.mostrarTodosLosNombreUsuarios());
@@ -135,7 +135,6 @@ public class Main {
             }
             while (usuarioActual == null);
         }
-
 
 
     }
@@ -262,7 +261,7 @@ public class Main {
 
     public static void mostrarMenuTareas(Usuario usuarioActual) {
         int opcion;
-        int eleccionTareaInt=0;
+        int eleccionTareaInt = 0;
         String eleccionTarea = "";
         String idTarea = "";
         Tarea tareaTmp = null;
@@ -277,9 +276,8 @@ public class Main {
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    int tiempoTotal=0;
-                    if(!usuarioActual.hayTareasCreadas())
-                    {
+                    int tiempoTotal = 0;
+                    if (!usuarioActual.hayTareasCreadas()) {
                         System.out.println("Menu de arranque tareas");
                         System.out.println(usuarioActual.listarTareas());
                         System.out.println("Ingrese a que seccion desea acceder: ");
@@ -288,48 +286,46 @@ public class Main {
                         System.out.println("3. SeccionDeporte");
                         System.out.println("4. SeccionCocina");
                         eleccionTareaInt = scanner.nextInt();
-                        if(eleccionTareaInt == 1)
-                        {
+                        if (eleccionTareaInt == 1) {
                             eleccionTarea = "SeccionTrabajo";
-                        }else if(eleccionTareaInt == 2)
-                        {
+                        } else if (eleccionTareaInt == 2) {
                             eleccionTarea = "SeccionEstudio";
-                        }
-                        else if(eleccionTareaInt == 3)
-                        {
+                        } else if (eleccionTareaInt == 3) {
                             eleccionTarea = "SeccionDeporte";
-                        }
-                        else if(eleccionTareaInt == 4)
-                        {
+                        } else if (eleccionTareaInt == 4) {
                             eleccionTarea = "SeccionCocina";
-                        }else {
+                        } else {
                             System.out.println("Opcion incorrecta");
                         }
                         System.out.println("Ingrese el ID de la tarea a comenzar: ");
                         scanner.nextLine();
                         idTarea = scanner.nextLine();
-
                         tareaTmp = manejoUsuario.buscarEntreTareas(idTarea, eleccionTarea, usuarioActual);
-                        int minutosRestantes=tareaTmp.getTemporizador() - tareaTmp.getMinutosTrancurridos();
-                        System.out.println("Llevas trabajados en la tarea: "+tareaTmp.getMinutosTrancurridos()+" minutos, de los: "+tareaTmp.getTemporizador()+" minutos totales.");
-                        System.out.println("Desea comenzar la tarea? (s/n)");
-                        char decision = scanner.next().charAt(0);
-                        if (decision == 's') {
-                            System.out.println("Presiona 'Enter' para comenzar la tarea...");
-                            scanner.nextLine();
-                            scanner.nextLine();
-                            int minutosCumplidos = iniciarTemporizador(tareaTmp.getTemporizador(), tareaTmp.getMinutosTrancurridos());
-                            System.out.println("Minutos cumplidos: "+minutosCumplidos);
-                            usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 30));
-                            System.out.println("Has sumado " + minutosCumplidos * 30 + " bambues");
-                            tiempoTotal = tareaTmp.getMinutosTrancurridos() + minutosCumplidos;
-                            System.out.println("Llevas trabajando en la tarea: "+tiempoTotal);
-                            tareaTmp.setMinutosTrancurridos(tareaTmp.getMinutosTrancurridos() + minutosCumplidos);
+
+                        if (tareaTmp == null) {
+                            System.out.println("Vuelve a intentarlo");
+                        } else {
+
+                            int minutosRestantes = tareaTmp.getTemporizador() - tareaTmp.getMinutosTrancurridos();
+                            System.out.println("Llevas trabajados en la tarea: " + tareaTmp.getMinutosTrancurridos() + " minutos, de los: " + tareaTmp.getTemporizador() + " minutos totales.");
+                            System.out.println("Desea comenzar la tarea? (s/n)");
+                            char decision = scanner.next().charAt(0);
+                            if (decision == 's') {
+                                System.out.println("Presiona 'Enter' para comenzar la tarea...");
+                                scanner.nextLine();
+                                scanner.nextLine();
+                                int minutosCumplidos = iniciarTemporizador(tareaTmp.getTemporizador(), tareaTmp.getMinutosTrancurridos());
+                                System.out.println("Minutos cumplidos: " + minutosCumplidos);
+                                usuarioActual.setBambuesActuales(usuarioActual.getBambuesActuales() + (minutosCumplidos * 30));
+                                System.out.println("Has sumado " + minutosCumplidos * 30 + " bambues");
+                                tiempoTotal = tareaTmp.getMinutosTrancurridos() + minutosCumplidos;
+                                System.out.println("Llevas trabajando en la tarea: " + tiempoTotal);
+                                tareaTmp.setMinutosTrancurridos(tareaTmp.getMinutosTrancurridos() + minutosCumplidos);
+                            } else {
+                                System.out.println("Volviendo ...");
+                            }
                         }
-                        else {
-                            System.out.println("Volviendo ...");
-                        }
-                    }else {
+                    } else {
                         System.out.println("No hay tareas creadas, cree una tarea antes de arrancarla");
                     }
                     break;
@@ -353,23 +349,18 @@ public class Main {
                     System.out.println("1. SeccionTrabajo");
                     System.out.println("2. SeccionEstudio");
                     System.out.println("3. SeccionDeporte");
+                    System.out.println("4. SeccionCocina");
                     scanner.nextLine();
                     eleccionTareaInt = scanner.nextInt();
-                    if(eleccionTareaInt == 1)
-                    {
+                    if (eleccionTareaInt == 1) {
                         eleccionTarea = "SeccionTrabajo";
-                    }else if(eleccionTareaInt == 2)
-                    {
+                    } else if (eleccionTareaInt == 2) {
                         eleccionTarea = "SeccionEstudio";
-                    }
-                    else if(eleccionTareaInt == 3)
-                    {
+                    } else if (eleccionTareaInt == 3) {
                         eleccionTarea = "SeccionDeporte";
-                    }
-                    else if(eleccionTareaInt == 4)
-                    {
+                    } else if (eleccionTareaInt == 4) {
                         eleccionTarea = "SeccionCocina";
-                    }else {
+                    } else {
                         System.out.println("Opcion incorrecta");
                     }
                     System.out.println("Ingrese el ID de la tarea a modificar: ");
@@ -377,7 +368,11 @@ public class Main {
                     idTarea = scanner.nextLine();
 
                     tareaTmp = manejoUsuario.buscarEntreTareas(idTarea, eleccionTarea, usuarioActual);
-                    modificarTarea(tareaTmp, eleccionTarea);
+                    if (tareaTmp != null) {
+                        modificarTarea(tareaTmp, eleccionTarea);
+                    } else {
+                        System.out.println("Vuelve a intentarlo");
+                    }
                     System.out.println("Tarea modificada con exito");
                     break;
                 case 5:
@@ -912,14 +907,14 @@ public class Main {
         String ejercicios = scanner.nextLine();
         System.out.println("-------------------------");
         System.out.print("Duracion: ");
-        double duracion =scanner.nextDouble();
+        double duracion = scanner.nextDouble();
         System.out.println("-------------------------");
         System.out.println("Intensidad: ");
         scanner.nextLine();
-        String intensidad =scanner.nextLine();
+        String intensidad = scanner.nextLine();
         String idNuevo = manejoUsuario.incrementarID("SeccionDeporte", usuarioActual);
 
-        return new SeccionDeporte(titulo, objetivo, idNuevo, minutos, 0, fecha, ejercicios, duracion,intensidad);
+        return new SeccionDeporte(titulo, objetivo, idNuevo, minutos, 0, fecha, ejercicios, duracion, intensidad);
 
     }
 
@@ -943,67 +938,6 @@ public class Main {
 
     ///////////  FUNCION PROPIA DE JAVA PARA MANEJO DE TEMPORIZADOR
 
-    /*private static int iniciarTemporizador(int minutos) {
-        final AtomicBoolean finalizado = new AtomicBoolean(false);
-        final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        final long[] segundosCumplidos = {0};
-        final long totalSegundos = minutos * 60;
-
-        System.out.println("Presiona 'Enter' para finalizar el temporizador antes de tiempo.");
-
-        Thread hiloFinalizar = new Thread(() -> {
-            scanner.nextLine();
-            finalizado.set(true);
-            scheduler.shutdownNow();
-        });
-
-        hiloFinalizar.start();
-
-        scheduler.scheduleAtFixedRate(() -> {
-            if (finalizado.get()) {
-                System.out.println("El temporizador ha sido finalizado antes de tiempo.");
-                try {
-                    sleep(500);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                System.out.println("Presione una tecla para continuar...");
-                scanner.nextLine();
-                return;
-            }
-
-            // Limpiar la consola
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-
-            int minutosTranscurridos = (int) (segundosCumplidos[0] / 60);
-            int segundosTranscurridos = (int) (segundosCumplidos[0] % 60);
-            double porcentaje = ((double) segundosCumplidos[0] / totalSegundos) * 100;
-
-            String barraProgreso = generarBarraProgreso(porcentaje);
-
-            System.out.printf("Llevas %d minutos y %d segundos. [%s] %.2f%%\n",
-                    minutosTranscurridos, segundosTranscurridos, barraProgreso, porcentaje);
-
-            if (segundosCumplidos[0] >= totalSegundos) {
-                System.out.println("El temporizador ha finalizado después de " + minutos + " minutos.");
-                System.out.println("Presione ENTER para continuar");
-                finalizado.set(true);
-                scheduler.shutdownNow();
-            } else {
-                segundosCumplidos[0] += 10;
-            }
-
-        }, 0, 10, TimeUnit.SECONDS);
-
-        try {
-            hiloFinalizar.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return (int) (segundosCumplidos[0] / 60);
-    }*/
     private static int iniciarTemporizador(int minutos, int minutosTrabajados) {
         final AtomicBoolean finalizado = new AtomicBoolean(false);
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
@@ -1070,7 +1004,6 @@ public class Main {
     }
 
 
-
     private static String generarBarraProgreso(double porcentaje) {
         int totalCaracteres = 20; // longitud de la barra de progreso
         int caracteresLlenos = (int) (porcentaje / 100 * totalCaracteres);
@@ -1083,6 +1016,7 @@ public class Main {
         }
         return barra.toString();
     }
+
     // FRONT DE JSON
     public static void archivoJSON(Usuario usuarioActual) {
         String rutaArchivo = "tareas" + usuarioActual.getId();
@@ -1109,13 +1043,8 @@ public class Main {
         String idTarea = scanner.nextLine();
         System.out.println("Ingrese el tipo de tarea que desea modificar:");
         String tipoTarea = scanner.nextLine();
-        Tarea tarea = manejoUsuario.buscarEntreTareas(idTarea, tipoTarea, usuario);
-        if (tarea != null) {
-            modificarTarea(tarea, tipoTarea);
-            System.out.println("Tarea modificada exitosamente.");
-        } else {
-            System.out.println("La tarea no fue encontrada.");
-        }
+        Tarea tarea = null;
+        tarea = manejoUsuario.buscarEntreTareas(idTarea, tipoTarea, usuario);
     }
 
     private static void modificarTarea(Tarea tarea, String tipoTarea) {

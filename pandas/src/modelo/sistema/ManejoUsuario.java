@@ -3,6 +3,7 @@ package modelo.sistema;
 import excepciones.deLogin.ContrasenaIncorrectaException;
 import excepciones.deLogin.LoginIncorrectoException;
 import excepciones.deLogin.UsuarioIncorrectoException;
+import excepciones.deTarea.TareaInvalidaExcpetion;
 import modelo.tareas.Tarea;
 
 import java.io.*;
@@ -270,6 +271,7 @@ public class ManejoUsuario {
                 }
             }
         }
+
         return res;
     }
 
