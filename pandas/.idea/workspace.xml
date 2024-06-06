@@ -5,12 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fab5d630-f119-4e06-9c84-4e663108790c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/1.0.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/excepciones/deTarea/TareaInvalidaExcpetion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/usuarios.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/sistema/ManejoUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/java_json.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1.0.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/Interfaces/ICalcularCalorias.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/ManejoMain.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/excepciones/deLogin/ContrasenaIncorrectaException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/excepciones/deLogin/LoginIncorrectoException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/excepciones/deLogin/UsuarioIncorrectoException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/excepciones/dePanda/CantidadBambuesInsuficientesException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/excepciones/deTarea/CalificacionException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/excepciones/deTarea/TareaInvalidaExcpetion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/modelo/sistema/ManejoUsuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/modelo/sistema/Panda.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/modelo/sistema/Usuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/modelo/tareas/SeccionCocina.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/modelo/tareas/SeccionDeporte.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/modelo/tareas/SeccionEstudio.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/modelo/tareas/SeccionTrabajo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/modelo/tareas/Tarea.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/proyecto-labo3/utiles/JsonUtiles.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios.dat" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tareas1.0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../usuarios.dat" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,27 +70,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Main.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Interfaces",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/docs/learning-aprendizaje/AA Tecnología/Docs/UTN/TUP/cursada/tercer cuatrimestre/prog-labotorio iii/proyecto final/PandyTask/pandas",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Interfaces&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/docs/learning-aprendizaje/AA Tecnología/Docs/UTN/TUP/cursada/tercer cuatrimestre/prog-labotorio iii/proyecto final/PandyTask/pandas&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
