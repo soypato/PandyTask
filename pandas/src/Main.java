@@ -244,6 +244,7 @@ public class Main {
     //OP 1.1.1 MENU TAREAS (tendriamos que recuperar las tareas por puntero)
 
     public static void mostrarMenuTareas(Usuario usuarioActual) {
+        limpiarBuffer();
         int opcion;
         int eleccionTareaInt = 0;
         String eleccionTarea = "";
@@ -261,6 +262,9 @@ public class Main {
             switch (opcion) {
                 case 1:
                     int tiempoTotal = 0;
+                    char decision = 's';
+                    int calificTemp = 0;
+                    String retroalimentacion = "";
                     if (!usuarioActual.hayTareasCreadas()) {
                         System.out.println("Menu de arranque tareas");
                         System.out.println(usuarioActual.listarTareas());
@@ -293,8 +297,8 @@ public class Main {
                             int minutosRestantes = tareaTmp.getTemporizador() - tareaTmp.getMinutosTrancurridos();
                             System.out.println("Llevas trabajados en la tarea: " + tareaTmp.getMinutosTrancurridos() + " minutos, de los: " + tareaTmp.getTemporizador() + " minutos totales.");
                             System.out.println("Desea comenzar la tarea? (s/n)");
-                            char decision = scanner.next().charAt(0);
-                            if (decision == 's') {
+                            char decision1 = scanner.next().charAt(0);
+                            if (decision1 == 's') {
                                 System.out.println("Presiona 'Enter' para comenzar la tarea...");
                                 scanner.nextLine();
                                 scanner.nextLine();
@@ -304,6 +308,24 @@ public class Main {
                                 System.out.println("Has sumado " + minutosCumplidos * 30 + " bambues");
                                 tiempoTotal = tareaTmp.getMinutosTrancurridos() + minutosCumplidos;
                                 System.out.println("Llevas trabajando en la tarea: " + tiempoTotal);
+                                System.out.println("Desea darnos una retroalimentacion sobre la tarea? (s/n)");
+                                decision = scanner.next().charAt(0);
+                                if(decision == 's') {
+                                    System.out.println("Como calificarias esta tarea del 1 al 10?");
+                                    do {
+                                        calificTemp = scanner.nextInt();
+                                        if (calificTemp <= 0 || calificTemp > 10) {
+                                            System.out.println("Incorrecto. Introduzca del 1 al 10.");
+                                        }
+                                    } while (calificTemp <= 0 || calificTemp > 10);
+
+                                    System.out.println("Comenta brevemente como te sentiste con esta tarea.");
+                                    scanner.nextLine();
+                                    retroalimentacion = scanner.nextLine();
+
+                                    tareaTmp.setCalificacion(calificTemp);
+                                    tareaTmp.setRetroalimentacion(retroalimentacion);
+                                }
                                 tareaTmp.setMinutosTrancurridos(tareaTmp.getMinutosTrancurridos() + minutosCumplidos);
                             } else {
                                 System.out.println("Volviendo ...");
@@ -728,6 +750,10 @@ public class Main {
         do {
             System.out.println("-------------------------");
             System.out.print("Cantidad de minutos que durara la tarea (Mayor a 1 minuto): ");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Has introducido un valor no válido. Inténtalo nuevamente con un valor entero.");
+                scanner.next();
+            }
             minutos = scanner.nextInt();
             System.out.println("-------------------------");
             if (minutos <= 1) {
@@ -740,41 +766,11 @@ public class Main {
             case 1:
                 SeccionEstudio estudioTmp = generarEstudio(usuarioActual, titulo, objetivo, fecha, minutos);
 
-                System.out.println("Como calificarias esta tarea del 1 al 10?");
-                do {
-                    calificTemp = scanner.nextInt();
-                    if (calificTemp <= 0 || calificTemp > 10) {
-                        System.out.println("Incorrecto. Introduzca del 1 al 10.");
-                    }
-                } while (calificTemp <= 0 || calificTemp > 10);
-
-                System.out.println("Comenta brevemente como te sentiste con esta tarea. Antes presiona enter.");
-                scanner.nextLine();
-                retroalimentacion = scanner.nextLine();
-
-                estudioTmp.setCalificacion(calificTemp);
-                estudioTmp.setRetroalimentacion(retroalimentacion);
-
                 usuarioActual.nuevaTareaALaColeccion(estudioTmp);
                 System.out.println("La tarea ha sido agregada exitosamente");
                 break;
             case 2:
                 SeccionTrabajo trabajoTmp = generarTrabajo(usuarioActual, titulo, objetivo, fecha, minutos);
-
-                System.out.println("Como calificarias esta tarea del 1 al 10?");
-                do {
-                    calificTemp = scanner.nextInt();
-                    if (calificTemp <= 0 || calificTemp > 10) {
-                        System.out.println("Incorrecto. Introduzca del 1 al 10.");
-                    }
-                } while (calificTemp <= 0 || calificTemp > 10);
-
-                System.out.println("Comenta brevemente como te sentiste con esta tarea. Antes presiona enter.");
-                scanner.nextLine();
-                retroalimentacion = scanner.nextLine();
-
-                trabajoTmp.setCalificacion(calificTemp);
-                trabajoTmp.setRetroalimentacion(retroalimentacion);
 
                 usuarioActual.nuevaTareaALaColeccion(trabajoTmp);
                 System.out.println("La tarea ha sido agregada exitosamente");
@@ -782,42 +778,13 @@ public class Main {
             case 3:
                 SeccionDeporte deporteTmp = generarDeporte(usuarioActual, titulo, objetivo, fecha, minutos);
 
-                System.out.println("Como calificarias esta tarea del 1 al 10?");
-                do {
-                    calificTemp = scanner.nextInt();
-                    if (calificTemp <= 0 || calificTemp > 10) {
-                        System.out.println("Incorrecto. Introduzca del 1 al 10.");
-                    }
-                } while (calificTemp <= 0 || calificTemp > 10);
-
-                System.out.println("Comenta brevemente como te sentiste con esta tarea. Antes presiona enter.");
-                scanner.nextLine();
-                retroalimentacion = scanner.nextLine();
-
-                deporteTmp.setCalificacion(calificTemp);
-                deporteTmp.setRetroalimentacion(retroalimentacion);
                 usuarioActual.nuevaTareaALaColeccion(deporteTmp);
                 System.out.println("La tarea ha sido agregada exitosamente");
                 break;
             case 4:
                 SeccionCocina cocinaTmp = generarCocina(usuarioActual, titulo, objetivo, fecha, minutos);
+
                 usuarioActual.nuevaTareaALaColeccion(cocinaTmp);
-
-                System.out.println("Como calificarias esta tarea del 1 al 10?");
-                do {
-                    calificTemp = scanner.nextInt();
-                    if (calificTemp <= 0 || calificTemp > 10) {
-                        System.out.println("Incorrecto. Introduzca del 1 al 10.");
-                    }
-                } while (calificTemp <= 0 || calificTemp > 10);
-
-                System.out.println("Comenta brevemente como te sentiste con esta tarea.");
-                scanner.nextLine();
-                retroalimentacion = scanner.nextLine();
-
-                cocinaTmp.setCalificacion(calificTemp);
-                cocinaTmp.setRetroalimentacion(retroalimentacion);
-
                 System.out.println("La tarea ha sido agregada exitosamente");
                 break;
             default:
