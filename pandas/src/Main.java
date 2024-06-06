@@ -107,30 +107,38 @@ public class Main {
         String usuario = "";
         String contrasena = "";
         Usuario usuarioActual = null;
-        do {
-            System.out.println("Quien esta mirando?");
-            System.out.println(manejoUsuario.mostrarTodosLosNombreUsuarios());
+        if (manejoUsuario.numeroDeUsuarios() == 0) {
+            System.out.println("No hay usuarios creados. Por favor, cree una cuenta primero.");
+            System.out.println("Ingrese los datos para crear su nueva cuenta. Apreta ENTER para continuar");
+            registrarUsuario();
+        } else
+        {
+            do {
+                System.out.println("Quien esta mirando?");
+                System.out.println(manejoUsuario.mostrarTodosLosNombreUsuarios());
 
-            System.out.println("Ingrese el nombre del usuario");
-            usuario = scanner.nextLine();
-            System.out.println("Ingrese la contrasena del usuario");
-            contrasena = scanner.nextLine();
-            try {
-                usuarioActual = manejoUsuario.comprobarLogin(usuario, contrasena);
-                if (usuarioActual != null) {
-                    System.out.println("Usuario y contrasena correcta!");
-                    mostrarMenuInicio(usuarioActual);
+                System.out.println("Ingrese el nombre del usuario");
+                usuario = scanner.nextLine();
+                System.out.println("Ingrese la contrasena del usuario");
+                contrasena = scanner.nextLine();
+                try {
+                    usuarioActual = manejoUsuario.comprobarLogin(usuario, contrasena);
+                    if (usuarioActual != null) {
+                        System.out.println("Usuario y contrasena correcta!");
+                        mostrarMenuInicio(usuarioActual);
+                    }
+                } catch (
+                        LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
+                    System.out.println("Usuario y contrasena incorrecto");
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
                 }
-            } catch (
-                    LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
-                System.out.println("Usuario y contrasena incorrecto");
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
+
+
             }
-
-
+            while (usuarioActual == null);
         }
-        while (usuarioActual == null);
+
 
 
     }
@@ -329,22 +337,22 @@ public class Main {
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    System.out.println(usuarioActual.getBambuesActuales());
+                    System.out.println("Bambueas actuales: " + usuarioActual.getBambuesActuales());
                     break;
                 case 2:
-                    System.out.println(usuarioActual.listarTareas());
+                    System.out.println("Tareas: " + usuarioActual.listarTareas());
                     break;
                 case 3:
-                    System.out.println(usuarioActual.getCantBambuConsumidoPanda());
+                    System.out.println("Veces que has alimentado a " + usuarioActual.getNombrePanda() + ": " + usuarioActual.getCantBambuConsumidoPanda());
                     break;
                 case 4:
-                    System.out.println(usuarioActual.getCantArbolesPlantados());
+                    System.out.println("Veces que has plantado un árbol: " + usuarioActual.getCantArbolesPlantados());
                     break;
                 case 5:
-                    System.out.println(usuarioActual.getCantLavados());
+                    System.out.println("Veces que has dado baño a " + usuarioActual.getNombrePanda() + ": " + usuarioActual.getCantLavados());
                     break;
                 case 6:
-                    System.out.println(usuarioActual.getCantJuguetes());
+                    System.out.println("Cantidad de juguetes que has comprado para " + usuarioActual.getNombrePanda() + ": " + usuarioActual.getCantJuguetes());
                     break;
                 case 7:
                     System.out.println("Volviendo al menu de inicio ...");

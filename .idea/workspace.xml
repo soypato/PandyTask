@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67bf95d5-87ca-4ed4-88c2-4acd15fa1a9a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pandas/src/Interfaces/ICalcularCalorias.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pandas/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionDeporte.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/tareas/SeccionDeporte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto-labo3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto-labo3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/modelo/sistema/ManejoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/modelo/sistema/ManejoUsuario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +38,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Interfaces",
+    "git-widget-placeholder": "desarrolloJuanma3",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Users/Usuario/Desktop/proyecto-labo3/pandas",
     "node.js.detected.package.eslint": "true",
@@ -58,7 +55,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-22-openjdk-22-4caba194b151-f504ca98" />
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
       </set>
     </attachedChunks>
   </component>
@@ -73,6 +71,7 @@
       <workItem from="1717622536287" duration="7570000" />
       <workItem from="1717630194359" duration="3000" />
       <workItem from="1717630211018" duration="15000" />
+      <workItem from="1717648136337" duration="1223000" />
     </task>
     <servers />
   </component>
