@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="67bf95d5-87ca-4ed4-88c2-4acd15fa1a9a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandas/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +37,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "last-day-of-work-06/06-juanma",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/juanm/Descargas/PandyTask-main",
     "node.js.detected.package.eslint": "true",
@@ -74,6 +75,7 @@
       <workItem from="1717665387798" duration="234000" />
       <workItem from="1717693619085" duration="854000" />
       <workItem from="1717694531410" duration="111000" />
+      <workItem from="1717706770568" duration="325000" />
     </task>
     <servers />
   </component>

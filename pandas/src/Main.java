@@ -173,37 +173,21 @@ public class Main {
     public static void restablecerContrasena() {
         limpiarBuffer();
         String usuario;
-        String contrasena;
         String nuevaContrasena;
         Usuario usuarioActual = null;
 
         do {
             System.out.println("-------------------------");
             System.out.println("Introduzca el usuario");
-            scanner.nextLine();
             usuario = scanner.nextLine();
-
-            System.out.println("Introduzca su contrasena actual");
-            contrasena = scanner.nextLine();
-
-            try {
-                usuarioActual = manejoUsuario.comprobarLogin(usuario, contrasena);
+            usuarioActual = manejoUsuario.buscarUsuario(usuario);
                 if (usuarioActual != null) {
                     System.out.println("Ingrese la nueva contrasena");
                     nuevaContrasena = scanner.nextLine();
                     usuarioActual.setContrasena(nuevaContrasena);
-                    mostrarMenuInicio(usuarioActual);
+                    System.out.println("La contraseña ha sido restablecida con éxito.");
                 }
-            } catch (
-                    LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
-                System.out.println("Usuario y contrasena incorrecto");
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
-
-
-        }
-        while (usuarioActual == null);
+        } while (usuarioActual == null);
     }
     /////////////////// LOGIN EXITOSO
 
