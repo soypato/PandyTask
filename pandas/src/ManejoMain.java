@@ -101,9 +101,11 @@ public class ManejoMain {
                 System.out.println("Quien esta mirando?");
                 System.out.println(manejoUsuario.mostrarTodosLosNombreUsuarios());
 
-                System.out.println("Ingrese el nombre del usuario");
+                System.out.println("Ingrese el nombre del usuario (presione 'Enter' para continuar)");
+                scanner.nextLine();
                 usuario = scanner.nextLine();
-                System.out.println("Ingrese la contrasena del usuario");
+                System.out.println("Ingrese la contrasena del usuario (presione 'Enter' para continuar)");
+                scanner.nextLine();
                 contrasena = scanner.nextLine();
                 try {
                     usuarioActual = manejoUsuario.comprobarLogin(usuario, contrasena);
