@@ -923,14 +923,14 @@ public class ManejoMain {
     public static SeccionDeporte generarDeporte(Usuario usuarioActual, String titulo, String objetivo, String fecha, int minutos) {
         limpiarBuffer();
         System.out.println("-------------------------");
-        System.out.print("Ejercicios: ");
+        System.out.print("Ejercicios: (presiona enter y luego ingresa) ");
         scanner.nextLine();
         String ejercicios = scanner.nextLine();
         System.out.println("-------------------------");
         System.out.print("Duracion: ");
         double duracion = scanner.nextDouble();
         System.out.println("-------------------------");
-        System.out.println("Intensidad: ");
+        System.out.println("Intensidad: (baja/media/alta)");
         scanner.nextLine();
         String intensidad = scanner.nextLine();
         String idNuevo = manejoUsuario.incrementarID("SeccionDeporte", usuarioActual);
