@@ -885,7 +885,7 @@ public class ManejoMain {
         limpiarBuffer();
         SeccionTrabajo res = null;
 
-        System.out.print("Sector de la tarea: ");
+        System.out.print("Sector de la tarea: (presiona enter y luego ingresa) ");
         scanner.nextLine();
         String sector = scanner.nextLine();
 
