@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -40,10 +41,10 @@ public class ManejoMain {
         // El archivo se actualiza a lo ultimo
 
 
-        int opcion;
+        int opcion = -1;
         do {
             mostrarMenuPrincipal();
-            opcion = scanner.nextInt();
+            opcion = isValidoInt(opcion);
             switch (opcion) {
                 case 1:
                     iniciarSesion();
@@ -183,7 +184,7 @@ public class ManejoMain {
     /////////////////// LOGIN EXITOSO
 
     public static void mostrarMenuInicio(Usuario usuarioActual) throws JSONException {
-        int opcion;
+        int opcion = -1;
         do {
             System.out.println("---------------------------------");
             System.out.println("Bienvenido " + usuarioActual.getNombreUsuario());
@@ -202,8 +203,10 @@ public class ManejoMain {
             System.out.println("5. Configuracion de cuenta");
             System.out.println("6. Exportar tareas");
             System.out.println("7. Volver al menu principal");
-            System.out.print("Seleccione una opción: ");
-            opcion = scanner.nextInt();
+            System.out.print("Seleccione una opcion por favor: ");
+
+            opcion = isValidoInt(opcion);
+
             switch (opcion) {
                 case 1:
                     System.out.println("---------------------------------");
@@ -243,7 +246,7 @@ public class ManejoMain {
 
     public static void mostrarMenuTareas(Usuario usuarioActual) {
         limpiarBuffer();
-        int opcion;
+        int opcion = -1;
         int eleccionTareaInt = 0;
         String eleccionTarea = "";
         String idTarea = "";
@@ -257,7 +260,7 @@ public class ManejoMain {
             System.out.println("5. Borrar tarea");
             System.out.println("6. Volver al menu de usuario");
             System.out.print("Seleccione una opción: ");
-            opcion = scanner.nextInt();
+            opcion = isValidoInt(opcion);
             switch (opcion) {
                 case 1:
                     int tiempoTotal = 0;
@@ -458,7 +461,7 @@ public class ManejoMain {
     //OP 1.2.0
 
     public static void mostrarMenuEstadisticas(Usuario usuarioActual) {
-        int opcion;
+        int opcion = -1;
         do {
             System.out.println("---------------------------------");
             System.out.println("Menu Estadisticas");
@@ -470,7 +473,7 @@ public class ManejoMain {
             System.out.println("6. Ver cantidad de juguetes que le compraste a " + usuarioActual.getNombrePanda());
             System.out.println("7. Volver al menu de inicio");
             System.out.print("Seleccione una opción: ");
-            opcion = scanner.nextInt();
+            opcion = isValidoInt(opcion);
             switch (opcion) {
                 case 1:
                     System.out.println("---------------------------------");
@@ -508,7 +511,7 @@ public class ManejoMain {
     //OP 1.3.0
 
     public static void mostrarMenuTienda(Usuario usuarioActual) {
-        int opcion;
+        int opcion = -1;
         do {
             System.out.println("---------------------------------");
             System.out.println("Menu Tienda");
@@ -521,7 +524,7 @@ public class ManejoMain {
             System.out.println("6. Adquirir instalaciones y habitats para el centro de pandas | (10000 bambues)");
             System.out.println("7. Salir");
             System.out.print("Seleccione una opción: ");
-            opcion = scanner.nextInt();
+            opcion = isValidoInt(opcion);
             switch (opcion) {
                 case 1:
                     System.out.println("---------------------------------");
@@ -597,7 +600,7 @@ public class ManejoMain {
 
     //OP 1.4.0
     public static void mostrarMenuMisiones(Usuario usuarioActual) {
-        int opcion;
+        int opcion = -1;
         do {
             System.out.println("---------------------------------");
             System.out.println("Menu Misiones");
@@ -605,7 +608,7 @@ public class ManejoMain {
             System.out.println("2. Reclamar recompensas");
             System.out.println("3. Salir");
             System.out.print("Seleccione una opción: ");
-            opcion = scanner.nextInt();
+            opcion = isValidoInt(opcion);
             switch (opcion) {
                 case 1:
                     System.out.println("---------------------------------");
@@ -677,7 +680,7 @@ public class ManejoMain {
 
     //OP 1.5.0
     public static void mostrarMenuConfiguracion(Usuario usuarioActual) {
-        int opcion;
+        int opcion = -1;
         do {
             System.out.println("---------------------------------");
             System.out.println("Menu Configuración");
@@ -685,7 +688,7 @@ public class ManejoMain {
             System.out.println("2. Cambiar contraseña");
             System.out.println("3. Volver al menu de usuario");
             System.out.print("Seleccione una opción: ");
-            opcion = scanner.nextInt();
+            opcion = isValidoInt(opcion);
             switch (opcion) {
                 case 1:
                     System.out.println("---------------------------------");
@@ -838,7 +841,7 @@ public class ManejoMain {
             throw new RuntimeException(e);
         }
 
-        int opcion;
+        int opcion = -1;
         int calificTemp;
         String retroalimentacion;
 
@@ -850,7 +853,7 @@ public class ManejoMain {
         System.out.println("4. Cocina");
         System.out.println("-------------------------");
         System.out.print("Su decision: ");
-        opcion = scanner.nextInt();
+        opcion = isValidoInt(opcion);
 
         // GENERICAS PARA TODAS LAS CLASES: LAS DEL SUPER TAREA
         System.out.println("-------------------------");
@@ -1104,6 +1107,7 @@ public class ManejoMain {
     }
 
     private static void modificarTarea(Tarea tarea, String tipoTarea) {
+        int opcion = -1;
         boolean continuar = true;
         while (continuar) {
             System.out.println("Seleccione el atributo que desea modificar:");
@@ -1115,7 +1119,7 @@ public class ManejoMain {
             System.out.println("6. Atributos específicos de " + tipoTarea);
             System.out.println("7. Salir");
             System.out.print("Opción: ");
-            int opcion = Integer.parseInt(scanner.nextLine());
+            opcion = isValidoInt(opcion);
 
             switch (opcion) {
                 case 1:
@@ -1176,7 +1180,8 @@ public class ManejoMain {
         System.out.println("2. Fecha límite");
         System.out.println("3. Salir");
         System.out.print("Opción: ");
-        int opcion = Integer.parseInt(scanner.nextLine());
+        int opcion = -1;
+        opcion = isValidoInt(opcion);
 
         switch (opcion) {
             case 1:
@@ -1196,13 +1201,14 @@ public class ManejoMain {
     }
 
     private static boolean modificarSeccionEstudio(SeccionEstudio tarea, Scanner scanner) {
+        int opcion = -1;
         System.out.println("Seleccione el atributo que desea modificar:");
         System.out.println("1. Categoría");
         System.out.println("2. Materia");
         System.out.println("3. Unidad");
         System.out.println("4. Salir");
         System.out.print("Opción: ");
-        int opcion = Integer.parseInt(scanner.nextLine());
+        opcion = isValidoInt(opcion);
 
         switch (opcion) {
             case 1:
@@ -1226,12 +1232,13 @@ public class ManejoMain {
     }
 
     private static boolean modificarSeccionDeporte(SeccionDeporte tarea, Scanner scanner) {
+        int opcion = -1;
         System.out.println("Seleccione el atributo que desea modificar:");
         System.out.println("1. Duración");
         System.out.println("2. Intensidad");
         System.out.println("3. Salir");
         System.out.print("Opción: ");
-        int opcion = Integer.parseInt(scanner.nextLine());
+        opcion = isValidoInt(opcion);
 
         switch (opcion) {
             case 1:
@@ -1248,6 +1255,17 @@ public class ManejoMain {
                 System.out.println("Opción no válida.");
         }
         return true;
+    }
+
+    public static int isValidoInt(int numero)
+    { // IMPORTANTE NUMERO ANTES INICIALIZADA!
+        try { // DOCUMENTAR ESTO
+            numero = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            scanner.next(); // Limpiar el buffer del scanner
+            // dejamos a merced de quien la use poner un sout de opcion invalida para que sea mas coherente con el resto de verificaciones que haga
+        }
+        return numero;
     }
 }
 
