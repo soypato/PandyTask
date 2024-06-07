@@ -245,6 +245,7 @@ public class ManejoMain {
             System.out.println("2. Crear nueva tarea");
             System.out.println("3. Ver historial de tareas");
             System.out.println("4. Modificar tareas");
+            System.out.println("5. Borrar tarea");
             System.out.println("5. Volver al menu de usuario");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
@@ -354,20 +355,46 @@ public class ManejoMain {
                     tareaTmp = manejoUsuario.buscarEntreTareas(idTarea, eleccionTarea, usuarioActual);
                     if (tareaTmp != null) {
                         modificarTarea(tareaTmp, eleccionTarea);
+                        System.out.println("---------------------------------");
+                        System.out.println("Tarea modificada con exito");
                     } else {
                         System.out.println("Vuelve a intentarlo");
                     }
-                    System.out.println("---------------------------------");
-                    System.out.println("Tarea modificada con exito");
                     break;
                 case 5:
+                    System.out.println("---------------------------------");
+                    System.out.println("Menu de borrado");
+                    System.out.println(usuarioActual.listarTareas());
+                    System.out.println("Ingrese a que seccion desea acceder: ");
+                    System.out.println("1. SeccionTrabajo");
+                    System.out.println("2. SeccionEstudio");
+                    System.out.println("3. SeccionDeporte");
+                    System.out.println("4. SeccionCocina");
+                    scanner.nextLine();
+                    eleccionTareaInt = scanner.nextInt();
+                    eleccionTarea = getEleccionTarea(eleccionTareaInt, eleccionTarea);
+                    System.out.println("---------------------------------");
+                    System.out.println("Ingrese el codigo de la tarea (sin comillas): ");
+                    scanner.nextLine();
+                    idTarea = scanner.nextLine();
+
+                    tareaTmp = manejoUsuario.buscarEntreTareas(idTarea, eleccionTarea, usuarioActual);
+                    if (tareaTmp != null) {
+                        manejoUsuario.borrarTarea(tareaTmp, eleccionTarea, usuarioActual);
+                        System.out.println("---------------------------------");
+                        System.out.println("Tarea borrada.");
+                    } else {
+                        System.out.println("Vuelve a intentarlo");
+                    }
+                    break;
+                case 6:
                     System.out.println("---------------------------------");
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
                     System.out.println("Opción inválida");
             }
-        } while (opcion != 5);
+        } while (opcion != 6);
     }
 
     public static String getEleccionTarea(int eleccionTareaInt, String eleccionTarea) {
@@ -1024,7 +1051,7 @@ public class ManejoMain {
     // MODIFICACION DE TAREAS
 
     public void modificarTareaSeleccionada(Usuario usuario, ManejoUsuario manejoUsuario, Scanner scanner) {
-        System.out.println("Ingrese el ID de la tarea que desea modificar:");
+        System.out.println("Ingrese el codigo de la tarea (sin comillas): ");
         String idTarea = scanner.nextLine();
         System.out.println("Ingrese el tipo de tarea que desea modificar:");
         String tipoTarea = scanner.nextLine();
