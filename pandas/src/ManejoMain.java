@@ -44,7 +44,7 @@ public class ManejoMain {
         int opcion = -1;
         do {
             mostrarMenuPrincipal();
-            opcion = isValidoInt(opcion);
+            opcion = isValidoInt();
             switch (opcion) {
                 case 1:
                     iniciarSesion();
@@ -207,7 +207,7 @@ public class ManejoMain {
             System.out.println("7. Volver al menu principal");
             System.out.print("Seleccione una opcion por favor: ");
 
-            opcion = isValidoInt(opcion);
+            opcion = isValidoInt();
 
             switch (opcion) {
                 case 1:
@@ -262,7 +262,7 @@ public class ManejoMain {
             System.out.println("5. Borrar tarea");
             System.out.println("6. Volver al menu de usuario");
             System.out.print("Seleccione una opción: ");
-            opcion = isValidoInt(opcion);
+            opcion = isValidoInt();
             switch (opcion) {
                 case 1:
                     int tiempoTotal = 0;
@@ -475,7 +475,7 @@ public class ManejoMain {
             System.out.println("6. Ver cantidad de juguetes que le compraste a " + usuarioActual.getNombrePanda());
             System.out.println("7. Volver al menu de inicio");
             System.out.print("Seleccione una opción: ");
-            opcion = isValidoInt(opcion);
+            opcion = isValidoInt();
             switch (opcion) {
                 case 1:
                     System.out.println("---------------------------------");
@@ -526,7 +526,7 @@ public class ManejoMain {
             System.out.println("6. Adquirir instalaciones y habitats para el centro de pandas | (10000 bambues)");
             System.out.println("7. Salir");
             System.out.print("Seleccione una opción: ");
-            opcion = isValidoInt(opcion);
+            opcion = isValidoInt();
             switch (opcion) {
                 case 1:
                     System.out.println("---------------------------------");
@@ -610,7 +610,7 @@ public class ManejoMain {
             System.out.println("2. Reclamar recompensas");
             System.out.println("3. Salir");
             System.out.print("Seleccione una opción: ");
-            opcion = isValidoInt(opcion);
+            opcion = isValidoInt();
             switch (opcion) {
                 case 1:
                     System.out.println("---------------------------------");
@@ -690,7 +690,7 @@ public class ManejoMain {
             System.out.println("2. Cambiar contraseña");
             System.out.println("3. Volver al menu de usuario");
             System.out.print("Seleccione una opción: ");
-            opcion = isValidoInt(opcion);
+            opcion = isValidoInt();
             switch (opcion) {
                 case 1:
                     System.out.println("---------------------------------");
@@ -855,7 +855,7 @@ public class ManejoMain {
         System.out.println("4. Cocina");
         System.out.println("-------------------------");
         System.out.print("Su decision: ");
-        opcion = isValidoInt(opcion);
+        opcion = isValidoInt();
 
         // GENERICAS PARA TODAS LAS CLASES: LAS DEL SUPER TAREA
         System.out.println("-------------------------");
@@ -1121,7 +1121,7 @@ public class ManejoMain {
             System.out.println("6. Atributos específicos de " + tipoTarea);
             System.out.println("7. Salir");
             System.out.print("Opción: ");
-            opcion = isValidoInt(opcion);
+            opcion = isValidoInt();
 
             switch (opcion) {
                 case 1:
@@ -1183,7 +1183,7 @@ public class ManejoMain {
         System.out.println("3. Salir");
         System.out.print("Opción: ");
         int opcion = -1;
-        opcion = isValidoInt(opcion);
+        opcion = isValidoInt();
 
         switch (opcion) {
             case 1:
@@ -1210,7 +1210,7 @@ public class ManejoMain {
         System.out.println("3. Unidad");
         System.out.println("4. Salir");
         System.out.print("Opción: ");
-        opcion = isValidoInt(opcion);
+        opcion = isValidoInt();
 
         switch (opcion) {
             case 1:
@@ -1240,7 +1240,7 @@ public class ManejoMain {
         System.out.println("2. Intensidad");
         System.out.println("3. Salir");
         System.out.print("Opción: ");
-        opcion = isValidoInt(opcion);
+        opcion = isValidoInt();
 
         switch (opcion) {
             case 1:
@@ -1259,13 +1259,17 @@ public class ManejoMain {
         return true;
     }
 
-    public static int isValidoInt(int numero)
-    { // IMPORTANTE NUMERO ANTES INICIALIZADA!
-        try { // DOCUMENTAR ESTO
-            numero = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            scanner.next(); // Limpiar el buffer del scanner
-            // dejamos a merced de quien la use poner un sout de opcion invalida para que sea mas coherente con el resto de verificaciones que haga
+    public static int isValidoInt() {
+        int numero = 0;
+        boolean esValido = false;
+        while (!esValido) {
+            try {
+                numero = scanner.nextInt();
+                esValido = true; // Entrada válida, salir del bucle
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada no válida. Por favor, ingrese un número.");
+                scanner.next(); // Limpiar el buffer del scanner
+            }
         }
         return numero;
     }
