@@ -274,14 +274,17 @@ public class ManejoMain {
                         System.out.println("3. SeccionDeporte");
                         System.out.println("4. SeccionCocina");
                         do {
-                            eleccionTareaInt = scanner.nextInt();
-
-                            if(eleccionTareaInt < 1 || eleccionTareaInt > 4)
-                            {
-                                System.out.println("Intentelo de nuevo");
+                            System.out.print("Por favor, introduzca un número entre 1 y 4: ");
+                            while (!scanner.hasNextInt()) {
+                                System.out.println("Entrada no válida. Inténtelo de nuevo.");
+                                scanner.next(); // Descartar la entrada no válida
+                                System.out.print("Por favor, introduzca un número entre 1 y 4: ");
                             }
-
-                        } while(eleccionTareaInt < 1 || eleccionTareaInt > 4);
+                            eleccionTareaInt = scanner.nextInt();
+                            if (eleccionTareaInt < 1 || eleccionTareaInt > 4) {
+                                System.out.println("Intentelo de nuevo.");
+                            }
+                        } while (eleccionTareaInt < 1 || eleccionTareaInt > 4);
 
                         eleccionTarea = getEleccionTarea(eleccionTareaInt, eleccionTarea);
                         System.out.println("---------------------------------");
@@ -363,13 +366,17 @@ public class ManejoMain {
                     System.out.println("3. SeccionDeporte");
                     System.out.println("4. SeccionCocina");
                     do {
-                        eleccionTareaInt = scanner.nextInt();
-
-                        if(eleccionTareaInt <= 1 || eleccionTareaInt >= 4)
-                        {
-                            System.out.println("Intentelo de nuevo");
+                        System.out.print("Por favor, introduzca un número entre 1 y 4: ");
+                        while (!scanner.hasNextInt()) {
+                            System.out.println("Entrada no válida. Inténtelo de nuevo.");
+                            scanner.next(); // Descartar la entrada no válida
+                            System.out.print("Por favor, introduzca un número entre 1 y 4: ");
                         }
-                    } while(eleccionTareaInt <= 1 || eleccionTareaInt >= 4);
+                        eleccionTareaInt = scanner.nextInt();
+                        if (eleccionTareaInt < 1 || eleccionTareaInt > 4) {
+                            System.out.println("Intentelo de nuevo.");
+                        }
+                    } while (eleccionTareaInt < 1 || eleccionTareaInt > 4);
 
                     eleccionTarea = getEleccionTarea(eleccionTareaInt, eleccionTarea);
                     System.out.println("---------------------------------");
@@ -397,14 +404,18 @@ public class ManejoMain {
                     System.out.println("4. SeccionCocina");
                     scanner.nextLine();
                     do {
-                        eleccionTareaInt = scanner.nextInt();
-
-                        if(eleccionTareaInt >= 1 || eleccionTareaInt <= 4)
-                        {
-                            System.out.println("Intentelo de nuevo");
+                        System.out.print("Por favor, introduzca un número entre 1 y 4: ");
+                        while (!scanner.hasNextInt()) {
+                            System.out.println("Entrada no válida. Inténtelo de nuevo.");
+                            scanner.next(); // Descartar la entrada no válida
+                            System.out.print("Por favor, introduzca un número entre 1 y 4: ");
                         }
+                        eleccionTareaInt = scanner.nextInt();
+                        if (eleccionTareaInt < 1 || eleccionTareaInt > 4) {
+                            System.out.println("Intentelo de nuevo.");
+                        }
+                    } while (eleccionTareaInt < 1 || eleccionTareaInt > 4);
 
-                    } while(eleccionTareaInt >= 1 || eleccionTareaInt <= 4);
                     eleccionTarea = getEleccionTarea(eleccionTareaInt, eleccionTarea);
                     System.out.println("---------------------------------");
                     System.out.println("Ingrese el codigo de la tarea (sin comillas): ");
