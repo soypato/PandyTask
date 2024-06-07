@@ -246,7 +246,7 @@ public class ManejoMain {
             System.out.println("3. Ver historial de tareas");
             System.out.println("4. Modificar tareas");
             System.out.println("5. Borrar tarea");
-            System.out.println("5. Volver al menu de usuario");
+            System.out.println("6. Volver al menu de usuario");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             switch (opcion) {
