@@ -591,7 +591,7 @@ public class ManejoMain {
                         usuarioActual.setBambuesActuales(actual + 1000);
                         usuarioActual.setBambuesConsumidosPorPanda(0); // Resetear el contador o alguna otra acción
                     } else {
-                        System.out.println("Aún no has completado la misión de plantar 10 árboles.");
+                        System.out.println("Aún no has completado la misión de alimentar al panda 15 veces.");
                     }
                     if (usuarioActual.getCantArbolesPlantados() >= 10) {
                         System.out.println("Recompensa por plantar 10 árboles reclamada. Has ganado 2000 bambues");
@@ -927,7 +927,7 @@ public class ManejoMain {
         scanner.nextLine();
         String ejercicios = scanner.nextLine();
         System.out.println("-------------------------");
-        System.out.print("Duracion: ");
+        System.out.print("Tiempo que vas a estar bajo tension: ");
         double duracion = scanner.nextDouble();
         System.out.println("-------------------------");
         System.out.println("Intensidad: (baja/media/alta)");

@@ -125,9 +125,10 @@ public class SeccionDeporte extends Tarea implements Comparable, ICalcularCalori
     @Override
     public String toString() {
         return "SeccionDeporte{\n" +
-                "\tEjercicios: '" + ejercicios + '\'' +
-                ",\n\tCalorías Quemadas: " + caloriasQuemadas +
-                ",\n\tDuración: " + duracion + " minutos" +
+                super.toString() +
+                "\n\tEjercicios: '" + ejercicios + '\'' +
+                ",\n\tCalorías a quemar: " + caloriasQuemadas +
+                ",\n\tTiempo bajo tension " + duracion + " minutos" +
                 ",\n\tIntensidad: '" + intensidad + '\'' +
                 "\n}";
     }
