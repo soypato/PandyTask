@@ -87,6 +87,10 @@ public class ManejoMain {
         String usuario = "";
         String contrasena = "";
         Usuario usuarioActual = null;
+
+        char decision=' ';
+        boolean seguirPreguntado=true;
+
         if (manejoUsuario.numeroDeUsuarios() == 0) {
             System.out.println("No hay usuarios creados. Por favor, cree una cuenta primero.");
             System.out.println("Ingrese los datos para crear su nueva cuenta. Apreta ENTER para continuar");
@@ -109,13 +113,18 @@ public class ManejoMain {
                 } catch (
                         LoginIncorrectoException e) { // funciona porque la excepcion se tira cuando en el back rebota el usuario
                     System.out.println("Usuario y contrasena incorrecto");
+                    System.out.println("Desea seguir intentando nuevamente? (s/n)");
+                    decision= scanner.next().charAt(0);
+                    if(decision=='n')
+                    {
+                        seguirPreguntado=false;
+                    }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
-
-
+                
             }
-            while (usuarioActual == null);
+            while (usuarioActual == null && seguirPreguntado);
         }
 
 
