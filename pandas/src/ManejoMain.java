@@ -273,7 +273,16 @@ public class ManejoMain {
                         System.out.println("2. SeccionEstudio");
                         System.out.println("3. SeccionDeporte");
                         System.out.println("4. SeccionCocina");
-                        eleccionTareaInt = scanner.nextInt();
+                        do {
+                            eleccionTareaInt = scanner.nextInt();
+
+                            if(eleccionTareaInt < 1 || eleccionTareaInt > 4)
+                            {
+                                System.out.println("Intentelo de nuevo");
+                            }
+
+                        } while(eleccionTareaInt < 1 || eleccionTareaInt > 4);
+
                         eleccionTarea = getEleccionTarea(eleccionTareaInt, eleccionTarea);
                         System.out.println("---------------------------------");
                         System.out.println("Ingrese el ID de la tarea a comenzar: ");
@@ -353,8 +362,15 @@ public class ManejoMain {
                     System.out.println("2. SeccionEstudio");
                     System.out.println("3. SeccionDeporte");
                     System.out.println("4. SeccionCocina");
-                    scanner.nextLine();
-                    eleccionTareaInt = scanner.nextInt();
+                    do {
+                        eleccionTareaInt = scanner.nextInt();
+
+                        if(eleccionTareaInt <= 1 || eleccionTareaInt >= 4)
+                        {
+                            System.out.println("Intentelo de nuevo");
+                        }
+                    } while(eleccionTareaInt <= 1 || eleccionTareaInt >= 4);
+
                     eleccionTarea = getEleccionTarea(eleccionTareaInt, eleccionTarea);
                     System.out.println("---------------------------------");
                     System.out.println("Ingrese el ID de la tarea a modificar: ");
@@ -380,7 +396,15 @@ public class ManejoMain {
                     System.out.println("3. SeccionDeporte");
                     System.out.println("4. SeccionCocina");
                     scanner.nextLine();
-                    eleccionTareaInt = scanner.nextInt();
+                    do {
+                        eleccionTareaInt = scanner.nextInt();
+
+                        if(eleccionTareaInt >= 1 || eleccionTareaInt <= 4)
+                        {
+                            System.out.println("Intentelo de nuevo");
+                        }
+
+                    } while(eleccionTareaInt >= 1 || eleccionTareaInt <= 4);
                     eleccionTarea = getEleccionTarea(eleccionTareaInt, eleccionTarea);
                     System.out.println("---------------------------------");
                     System.out.println("Ingrese el codigo de la tarea (sin comillas): ");
