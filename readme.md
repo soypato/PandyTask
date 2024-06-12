@@ -66,10 +66,6 @@ PandyTask es un sistema de gestión de tareas innovador que integra un sistema d
 
 Si tienes algún problema o pregunta, por favor abre un issue en el repositorio de [GitHub](https://github.com/soypato/PandyTask/issues).
 
-## Licencia
-
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
-
 ## Agradecimientos
 - A [Mateo Pujol](https://github.com/Matute-Developer) por el ASCII Art del Panda.
 - A Chiara Ciardi por el nombre del proyecto.
