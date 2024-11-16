@@ -68,7 +68,7 @@ Si tienes algún problema o pregunta, por favor abre un issue en el repositorio 
 
 ## Agradecimientos
 - A [Mateo Pujol](https://github.com/Matute-Developer) por el ASCII Art del Panda.
-- A Chiara Ciardi por el nombre del proyecto.
+- A [Chiara Ciardi](https://github.com/Chiari13) por el nombre del proyecto.
 
 ¡Muchas gracias a todos!
 
@@ -76,4 +76,4 @@ Si tienes algún problema o pregunta, por favor abre un issue en el repositorio 
 
 ¡Gracias por utilizar PandyTask! Esperamos que disfrutes organizando tus tareas de una manera más divertida y motivadora.
 
-Con 💙 [SoyPato](https://github.com/soypato),  [Ignacio Acuña](https://github.com/iMonety) y [Juanma Ciardi](https://github.com/Juanii07) desde Argentina.
+Con 💙 [SoyPato](https://github.com/soypato),  [Ignacio Acuña](https://github.com/iMonety) y [Juanma Ciardi](https://github.com/JuaniiC07) desde Argentina.
