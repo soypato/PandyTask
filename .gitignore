@@ -1,0 +1,43 @@
+# Build
+target/
+out/
+bin/
+*.class
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Logs y temporales
+*.log
+*.tmp
+*.swp
+*.bak
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+System Volume Information/
+
+# Archivos de respaldo y configuraciones personales
+*.old
+*.orig
+*.rej
+
+# Archivos de entorno o configuración
+.env
+*.env
+*.properties.local
+
+# Otros editores (por si usás alguno alternativo)
+.vscode/
+*.sublime*
+
+# Maven Wrapper
+.mvn/
+mvnw
+mvnw.cmd
